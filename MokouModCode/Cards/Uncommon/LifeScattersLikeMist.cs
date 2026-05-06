@@ -6,7 +6,7 @@ namespace MokouMod.MokouModCode.Cards.Uncommon;
 
 public class LifeScattersLikeMist : MokouModCard
 {
-    public LifeScattersLikeMist() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
+    public LifeScattersLikeMist() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
     {
         WithKeyword(CardKeyword.Exhaust);
     }

@@ -61,6 +61,7 @@ public class MokouMod : PlaceholderCharacterModel
     public override string CustomVisualPath => "character_visual_mokou.tscn".CharacterUiPath();
     public override string CustomCharacterSelectBg => "character_select_bg_mokou.tscn".CharacterUiPath();
     public override string CustomIconTexturePath => "character_icon_mokou.png".CharacterUiPath();
+    public override string CustomIconOutlineTexturePath => "character_icon_outline_mokou.png".CharacterUiPath();
     public override string CustomEnergyCounterPath => "energy_counter_mokou.tscn".CharacterUiPath();
     public override string CustomCharacterSelectIconPath => "char_select_mokou.png".CharacterUiPath();
     public override string CustomCharacterSelectLockedIconPath => "char_select_mokou_locked.png".CharacterUiPath();
@@ -73,8 +74,7 @@ public class MokouMod : PlaceholderCharacterModel
     public override string CustomArmPaperTexturePath => "hand_paper.png".CharacterUiPath();
     public override string CustomArmScissorsTexturePath => "hand_scissors.png".CharacterUiPath();
 
-    public override string CustomCharacterSelectTransitionPath =>
-        "res://materials/transitions/ironclad_transition_mat.tres";
+    public override string CustomCharacterSelectTransitionPath => "res://materials/transitions/ironclad_transition_mat.tres";
 
     //public override string CustomAttackSfx => null;
     //public override string CustomCastSfx => null;

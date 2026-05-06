@@ -1,10 +1,13 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MokouMod.MokouModCode.Character;
 using MokouMod.MokouModCode.Extensions;
@@ -14,9 +17,14 @@ using MokouMod.MokouModCode.Scripts;
 namespace MokouMod.MokouModCode.Cards;
 
 [Pool(typeof(MokouModCardPool))]
-public abstract class MokouModCard(int cost, CardType type, CardRarity rarity, TargetType target) :
-    ConstructedCardModel(cost, type, rarity, target)
+public abstract class MokouModCard : ConstructedCardModel
 {
+    protected MokouModCard(int cost, CardType type, CardRarity rarity, TargetType target)
+        : base(cost, type, rarity, target)
+    {
+        WithTip(new TooltipSource((Func<CardModel, IHoverTip>)((CardModel card) => (IHoverTip)(object)new HoverTip(new LocString("static_hover_tips", "MOKOUMOD-ARTIST-TITLE"), new LocString("cards", ((AbstractModel)this).Id.Entry + ".artist"), (Texture2D)null))));
+    }
+    
     //Image size:
     //Normal art: 1000x760 (Using 500x380 should also work, it will simply be scaled.)
     //Full art: 606x852

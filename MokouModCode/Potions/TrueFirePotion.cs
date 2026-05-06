@@ -28,7 +28,6 @@ public class TrueFirePotion : MokouModPotion
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely((Node)NGroundFireVfx.Create(target));
-        await PowerCmd.Apply<BurnPower>(choiceContext, target, DynamicVars["BurnPower"].BaseValue, Owner.Creature,
-            null);
+        await PowerCmd.Apply<BurnPower>(choiceContext, target, DynamicVars["BurnPower"].BaseValue, Owner.Creature, null);
     }
 }

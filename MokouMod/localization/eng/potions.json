@@ -1,6 +1,10 @@
 ﻿{
   "MOKOUMOD-TRUE_FIRE_POTION.description": "Apply [blue]{BurnPower}[/blue] [gold]Burn[/gold].",
   "MOKOUMOD-TRUE_FIRE_POTION.title": "True Fire Potion",
+  "MOKOUMOD-BOTTLED_VIGOR.description": "Gain [blue]{VigorPower}[/blue] [gold]Vigor[/gold]. [gold]Enchant[/gold] [blue]{Cards}[/blue] {Cards:plural:card|cards} with [gold]Vigorous[/gold].",
+  "MOKOUMOD-BOTTLED_VIGOR.title": "Bottled Vigor",
+  "MOKOUMOD-TRUE_REGEN_POTION.description": "Lose [blue]{HpLoss:diff()}[/blue] [gold]Non-Lethal[/gold] HP. Gain [green]{RegenPower:diff()}[/green] [gold]Regen[/gold].",
+  "MOKOUMOD-TRUE_REGEN_POTION.title": "True Regen Potion",
   "MOKOUMOD-HOURAI_ELIXIR.description": "Gain [blue]{Essence}[/blue] [gold]Essence[/gold]. Gain [blue]{RekindlePower}[/blue] [gold]Rekindle[/gold].",
   "MOKOUMOD-HOURAI_ELIXIR.title": "Hourai Elixir"
 }

@@ -42,7 +42,6 @@ public class HouraiElixir : MokouModPotion
         }
 
         if (CombatManager.Instance.IsInProgress)
-            await PowerCmd.Apply<RekindlePower>(choiceContext, target, DynamicVars["RekindlePower"].BaseValue,
-                Owner.Creature, null);
+            await PowerCmd.Apply<RekindlePower>(choiceContext, target, DynamicVars["RekindlePower"].BaseValue, Owner.Creature, null);
     }
 }

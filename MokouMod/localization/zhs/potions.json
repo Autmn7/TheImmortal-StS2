@@ -1,6 +1,10 @@
 ﻿{
   "MOKOUMOD-TRUE_FIRE_POTION.description": "给予[blue]{BurnPower}[/blue]层[gold]烧伤[/gold]。",
   "MOKOUMOD-TRUE_FIRE_POTION.title": "真·火焰药水",
+  "MOKOUMOD-BOTTLED_VIGOR.description": "获得[blue]{VigorPower}[/blue]点[gold]活力[/gold]。为[blue]{Cards}[/blue]张牌[gold]附魔[/gold]：[gold]活力盎然[/gold]。",
+  "MOKOUMOD-BOTTLED_VIGOR.title": "瓶装活力",
+  "MOKOUMOD-TRUE_REGEN_POTION.description": "失去[blue]{HpLoss:diff()}[/blue]点[gold]非致命[/gold]生命。获得[green]{RegenPower:diff()}[/green]层[gold]再生[/gold]。",
+  "MOKOUMOD-TRUE_REGEN_POTION.title": "真·再生药水",
   "MOKOUMOD-HOURAI_ELIXIR.description": "获得[blue]{Essence}[/blue]层[gold]火种[/gold]。获得[blue]{RekindlePower}[/blue]层[gold]重生[/gold]。",
   "MOKOUMOD-HOURAI_ELIXIR.title": "蓬莱药"
 }
