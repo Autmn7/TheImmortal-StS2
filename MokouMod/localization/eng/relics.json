@@ -1,0 +1,8 @@
+{
+  "MOKOUMOD-BURNING_PLUME.description": "Start each combat with [blue]{RekindlePower:diff()}[/blue] [gold]Rekindle[/gold] and [green]{RegenPower:diff()}[/green] [gold]Regen[/gold]. On entering a new [gold]Act[/gold], gain [blue]1[/blue] [gold]Essence[/gold].",
+  "MOKOUMOD-BURNING_PLUME.flavor": "Why is this perpetually burning?",
+  "MOKOUMOD-BURNING_PLUME.title": "Burning Plume",
+  "MOKOUMOD-IMMORTAL_PLUME.description": "Start each combat with [blue]{RekindlePower:diff()}[/blue] [gold]Rekindle[/gold] and [green]{RegenPower:diff()}[/green] [gold]Regen[/gold]. On entering a new [gold]Act[/gold], gain [blue]1[/blue] [gold]Essence[/gold].",
+  "MOKOUMOD-IMMORTAL_PLUME.flavor": "Magic, is why.",
+  "MOKOUMOD-IMMORTAL_PLUME.title": "Immortal Plume"
+}

@@ -1,0 +1,7 @@
+﻿{
+  "MOKOUMOD-VIGOROUS_ENCHANTMENT.title": "活力盎然",
+  "MOKOUMOD-VIGOROUS_ENCHANTMENT.extraCardText": "看到请联系作者报错",
+  "MOKOUMOD-VIGOROUS_ENCHANTMENT.attackText": "返还一半花费的[gold]活力[/gold]。",
+  "MOKOUMOD-VIGOROUS_ENCHANTMENT.nonAttackText": "获得等于此牌花费能量两倍的[gold]活力[/gold]。",
+  "MOKOUMOD-VIGOROUS_ENCHANTMENT.description": "如果[gold]附魔[/gold]于攻击牌：返还一半花费的[gold]活力[/gold]。否则：获得等于此牌花费能量两倍的[gold]活力[/gold]。"
+}

@@ -1,0 +1,8 @@
+{
+  "MOKOUMOD-BURNING_PLUME.description": "战斗开始时，获得[blue]{RekindlePower:diff()}[/blue]层[gold]重生[/gold]和[green]{RegenPower:diff()}[/green]层[gold]再生[/gold]。进入新的[gold]阶段[/gold]时，获得[blue]1[/blue]层[gold]火种[/gold]。",
+  "MOKOUMOD-BURNING_PLUME.flavor": "这东西为什么不会烧成灰呢？",
+  "MOKOUMOD-BURNING_PLUME.title": "炽焰之翎",
+  "MOKOUMOD-IMMORTAL_PLUME.description": "战斗开始时，获得[blue]{RekindlePower:diff()}[/blue]层[gold]重生[/gold]和[green]{RegenPower:diff()}[/green]层[gold]再生[/gold]。进入新的[gold]阶段[/gold]时，获得[blue]1[/blue]层[gold]火种[/gold]。",
+  "MOKOUMOD-IMMORTAL_PLUME.flavor": "问就是魔法。",
+  "MOKOUMOD-IMMORTAL_PLUME.title": "不朽之翎"
+}

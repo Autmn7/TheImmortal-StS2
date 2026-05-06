@@ -1,0 +1,7 @@
+﻿{
+  "MOKOUMOD-VIGOROUS_ENCHANTMENT.title": "Vigorous",
+  "MOKOUMOD-VIGOROUS_ENCHANTMENT.extraCardText": "If you see this, plz report bug.",
+  "MOKOUMOD-VIGOROUS_ENCHANTMENT.attackText": "Refund half of Vigor spent.",
+  "MOKOUMOD-VIGOROUS_ENCHANTMENT.nonAttackText": "Gain Vigor equal to double the energy spent.",
+  "MOKOUMOD-VIGOROUS_ENCHANTMENT.description": "If [gold]Enchanted[/gold] on an Attack: Refunds half of [gold]Vigor[/gold] spent. Otherwise: Gain [gold]Vigor[/gold] equal to double the energy spent."
+}

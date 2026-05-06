@@ -1,0 +1,16 @@
+{
+  "MOKOUMOD-ESSENCE.description": "Stored in your starting relic. Each [gold]Essence[/gold] increases [gold]Rekindle[/gold] healing by [blue]5%[/blue].",
+  "MOKOUMOD-ESSENCE.title": "Essence",
+  "MOKOUMOD-NONLETHAL.description": "Keep [blue]1[/blue] HP if losing such amount would kill you.",
+  "MOKOUMOD-NONLETHAL.title": "Non-Lethal",
+  "MOKOUMOD-IGNITE.description": "Triggers if any unit (including yourself) has at least X [gold]Burn[/gold] (highlighted in [gold]gold[/gold] when active).",
+  "MOKOUMOD-IGNITE.title": "Ignite(X)",
+  "MOKOUMOD-FURY.description": "Triggers if you have lost HP this turn (highlighted in [red]red[/red] when active).",
+  "MOKOUMOD-FURY.title": "Fury",
+  "MOKOUMOD-EMBER.description": "Triggers if you are at or below [blue]50%[/blue] HP or have revived from [gold]Rekindle[/gold] this combat (highlighted in [purple]purple[/purple] when active).",
+  "MOKOUMOD-EMBER.title": "Ember",
+  "MOKOUMOD-FUEL.description": "A special type of card with [gold]Unplayable[/gold] and [gold]Retain[/gold], X indicates its Durability. Whenever a [gold]Fuel[/gold] is in your hand and you trigger [gold]Ignite[/gold], [red]Fury[/red] or [purple]Ember[/purple], trigger [gold]Fuel's[/gold] effect and lose [blue]1[/blue] Durability. A [gold]Fuel[/gold] is [gold]Exhausted[/gold] when its Durability is [blue]0[/blue].",
+  "MOKOUMOD-FUEL.title": "Fuel(X)",
+  "MOKOUMOD-EXHUME.description": "Return cards from your [gold]Exhaust Pile[/gold] into your [gold]Hand[/gold].",
+  "MOKOUMOD-EXHUME.title": "Exhume"
+}
