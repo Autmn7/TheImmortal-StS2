@@ -48,7 +48,7 @@
   "MOKOUMOD-VALIANT_HEART_POWER.smartDescription": "[gold]Vigorous[/gold] Attacks refund ALL [gold]Vigor[/gold] spent.",
   "MOKOUMOD-VALIANT_HEART_POWER.title": "Valiant Heart",
   "MOKOUMOD-RECKLESS_SACRIFICES_REFLECTION_POWER.description": "",
-  "MOKOUMOD-RECKLESS_SACRIFICES_REFLECTION_POWER.smartDescription": "This turn, whenever you take unblocked damage, deal that much damage back to the attacker.",
+  "MOKOUMOD-RECKLESS_SACRIFICES_REFLECTION_POWER.smartDescription": "This turn, whenever you take unblocked damage, deal {Amount:plural:|[blue]{Amount}[/blue] times }that much damage back to the attacker.",
   "MOKOUMOD-RECKLESS_SACRIFICES_REFLECTION_POWER.title": "Reckless Sacrifice's Reflection",
   "MOKOUMOD-HEATWAVE_POWER.description": "",
   "MOKOUMOD-HEATWAVE_POWER.smartDescription": "[gold]Feathers[/gold] apply [gold]Burn[/gold] to ALL enemies.",

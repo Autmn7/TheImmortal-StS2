@@ -237,7 +237,7 @@
   "MOKOUMOD-SIPHONING_FLAME.description": "Remove enemy's [gold]Burn[/gold]. Gain 1 [gold]Regen[/gold] for every {Ratio:diff()} removed.\n[gold]Ignite[/gold]({Ignite:diff()}): Add a [gold]Conjuring Flame[/gold] into your [gold]Discard Pile[/gold]. ",
   "MOKOUMOD-SIPHONING_FLAME.title": "Siphoning Flame",
   "MOKOUMOD-SIPHONING_FLAME.artist": "わんこソラ",
-  "MOKOUMOD-CONJURING_FLAME.description": "Apply [gold]Burn[/gold] equal to the amount removed.{InCombat:\n(Apply {BurnPower:diff()} [gold]Burn[/gold])|}",
+  "MOKOUMOD-CONJURING_FLAME.description": "{InCombat:Apply {BurnPower:diff()} [gold]Burn[/gold].|Apply [gold]Burn[/gold] equal to the amount removed.}",
   "MOKOUMOD-CONJURING_FLAME.title": "Conjuring Flame",
   "MOKOUMOD-CONJURING_FLAME.artist": "FKEY",
   "MOKOUMOD-UNDYING_PASSION.description": "Deal {Damage:diff()} damage.\n[gold]Enchant[/gold] this card and {Cards:diff()} {Cards:plural:Attack|Attacks} in your [gold]Hand[/gold] with [gold]Vigorous[/gold].",

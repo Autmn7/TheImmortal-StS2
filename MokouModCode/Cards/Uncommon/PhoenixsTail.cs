@@ -19,6 +19,8 @@ public class PhoenixsTail : MokouModCard
         WithKeyword(MokouModKeywords.Ignite);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellCast;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(cardPlay.Target, 0.6f));

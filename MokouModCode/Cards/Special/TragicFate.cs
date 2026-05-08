@@ -15,6 +15,8 @@ public class TragicFate : MokouModCard
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellChannel;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DoubleDamagePower>(this, 1);

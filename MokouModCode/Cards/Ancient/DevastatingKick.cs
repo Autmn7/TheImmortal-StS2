@@ -21,6 +21,8 @@ public class DevastatingKick : MokouModCard
         WithKeyword(MokouModKeywords.Nonlethal);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.AttackSweepKick;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var nonLethal = CalculateNonLethal(DynamicVars.HpLoss.BaseValue);

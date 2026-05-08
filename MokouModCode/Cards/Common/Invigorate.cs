@@ -16,6 +16,8 @@ public class Invigorate : MokouModCard
         WithTip(CardKeyword.Exhaust);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.AttackUpKick;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)

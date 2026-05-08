@@ -22,6 +22,8 @@ public class WingBlast : MokouModCard
         WithEnergyTip();
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellChannel;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState)

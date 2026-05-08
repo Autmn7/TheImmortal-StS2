@@ -24,6 +24,8 @@ public class FengWingAscension : MokouModCard
         WithTip(typeof(BurnPower));
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.AttackAirKick;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var attackCommand = await CommonActions.CardAttack(this, cardPlay.Target)

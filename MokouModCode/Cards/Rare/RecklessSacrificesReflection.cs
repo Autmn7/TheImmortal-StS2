@@ -16,6 +16,8 @@ public class RecklessSacrificesReflection : MokouModCard
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellChannel;
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)

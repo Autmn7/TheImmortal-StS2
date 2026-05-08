@@ -21,6 +21,8 @@ public class SiphoningFlame : MokouModCard
         WithTip(typeof(RegenPower));
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellChannel;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         decimal burnRemoved = cardPlay.Target.GetPowerAmount<BurnPower>();

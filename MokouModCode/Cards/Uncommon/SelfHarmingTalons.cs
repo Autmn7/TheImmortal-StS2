@@ -24,6 +24,8 @@ public class SelfHarmingTalons : MokouModCard
         WithTip(new TooltipSource(card => HoverTipFactory.FromCard<FinalTalon>(card.IsUpgraded)));
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.TalonA;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,

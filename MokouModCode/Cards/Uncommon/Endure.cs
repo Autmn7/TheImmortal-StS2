@@ -18,6 +18,8 @@ public class Endure : MokouModCard
         WithEnergyTip();
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellChannel;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<BurnPower>(choiceContext, Owner.Creature, DynamicVars["BurnPower"].BaseValue,

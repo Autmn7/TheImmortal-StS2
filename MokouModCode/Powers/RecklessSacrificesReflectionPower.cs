@@ -12,7 +12,7 @@ public class RecklessSacrificesReflectionPower : MokouModPower
 {
     public override PowerType Type => PowerType.Buff;
 
-    public override PowerStackType StackType => PowerStackType.Single;
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     public override async Task AfterDamageGiven(
         PlayerChoiceContext choiceContext,
@@ -26,7 +26,7 @@ public class RecklessSacrificesReflectionPower : MokouModPower
             return;
         var reflectAmount = result.UnblockedDamage + result.OverkillDamage;
         if (reflectAmount > 0)
-            await CreatureCmd.Damage(choiceContext, dealer, reflectAmount, ValueProp.Unpowered, null, null);
+            await CreatureCmd.Damage(choiceContext, dealer, reflectAmount * Amount, ValueProp.Unpowered, null, null);
     }
 
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)

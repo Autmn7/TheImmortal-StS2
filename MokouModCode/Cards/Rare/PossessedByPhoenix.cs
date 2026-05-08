@@ -14,6 +14,8 @@ public class PossessedByPhoenix : MokouModCard
         WithTip(typeof(Feather));
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellChannel;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, 99);

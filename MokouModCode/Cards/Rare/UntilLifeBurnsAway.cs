@@ -40,6 +40,8 @@ public class UntilLifeBurnsAway : MokouModCard
         WithEnergyTip();
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.Resurrection;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var hpLoss = ((CalculatedVar)DynamicVars["CalculatedHpLoss"]).Calculate(cardPlay.Target);

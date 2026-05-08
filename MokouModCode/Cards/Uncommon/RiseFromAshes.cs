@@ -17,6 +17,8 @@ public class RiseFromAshes : MokouModCard
         WithKeywords(CardKeyword.Exhaust);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellChannel;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurningVfx.Create(Owner.Creature, 0.75f, false));

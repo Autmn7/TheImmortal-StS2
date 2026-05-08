@@ -19,6 +19,8 @@ public class EnergizedStrike : MokouModCard
         WithTags(CardTag.Strike);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.AttackUpKick;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var nonLethal = CalculateNonLethal(DynamicVars.HpLoss.BaseValue);

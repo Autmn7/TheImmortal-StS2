@@ -41,7 +41,7 @@ public abstract class MokouModCard : ConstructedCardModel
     public override string CustomPortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
     public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
 
-    public virtual Character.MokouMod.Animation Animation => Character.MokouMod.Animation.None;
+    public virtual Character.MokouMod.Animation Anim => Character.MokouMod.Animation.None;
 
     public bool IgniteActive { get; private set; }
     public bool FuryActive { get; private set; }

@@ -21,6 +21,8 @@ public class BlazingBird : MokouModCard
         WithEnergyTip();
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellBackflip;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(cardPlay.Target, 0.5f));

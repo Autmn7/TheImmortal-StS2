@@ -18,6 +18,8 @@ public class RegretfulLife : MokouModCard
         WithTip(new TooltipSource(card => HoverTipFactory.FromCard<RecklessSacrifice>(card.IsUpgraded)));
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellChannel;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var nonLethal = CalculateNonLethal(DynamicVars.HpLoss.BaseValue);

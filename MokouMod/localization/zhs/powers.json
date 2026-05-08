@@ -48,7 +48,7 @@
   "MOKOUMOD-VALIANT_HEART_POWER.smartDescription": "具有[gold]活力盎然[/gold]的攻击牌返还所有花费的活力。",
   "MOKOUMOD-VALIANT_HEART_POWER.title": "英勇之心",
   "MOKOUMOD-RECKLESS_SACRIFICES_REFLECTION_POWER.description": "",
-  "MOKOUMOD-RECKLESS_SACRIFICES_REFLECTION_POWER.smartDescription": "本回合，每当你受到未被格挡伤害，对攻击者造成等量伤害。",
+  "MOKOUMOD-RECKLESS_SACRIFICES_REFLECTION_POWER.smartDescription": "本回合，每当你受到未被格挡伤害，对攻击者造成[blue]{Amount}[/blue]倍等量伤害。",
   "MOKOUMOD-RECKLESS_SACRIFICES_REFLECTION_POWER.title": "「舍身之反射」",
   "MOKOUMOD-HEATWAVE_POWER.description": "",
   "MOKOUMOD-HEATWAVE_POWER.smartDescription": "[gold]火羽[/gold]会给予所有敌人[gold]烧伤[/gold]。",

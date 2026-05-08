@@ -17,6 +17,8 @@ public class Flare : MokouModCard
         WithTip(new TooltipSource(card => HoverTipFactory.FromCard<Feather>(card.IsUpgraded)));
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellCast;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<BurnPower>(choiceContext, Owner.Creature, DynamicVars["BurnPower"].BaseValue, Owner.Creature, this);

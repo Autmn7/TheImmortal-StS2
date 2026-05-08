@@ -15,6 +15,8 @@ public class ConsecutiveKicks : MokouModCard
         WithKeywords(MokouModKeywords.Fury);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.AttackAirKick;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target)

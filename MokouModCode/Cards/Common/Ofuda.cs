@@ -36,8 +36,7 @@ public class Ofuda : MokouModFuelCard
     public override async Task AfterCardExhausted(PlayerChoiceContext context, CardModel card, bool causedByEthereal)
     {
         if (card == this)
-            await PowerCmd.Apply<OfudaPower>(context, CombatState.HittableEnemies,
-                DynamicVars["StrengthLoss"].IntValue, Owner.Creature, this);
+            await PowerCmd.Apply<OfudaPower>(context, CombatState.HittableEnemies, DynamicVars["StrengthLoss"].IntValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

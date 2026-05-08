@@ -24,6 +24,8 @@ public class SelfHarmingKick : MokouModCard, ITranscendenceCard
         WithKeyword(MokouModKeywords.Nonlethal);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.AttackKick;
+
     public CardModel GetTranscendenceTransformedCard()
     {
         return ModelDb.Card<DevastatingKick>();

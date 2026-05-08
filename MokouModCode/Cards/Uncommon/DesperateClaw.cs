@@ -33,6 +33,8 @@ public class DesperateClaw : MokouModCard
         WithKeywords(MokouModKeywords.Fury, MokouModKeywords.Ember);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.TalonA;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target)

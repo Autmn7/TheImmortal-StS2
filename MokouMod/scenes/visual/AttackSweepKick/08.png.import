@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsguj3frnc81o"
-path="res://.godot/imported/mokou0.png-e437dd9c9d0dc6fc93124589a5e98917.ctex"
+uid="uid://bpbobpvx10jmr"
+path="res://.godot/imported/08.png-498aa1e89b675464f48bf42bd9d9a89d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MokouMod/scenes/visual/mokou0.png"
-dest_files=["res://.godot/imported/mokou0.png-e437dd9c9d0dc6fc93124589a5e98917.ctex"]
+source_file="res://MokouMod/scenes/visual/AttackSweepKick/08.png"
+dest_files=["res://.godot/imported/08.png-498aa1e89b675464f48bf42bd9d9a89d.ctex"]
 
 [params]
 

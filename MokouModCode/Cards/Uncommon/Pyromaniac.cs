@@ -17,6 +17,8 @@ public class Pyromaniac : MokouModCard
         WithVars(new PowerVar<BurnPower>(2));
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellCast;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(cardPlay.Target));

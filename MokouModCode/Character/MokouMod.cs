@@ -25,26 +25,26 @@ public class MokouMod : PlaceholderCharacterModel
     public enum Animation
     {
         None,
-        AttackCloseHeavy,
-        AttackCloseLight,
-        AttackCloseRound,
-        AttackDashHeavy,
-        AttackDashLight,
+        AttackKick,
+        AttackPunch,
+        AttackAirKick,
+        AttackUpKick,
+        AttackSweepKick,
         Block,
-        Broken,
+        Break,
         DamageHeavy,
         DamageLight,
         Dead,
         Guard,
         Idle,
-        ShotA,
-        ShotB,
-        ShotC,
+        TalonA,
+        TalonB,
+        TalonC,
         Resurrection,
         ShotLoop,
-        SpellFastA,
-        SpellLongA,
-        SpellLongB,
+        SpellChannel,
+        SpellBackflip,
+        SpellCast,
         StartBattle,
         Stun,
         StunEnd,
@@ -143,9 +143,9 @@ public class MokouMod : PlaceholderCharacterModel
             var val = instance != null ? instance.GetCreatureNode(cardPlay.Card.Owner.Creature) : null;
             if (val != null && val.Visuals is MokouVisuals { Playback: var playback })
             {
-                if (cardPlay.Card is MokouModCard { Animation: not Animation.None } mokouModCard)
+                if (cardPlay.Card is MokouModCard { Anim: not Animation.None } mokouModCard)
                 {
-                    if (playback != null) playback.Travel((StringName)mokouModCard.Animation.ToString(), true);
+                    if (playback != null) playback.Travel((StringName)mokouModCard.Anim.ToString(), true);
                     return Task.CompletedTask;
                 }
 
@@ -162,18 +162,25 @@ public class MokouMod : PlaceholderCharacterModel
         switch (card.Type)
         {
             case CardType.Attack:
-                animation = card.DynamicVars.ContainsKey("Damage") && ((DynamicVar)card.DynamicVars.Damage).IntValue >= 20
-                    ? Animation.AttackCloseHeavy
-                    : Animation.AttackCloseRound;
+                animation = Animation.AttackPunch;
                 break;
             case CardType.Skill:
-                animation = !card.DynamicVars.ContainsKey("Block") || !(((DynamicVar)card.DynamicVars.Block).BaseValue > 1m)
-                    ? Animation.SpellFastA
-                    : Animation.Block;
+                if (card.TargetType == TargetType.AnyEnemy || card.TargetType == TargetType.RandomEnemy || card.TargetType == TargetType.AnyPlayer)
+                {
+                    animation = Animation.SpellCast;
+                } 
+                else if (!card.DynamicVars.ContainsKey("Block") || !(((DynamicVar)card.DynamicVars.Block).BaseValue > 1m))
+                {
+                    animation = Animation.SpellBackflip;
+                }
+                else
+                {
+                    animation = Animation.Block;
+                }
                 break;
             case CardType.Power:
             {
-                animation = Animation.SpellLongA;
+                animation = Animation.SpellChannel;
                 break;
             }
         }
@@ -198,7 +205,7 @@ public class MokouMod : PlaceholderCharacterModel
                     }
                     else if (result.WasBlockBroken && result.UnblockedDamage > 0)
                     {
-                        if (playback != null) playback.Travel((StringName)nameof(Animation.Broken), true);
+                        if (playback != null) playback.Travel((StringName)nameof(Animation.Break), true);
                     }
                     else if (!((Enum)result.Props).HasFlag((Enum)(object)(ValueProp)16) && PublicPropExtensions.IsCardOrMonsterMove_(result.Props))
                     {

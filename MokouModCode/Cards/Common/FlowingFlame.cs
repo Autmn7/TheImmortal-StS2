@@ -18,6 +18,8 @@ public class FlowingFlame : MokouModCard
         WithKeywords(MokouModKeywords.Ignite, MokouModKeywords.Ember);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.AttackAirKick;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(cardPlay.Target));

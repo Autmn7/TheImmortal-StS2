@@ -237,7 +237,7 @@
   "MOKOUMOD-SIPHONING_FLAME.description": "移除敌人的[gold]烧伤[/gold]。每移除{Ratio:diff()}层，获得1层[gold]再生[/gold]。\n[gold]点燃[/gold]({Ignite:diff()})：将一张[gold]火焰唤起[/gold]加入你的[gold]弃牌堆[/gold]。",
   "MOKOUMOD-SIPHONING_FLAME.title": "火焰萃取",
   "MOKOUMOD-SIPHONING_FLAME.artist": "わんこソラ",
-  "MOKOUMOD-CONJURING_FLAME.description": "给予等于移除层数的[gold]烧伤[/gold]。{InCombat:\n（给予{BurnPower:diff()}层[gold]烧伤[/gold]）|}",
+  "MOKOUMOD-CONJURING_FLAME.description": "{InCombat:给予{BurnPower:diff()}层[gold]烧伤[/gold]。|给予等于移除层数的[gold]烧伤[/gold]。}",
   "MOKOUMOD-CONJURING_FLAME.title": "火焰唤起",
   "MOKOUMOD-CONJURING_FLAME.artist": "FKEY",
   "MOKOUMOD-UNDYING_PASSION.description": "造成{Damage:diff()}点伤害。\n为此牌和[gold]手牌[/gold]中的{Cards:diff()}张攻击牌[gold]附魔[/gold]：[gold]活力盎然[/gold]。",

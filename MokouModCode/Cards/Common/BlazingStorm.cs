@@ -20,6 +20,8 @@ public class BlazingStorm : MokouModCard
         WithKeywords(MokouModKeywords.Ignite);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.TalonA;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target)

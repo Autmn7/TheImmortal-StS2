@@ -16,6 +16,8 @@ public class BloodBoil : MokouModCard
         WithKeywords(MokouModKeywords.Ignite, MokouModKeywords.Fury);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellCast;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var num = CombatState.HittableEnemies.Count();

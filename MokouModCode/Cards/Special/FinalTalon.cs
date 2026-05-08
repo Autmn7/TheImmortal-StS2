@@ -22,6 +22,8 @@ public class FinalTalon : MokouModCard
         WithKeywords(CardKeyword.Ethereal, MokouModKeywords.Fury, CardKeyword.Exhaust);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.TalonC;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target).WithHitFx("vfx/vfx_giant_horizontal_slash")

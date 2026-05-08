@@ -15,6 +15,8 @@ public class PhoenixForm : MokouModCard
         WithTip(typeof(RekindlePower));
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.Resurrection;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<PhoenixFormPower>(choiceContext, Owner.Creature, DynamicVars["PhoenixFormPower"].BaseValue,

@@ -25,6 +25,8 @@ public class ImperishableShooting : MokouModCard
         WithTip(typeof(RekindlePower));
         WithTip(MokouModKeywords.Exhume);
     }
+    
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellCast;
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -39,7 +41,7 @@ public class ImperishableShooting : MokouModCard
                         targetCenterPositions.Add(creatureNode2.VfxSpawnPosition);
                 }
 
-                var vfx = NSweepingBeamVfx.Create(new Vector2(500, 520), targetCenterPositions);
+                var vfx = NSweepingBeamVfx.Create(new Vector2(550, 550), targetCenterPositions);
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
                 await Cmd.CustomScaledWait(0.5f, 0.75f);
             }).Execute(choiceContext);

@@ -16,6 +16,8 @@ public class Overwhelm : MokouModCard
         WithKeywords(MokouModKeywords.Fury);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.AttackKick;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var attackCommand = await CommonActions.CardAttack(this, cardPlay.Target)

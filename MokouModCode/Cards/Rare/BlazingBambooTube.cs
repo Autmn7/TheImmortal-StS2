@@ -30,6 +30,8 @@ public class BlazingBambooTube : MokouModCard
         WithTip(MokouModKeywords.Fuel);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellBackflip;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely((Node)NFireSmokePuffVfx.Create(cardPlay.Target));

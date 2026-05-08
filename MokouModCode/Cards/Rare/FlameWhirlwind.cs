@@ -22,6 +22,8 @@ public class FlameWhirlwind : MokouModCard
         WithKeywords(MokouModKeywords.Ignite);
         WithTip(typeof(BurnPower));
     }
+    
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.AttackSweepKick;
 
     protected override bool HasEnergyCostX => true;
 

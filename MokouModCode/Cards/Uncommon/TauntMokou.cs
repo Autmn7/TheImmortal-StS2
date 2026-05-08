@@ -18,6 +18,8 @@ public class TauntMokou : MokouModCard
         WithKeywords(MokouModKeywords.Fury);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.Win;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);

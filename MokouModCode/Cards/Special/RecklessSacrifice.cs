@@ -26,6 +26,8 @@ public class RecklessSacrifice : MokouModCard
         );
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.AttackKick;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this).Targeting(cardPlay.Target)

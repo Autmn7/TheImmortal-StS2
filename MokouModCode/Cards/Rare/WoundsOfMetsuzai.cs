@@ -18,6 +18,8 @@ public class WoundsOfMetsuzai : MokouModCard
         WithTip(MokouModKeywords.Exhume);
     }
 
+    public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellCast;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
