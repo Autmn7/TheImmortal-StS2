@@ -240,7 +240,7 @@
   "MOKOUMOD-CONJURING_FLAME.description": "Apply [gold]Burn[/gold] equal to the amount removed.{InCombat:\n(Apply {BurnPower:diff()} [gold]Burn[/gold])|}",
   "MOKOUMOD-CONJURING_FLAME.title": "Conjuring Flame",
   "MOKOUMOD-CONJURING_FLAME.artist": "FKEY",
-  "MOKOUMOD-UNDYING_PASSION.description": "Deal {Damage:diff()} damage.\n[gold]Enchant[/gold] this card and an Attack in your [gold]Hand[/gold] with [gold]Vigorous[/gold].",
+  "MOKOUMOD-UNDYING_PASSION.description": "Deal {Damage:diff()} damage.\n[gold]Enchant[/gold] this card and {Cards:diff()} {Cards:plural:Attack|Attacks} in your [gold]Hand[/gold] with [gold]Vigorous[/gold].",
   "MOKOUMOD-UNDYING_PASSION.title": "Undying Passion",
   "MOKOUMOD-UNDYING_PASSION.artist": "ただの",
   "MOKOUMOD-RED_CINDER.description": "[gold]Fuel[/gold]({Durability:diff()}).\nWhen [gold]Exhausted[/gold]: Apply {BurnPower:diff()} [gold]Burn[/gold] to ALL enemies.",

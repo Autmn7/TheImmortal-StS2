@@ -31,13 +31,14 @@ public class ImperishableShooting : MokouModCard
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState)
             .BeforeDamage(async () =>
             {
-                Array<Vector2> targetCenterPositions = new Array<Vector2>();
+                var targetCenterPositions = new Array<Vector2>();
                 foreach (var enemy in CombatState.HittableEnemies)
                 {
-                    NCreature creatureNode2 = NCombatRoom.Instance?.GetCreatureNode(enemy);
+                    var creatureNode2 = NCombatRoom.Instance?.GetCreatureNode(enemy);
                     if (creatureNode2 != null)
                         targetCenterPositions.Add(creatureNode2.VfxSpawnPosition);
                 }
+
                 var vfx = NSweepingBeamVfx.Create(new Vector2(500, 520), targetCenterPositions);
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
                 await Cmd.CustomScaledWait(0.5f, 0.75f);
@@ -47,6 +48,7 @@ public class ImperishableShooting : MokouModCard
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(enemy));
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(enemy, 0.75f));
         }
+
         await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies, DynamicVars["BurnPower"].BaseValue, Owner.Creature, this);
     }
 

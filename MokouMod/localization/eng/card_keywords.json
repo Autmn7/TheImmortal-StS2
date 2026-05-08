@@ -9,7 +9,7 @@
   "MOKOUMOD-FURY.title": "Fury",
   "MOKOUMOD-EMBER.description": "Triggers if you are at or below [blue]50%[/blue] HP or have revived from [gold]Rekindle[/gold] this combat (highlighted in [purple]purple[/purple] when active).",
   "MOKOUMOD-EMBER.title": "Ember",
-  "MOKOUMOD-FUEL.description": "A special type of card with [gold]Unplayable[/gold] and [gold]Retain[/gold], X indicates its Durability. Whenever a [gold]Fuel[/gold] is in your hand and you trigger [gold]Ignite[/gold], [red]Fury[/red] or [purple]Ember[/purple], trigger [gold]Fuel's[/gold] effect and lose [blue]1[/blue] Durability. A [gold]Fuel[/gold] is [gold]Exhausted[/gold] when its Durability is [blue]0[/blue].",
+  "MOKOUMOD-FUEL.description": "A special type of card with [gold]Unplayable[/gold] and [gold]Retain[/gold], X indicates its Durability. Whenever a [gold]Fuel[/gold] is in your [gold]Hand[/gold] and you play a card with active [gold]Ignite[/gold], [red]Fury[/red] or [purple]Ember[/purple], trigger [gold]Fuel's[/gold] effect and lose [blue]1[/blue] Durability. A [gold]Fuel[/gold] is [gold]Exhausted[/gold] when its Durability is [blue]0[/blue].",
   "MOKOUMOD-FUEL.title": "Fuel(X)",
   "MOKOUMOD-EXHUME.description": "Return cards from your [gold]Exhaust Pile[/gold] into your [gold]Hand[/gold].",
   "MOKOUMOD-EXHUME.title": "Exhume"

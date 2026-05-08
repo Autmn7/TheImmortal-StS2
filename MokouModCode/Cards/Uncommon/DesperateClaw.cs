@@ -35,12 +35,10 @@ public class DesperateClaw : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay.Target).WithHitCount((int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target))
+        await CommonActions.CardAttack(this, cardPlay.Target)
+            .WithHitCount((int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target))
             .WithHitVfxNode((Func<Creature, Node2D>)(t => NScratchVfx.Create(t, true))).Execute(choiceContext);
-        if (FuryActive || EmberActive)
-        {
-            await PowerCmd.Apply<SharpenedPower>(choiceContext, Owner.Creature, 1M, Owner.Creature, this);
-        }
+        if (FuryActive || EmberActive) await PowerCmd.Apply<SharpenedPower>(choiceContext, Owner.Creature, 1M, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -3,6 +3,11 @@
 //Mostly utilities to get asset paths.
 public static class StringExtensions
 {
+    public static string ScenePath(this string path)
+    {
+        return Path.Join(MainFile.ResPath, "scenes", path);
+    }
+
     public static string ImagePath(this string path)
     {
         return Path.Join(MainFile.ResPath, "images", path);
@@ -16,6 +21,11 @@ public static class StringExtensions
     public static string BigCardImagePath(this string path)
     {
         return Path.Join(MainFile.ResPath, "images", "card_portraits", "big", path);
+    }
+
+    public static string CardFramePath(this string path)
+    {
+        return Path.Join(MainFile.ResPath, "images", "card_frames", path);
     }
 
     public static string PowerImagePath(this string path)

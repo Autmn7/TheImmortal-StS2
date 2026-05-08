@@ -21,8 +21,8 @@ public class Overwhelm : MokouModCard
         var attackCommand = await CommonActions.CardAttack(this, cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3").Execute(choiceContext);
         if (FuryActive)
-            await CreatureCmd.GainBlock(Owner.Creature, attackCommand.Results.Sum((Func<DamageResult, int>)(r => r.UnblockedDamage)),
-                ValueProp.Move, cardPlay);
+            await CreatureCmd.GainBlock(Owner.Creature, attackCommand.Results.Sum(results => results.Sum(r => r.UnblockedDamage)), ValueProp.Move,
+                cardPlay);
     }
 
     protected override void OnUpgrade()

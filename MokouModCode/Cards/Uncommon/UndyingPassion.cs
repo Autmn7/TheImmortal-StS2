@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MokouMod.MokouModCode.Enchantments;
 
@@ -12,7 +13,9 @@ public class UndyingPassion : MokouModCard
     public UndyingPassion() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5);
+        WithVars(new CardsVar(1));
         WithTip(typeof(VigorousEnchantment));
+        WithKeyword(CardKeyword.Innate);
     }
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -23,17 +26,21 @@ public class UndyingPassion : MokouModCard
         if (enchantment.CanEnchant(this))
             Enchant(enchantment, this);
         var enchantment2 = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
-        var card = (await CardSelectCmd.FromHand(choiceContext, Owner,
-            new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1),
-            (Func<CardModel, bool>)(model => enchantment.CanEnchant(model) && model.Type == CardType.Attack),
-            this)).FirstOrDefault();
-        if (card == null)
+        var cards = await CardSelectCmd.FromHand(choiceContext, Owner,
+            new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, DynamicVars.Cards.IntValue),
+            (Func<CardModel, bool>)(model => enchantment.CanEnchant(model) && model.Type == CardType.Attack), this);
+        if (!cards.Any())
             return;
-        Enchant(enchantment2, card);
+        foreach (var card in cards)
+        {
+            var newEnchant = ModelDb.GetById<EnchantmentModel>(enchantment2.Id).ToMutable();
+            Enchant(newEnchant, card);
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3M);
+        DynamicVars.Damage.UpgradeValueBy(1M);
+        DynamicVars["Cards"].UpgradeValueBy(1M);
     }
 }

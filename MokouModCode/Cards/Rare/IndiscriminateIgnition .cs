@@ -25,19 +25,16 @@ public class IndiscriminateIgnition : MokouModCard
         if (Owner.Creature.HasPower<BurnPower>())
         {
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
-            await PowerCmd.Apply<BurnPower>(choiceContext, Owner.Creature,
-                DynamicVars["Ratio"].IntValue * Owner.Creature.GetPowerAmount<BurnPower>(), Owner.Creature, this);
-            await CommonActions.Apply<BurnPower>(Owner.Creature, this,
-                DynamicVars["Ratio"].IntValue * Owner.Creature.GetPowerAmount<BurnPower>());
+            await PowerCmd.Apply<BurnPower>(choiceContext, Owner.Creature, DynamicVars["Ratio"].IntValue * Owner.Creature.GetPowerAmount<BurnPower>(),
+                Owner.Creature, this);
         }
 
         foreach (var enemy in CombatState.HittableEnemies)
             if (enemy.HasPower<BurnPower>())
             {
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely((Node)NGroundFireVfx.Create(enemy));
-                await PowerCmd.Apply<BurnPower>(choiceContext, enemy,
-                    DynamicVars["Ratio"].IntValue * Owner.Creature.GetPowerAmount<BurnPower>(), Owner.Creature, this);
-                await CommonActions.Apply<BurnPower>(enemy, this, DynamicVars["Ratio"].IntValue * enemy.GetPowerAmount<BurnPower>());
+                await PowerCmd.Apply<BurnPower>(choiceContext, enemy, DynamicVars["Ratio"].IntValue * enemy.GetPowerAmount<BurnPower>(),
+                    Owner.Creature, this);
             }
     }
 

@@ -25,7 +25,7 @@ public class EternalFreedom : MokouModCard
             await CardCmd.Exhaust(choiceContext, card);
             var num = await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             if (EmberActive)
-                await PowerCmd.Apply<RegenPower>(choiceContext, Owner.Creature, 1M, Owner.Creature, this);
+                await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, 1M, Owner.Creature, this);
         }
     }
 

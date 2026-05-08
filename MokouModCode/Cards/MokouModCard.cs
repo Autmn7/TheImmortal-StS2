@@ -22,9 +22,11 @@ public abstract class MokouModCard : ConstructedCardModel
     protected MokouModCard(int cost, CardType type, CardRarity rarity, TargetType target)
         : base(cost, type, rarity, target)
     {
-        WithTip(new TooltipSource((Func<CardModel, IHoverTip>)((CardModel card) => (IHoverTip)(object)new HoverTip(new LocString("static_hover_tips", "MOKOUMOD-ARTIST-TITLE"), new LocString("cards", ((AbstractModel)this).Id.Entry + ".artist"), (Texture2D)null))));
+        WithTip(new TooltipSource((Func<CardModel, IHoverTip>)((CardModel card) =>
+            (IHoverTip)(object)new HoverTip(new LocString("static_hover_tips", "MOKOUMOD-ARTIST-TITLE"),
+                new LocString("cards", ((AbstractModel)this).Id.Entry + ".artist"), (Texture2D)null))));
     }
-    
+
     //Image size:
     //Normal art: 1000x760 (Using 500x380 should also work, it will simply be scaled.)
     //Full art: 606x852
@@ -38,6 +40,8 @@ public abstract class MokouModCard : ConstructedCardModel
 
     public override string CustomPortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
     public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
+
+    public virtual Character.MokouMod.Animation Animation => Character.MokouMod.Animation.None;
 
     public bool IgniteActive { get; private set; }
     public bool FuryActive { get; private set; }

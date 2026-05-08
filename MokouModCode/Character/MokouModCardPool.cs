@@ -10,8 +10,8 @@ public class MokouModCardPool : CustomCardPoolModel
 {
     public override string Title => MokouMod.CharacterId; //This is not a display name.
 
-    public override string BigEnergyIconPath => "charui/big_energy.png".ImagePath();
-    public override string TextEnergyIconPath => "charui/text_energy.png".ImagePath();
+    public override string BigEnergyIconPath => "big_energy.png".CharacterUiPath();
+    public override string TextEnergyIconPath => "text_energy.png".CharacterUiPath();
 
 
     /* These HSV values will determine the color of your card back.
@@ -37,9 +37,9 @@ public class MokouModCardPool : CustomCardPoolModel
     {
         return card.Type switch
         {
-            CardType.Attack => PreloadManager.Cache.GetAsset<Texture2D>("bg_attack_mokou.png".CharacterUiPath()),
-            CardType.Power => PreloadManager.Cache.GetAsset<Texture2D>("bg_power_mokou.png".CharacterUiPath()),
-            _ => PreloadManager.Cache.GetAsset<Texture2D>("bg_skill_mokou.png".CharacterUiPath())
+            CardType.Attack => PreloadManager.Cache.GetAsset<Texture2D>("bg_attack_mokou.png".CardFramePath()),
+            CardType.Power => PreloadManager.Cache.GetAsset<Texture2D>("bg_power_mokou.png".CardFramePath()),
+            _ => PreloadManager.Cache.GetAsset<Texture2D>("bg_skill_mokou.png".CardFramePath())
         };
     }
 }

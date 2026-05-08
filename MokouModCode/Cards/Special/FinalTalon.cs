@@ -29,12 +29,9 @@ public class FinalTalon : MokouModCard
         if (FuryActive)
         {
             foreach (var enemy in CombatState.HittableEnemies)
-            {
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(enemy, 0.75f));
-            }
             await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies, DynamicVars["BurnPower"].BaseValue, Owner.Creature, this);
         }
-            
     }
 
     protected override void OnUpgrade()

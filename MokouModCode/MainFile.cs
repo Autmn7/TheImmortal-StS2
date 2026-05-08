@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
@@ -41,6 +42,18 @@ public partial class MainFile : Node
         Harmony harmony = new(ModId);
         harmony.PatchAll();
         Log.Info("[MokouMod] Harmony PatchAll completed");
+        ModHelper.SubscribeForCombatStateHooks("MokouMod", CombatHookSubscription);
+    }
+
+    public static IEnumerable<AbstractModel> CombatHookSubscription(CombatState state)
+    {
+        foreach (var player in state.Players)
+        {
+            if (player.Creature.CombatState == null)
+                continue;
+
+            if (player.Character is MokouMod.MokouModCode.Character.MokouMod mokou) yield return mokou;
+        }
     }
 
     [HarmonyPatch(typeof(CombatManager), nameof(CombatManager.SetUpCombat))]
@@ -215,8 +228,6 @@ public partial class MainFile : Node
                 var unplayableSearch = GetCustomCardText(CardKeyword.Unplayable);
 
                 if (string.IsNullOrEmpty(__result)) return;
-                // Log to verify we are finally finding the right strings
-                // Log.Info($"[MokouMod] Attempting to remove: {retainSearch} and {unplayableSearch}");
 
                 // Remove the keyword text and the newline the engine joined with
                 __result = __result.Replace(retainSearch + "\n", "");
@@ -297,7 +308,7 @@ public partial class MainFile : Node
             var creature = __instance._creature;
             var burnBar = __instance._hpForegroundContainer.GetNodeOrNull<NinePatchRect>((NodePath)BurnBarName);
 
-            if (burnBar == null || creature.CurrentHp <= 0 || creature.ShowsInfiniteHp)
+            if (burnBar == null || creature.CurrentHp <= 0 || creature.HpDisplay.IsInfinite())
                 return;
 
             var burnPower = creature.GetPower<BurnPower>();
@@ -374,7 +385,7 @@ public partial class MainFile : Node
         public static void UpdateLethalBurnText(NHealthBar __instance)
         {
             var creature = __instance._creature;
-            if (creature.CurrentHp <= 0 || creature.ShowsInfiniteHp) return;
+            if (creature.CurrentHp <= 0 || creature.HpDisplay.IsInfinite()) return;
 
             var burnPower = creature.GetPower<BurnPower>();
             var rawBurn = burnPower != null ? burnPower.Amount : 0;
@@ -418,7 +429,7 @@ public partial class MainFile : Node
             if (burnBar == null) return;
 
             var creature = __instance._creature;
-            if (creature == null || creature.CurrentHp <= 0 || creature.ShowsInfiniteHp) burnBar.Visible = false;
+            if (creature.CurrentHp <= 0 || creature.HpDisplay.IsInfinite()) burnBar.Visible = false;
         }
     }
 }

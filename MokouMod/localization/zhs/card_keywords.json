@@ -9,7 +9,7 @@
   "MOKOUMOD-FURY.title": "怒火",
   "MOKOUMOD-EMBER.description": "当你的生命不高于[blue]50%[/blue]，或在本场战斗中触发过[gold]重生[/gold]则触发（以[purple]紫色[/purple]边框显示）。",
   "MOKOUMOD-EMBER.title": "燃烬",
-  "MOKOUMOD-FUEL.description": "一类特殊卡牌，具有[gold]不能被打出[/gold]和[gold]保留[/gold]，X为其耐久。当[gold]燃料[/gold]在手牌中，你触发[gold]点燃[/gold]，[red]怒火[/red]或[purple]燃烬[/purple]时，触发[gold]燃料[/gold]的效果并失去[blue]1[/blue]点耐久。[gold]燃料[/gold]的耐久为[blue]0[/blue]时将自身[gold]消耗[/gold]。",
+  "MOKOUMOD-FUEL.description": "一类特殊卡牌，具有[gold]不能被打出[/gold]和[gold]保留[/gold]，X为其耐久。当[gold]燃料[/gold]在你的[gold]手牌[/gold]中，你打出已触发[gold]点燃[/gold]，[red]怒火[/red]或[purple]燃烬[/purple]的牌时，触发[gold]燃料[/gold]的效果并失去[blue]1[/blue]点耐久。[gold]燃料[/gold]的耐久为[blue]0[/blue]时将自身[gold]消耗[/gold]。",
   "MOKOUMOD-FUEL.title": "燃料(X)",
   "MOKOUMOD-EXHUME.description": "将牌从[gold]消耗堆[/gold]移回[gold]手牌[/gold]。",
   "MOKOUMOD-EXHUME.title": "发掘"

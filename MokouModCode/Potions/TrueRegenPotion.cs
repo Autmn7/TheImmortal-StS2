@@ -21,7 +21,8 @@ public class TrueRegenPotion : MokouModPotion
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HpLossVar(6), new PowerVar<RegenPower>(6)];
 
-    public override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(MokouModKeywords.Nonlethal), HoverTipFactory.FromPower<RegenPower>()];
+    public override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [HoverTipFactory.FromKeyword(MokouModKeywords.Nonlethal), HoverTipFactory.FromPower<RegenPower>()];
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {

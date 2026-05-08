@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.ValueProps;
 using MokouMod.MokouModCode.Powers;
 using MokouMod.MokouModCode.Scripts;
 
@@ -26,7 +27,7 @@ public class FengWingAscension : MokouModCard
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var attackCommand = await CommonActions.CardAttack(this, cardPlay.Target)
-            .WithHitCount(DynamicVars.Repeat.IntValue).BeforeDamage(async () => 
+            .WithHitCount(DynamicVars.Repeat.IntValue).BeforeDamage(async () =>
             {
                 var creatureNode = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target);
                 if (creatureNode != null)
@@ -34,9 +35,10 @@ public class FengWingAscension : MokouModCard
                     var child = NLargeMagicMissileVfx.Create(creatureNode.GetBottomOfHitbox(), new Color("#c81e1e"));
                     NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(child);
                 }
+
                 await Cmd.CustomScaledWait(0.3f, 0.4f);
             }).Execute(choiceContext);
-        var burn = attackCommand.Results.Sum((Func<DamageResult, int>)(r => r.UnblockedDamage));
+        var burn = attackCommand.Results.Sum(results => results.Sum(r => r.UnblockedDamage));
         if (burn > 0)
         {
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely((Node)NGroundFireVfx.Create(cardPlay.Target));

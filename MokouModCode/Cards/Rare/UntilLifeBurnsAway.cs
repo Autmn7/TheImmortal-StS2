@@ -55,9 +55,9 @@ public class UntilLifeBurnsAway : MokouModCard
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(enemy));
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(enemy, 0.75f));
             }
+
             await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies, hpLoss, Owner.Creature, this);
         }
-            
     }
 
     protected override void OnUpgrade()

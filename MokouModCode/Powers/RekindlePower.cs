@@ -3,13 +3,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MokouMod.MokouModCode.Relics;
 using MokouMod.MokouModCode.Scripts;
+using static MokouMod.MokouModCode.Character.MokouMod;
 
 namespace MokouMod.MokouModCode.Powers;
 
@@ -60,14 +58,11 @@ public class RekindlePower : MokouModPower
 
     public override async Task AfterPreventingDeath(Creature creature)
     {
-        if (creature != Owner)
+        if (creature.Player == null || creature != Owner)
             return;
-        if (creature.Player != null)
-            MokouKeywordStateRegistry.Get(creature.Player).emberTriggeredThisCombat = true;
+        MokouKeywordStateRegistry.Get(creature.Player).emberTriggeredThisCombat = true;
 
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
-            NFireBurningVfx.Create(Owner, 1f, false)
-        );
+        RunAnimation(creature.Player, Animation.Resurrection);
 
         var healPercent = GetHealPercent();
         var healAmount = Math.Max(1M, creature.MaxHp * (healPercent / 100M));

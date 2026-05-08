@@ -23,7 +23,8 @@ public class BottledVigor : MokouModPotion
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<VigorPower>(5), new CardsVar(2)];
 
-    public override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<VigorPower>(), ..HoverTipFactory.FromEnchantment<VigorousEnchantment>()];
+    public override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [HoverTipFactory.FromPower<VigorPower>(), ..HoverTipFactory.FromEnchantment<VigorousEnchantment>()];
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
