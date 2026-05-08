@@ -152,7 +152,6 @@ public class MokouMod : PlaceholderCharacterModel
                 DefaultCardAnimation(cardPlay, playback);
             }
         }
-
         return base.BeforeCardPlayed(cardPlay);
     }
 
@@ -178,7 +177,6 @@ public class MokouMod : PlaceholderCharacterModel
                 break;
             }
         }
-
         playback.Travel((StringName)animation.ToString(), true);
     }
 
@@ -216,7 +214,6 @@ public class MokouMod : PlaceholderCharacterModel
                 }
             }
         }
-
         return base.AfterDamageReceivedLate(choiceContext, target, result, props, dealer, cardSource);
     }
 
@@ -227,7 +224,6 @@ public class MokouMod : PlaceholderCharacterModel
             var player = creature.Player;
             if (player?.Character is MokouMod) RunAnimation(player, Animation.Dead);
         }
-
         return base.AfterDeath(choiceContext, creature, wasRemovalPrevented, deathAnimLength);
     }
 
