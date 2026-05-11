@@ -2,12 +2,9 @@
 using Godot.Collections;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Logging;
-using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MokouMod.MokouModCode.Powers;
@@ -25,7 +22,7 @@ public class ImperishableShooting : MokouModCard
         WithTip(typeof(RekindlePower));
         WithTip(MokouModKeywords.Exhume);
     }
-    
+
     public override Character.MokouMod.Animation Anim => Character.MokouMod.Animation.SpellCast;
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)

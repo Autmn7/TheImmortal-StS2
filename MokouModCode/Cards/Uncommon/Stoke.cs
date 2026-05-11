@@ -7,14 +7,15 @@ using MegaCrit.Sts2.Core.Models;
 using MokouMod.MokouModCode.Cards.Special;
 using MokouMod.MokouModCode.Scripts;
 
-namespace MokouMod.MokouModCode.Cards.Common;
+namespace MokouMod.MokouModCode.Cards.Uncommon;
 
 public class Stoke : MokouModCard
 {
-    public Stoke() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public Stoke() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(7);
-        WithVars(new CardsVar("Cinders", 1));
+        WithVars(new CardsVar("Cinders", 2));
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithTip(typeof(RedCinder));
         WithTip(typeof(YellowCinder));
         WithTip(typeof(BlackCinder));
@@ -39,6 +40,6 @@ public class Stoke : MokouModCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Cinders"].UpgradeValueBy(1M);
+        DynamicVars.Damage.UpgradeValueBy(1M);
     }
 }

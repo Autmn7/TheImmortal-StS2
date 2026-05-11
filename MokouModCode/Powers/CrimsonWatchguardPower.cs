@@ -29,14 +29,14 @@ public class CrimsonWatchguardPower : MokouModPower
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int amount;
-        var enchanted = cardPlay.Card.Enchantment;
+        var enchantment = cardPlay.Card.Enchantment;
         if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>()
                 .amountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
             return;
         if (cardPlay.Card.Type == CardType.Skill)
         {
             Flash();
-            await PowerCmd.Apply<VigorPower>(choiceContext, Owner, enchanted == null ? Amount : Amount + 1, Owner,
+            await PowerCmd.Apply<VigorPower>(choiceContext, Owner, enchantment == null ? Amount : Amount + 1, Owner,
                 null);
         }
     }

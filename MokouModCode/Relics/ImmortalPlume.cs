@@ -17,12 +17,12 @@ public class ImmortalPlume : MokouModRelic
 
     public override RelicRarity Rarity => RelicRarity.Starter;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<RegenPower>(4), new PowerVar<RekindlePower>(2)];
-
     public override bool ShowCounter => true;
 
     public override int DisplayAmount => Essence;
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [new PowerVar<RegenPower>(4), new PowerVar<RekindlePower>(2)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [

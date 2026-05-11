@@ -152,6 +152,7 @@ public class MokouMod : PlaceholderCharacterModel
                 DefaultCardAnimation(cardPlay, playback);
             }
         }
+
         return base.BeforeCardPlayed(cardPlay);
     }
 
@@ -166,17 +167,11 @@ public class MokouMod : PlaceholderCharacterModel
                 break;
             case CardType.Skill:
                 if (card.TargetType == TargetType.AnyEnemy || card.TargetType == TargetType.RandomEnemy || card.TargetType == TargetType.AnyPlayer)
-                {
                     animation = Animation.SpellCast;
-                } 
                 else if (!card.DynamicVars.ContainsKey("Block") || !(((DynamicVar)card.DynamicVars.Block).BaseValue > 1m))
-                {
                     animation = Animation.SpellBackflip;
-                }
                 else
-                {
                     animation = Animation.Block;
-                }
                 break;
             case CardType.Power:
             {
@@ -184,6 +179,7 @@ public class MokouMod : PlaceholderCharacterModel
                 break;
             }
         }
+
         playback.Travel((StringName)animation.ToString(), true);
     }
 
@@ -221,6 +217,7 @@ public class MokouMod : PlaceholderCharacterModel
                 }
             }
         }
+
         return base.AfterDamageReceivedLate(choiceContext, target, result, props, dealer, cardSource);
     }
 
@@ -231,6 +228,7 @@ public class MokouMod : PlaceholderCharacterModel
             var player = creature.Player;
             if (player?.Character is MokouMod) RunAnimation(player, Animation.Dead);
         }
+
         return base.AfterDeath(choiceContext, creature, wasRemovalPrevented, deathAnimLength);
     }
 

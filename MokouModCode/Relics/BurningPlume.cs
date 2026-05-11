@@ -18,12 +18,12 @@ public class BurningPlume : MokouModRelic
 
     public override RelicRarity Rarity => RelicRarity.Starter;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<RegenPower>(2), new PowerVar<RekindlePower>(1)];
-
     public override bool ShowCounter => true;
 
     public override int DisplayAmount => Essence;
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [new PowerVar<RegenPower>(2), new PowerVar<RekindlePower>(1)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [

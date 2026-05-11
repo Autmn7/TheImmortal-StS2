@@ -9,7 +9,7 @@ public class TrinityShield : MokouModCard
 {
     public TrinityShield() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(15);
+        WithBlock(12);
         WithVars(new IgniteVar(6M));
         WithKeywords(MokouModKeywords.Ignite, MokouModKeywords.Fury, MokouModKeywords.Ember);
         WithEnergyTip();

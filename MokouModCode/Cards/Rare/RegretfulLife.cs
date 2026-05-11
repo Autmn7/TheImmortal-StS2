@@ -11,7 +11,7 @@ namespace MokouMod.MokouModCode.Cards.Rare;
 
 public class RegretfulLife : MokouModCard
 {
-    public RegretfulLife() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public RegretfulLife() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithVars(new HpLossVar(10M));
         WithKeyword(CardKeyword.Exhaust);

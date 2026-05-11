@@ -1,15 +1,14 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MokouMod.MokouModCode.Powers;
 using MokouMod.MokouModCode.Scripts;
 
-namespace MokouMod.MokouModCode.Cards.Uncommon;
+namespace MokouMod.MokouModCode.Cards.Common;
 
 public class FireProof : MokouModCard
 {
-    public FireProof() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public FireProof() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7);
         WithVars(new IgniteVar(10M));

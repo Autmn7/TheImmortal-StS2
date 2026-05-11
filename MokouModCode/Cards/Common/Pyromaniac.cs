@@ -7,11 +7,11 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MokouMod.MokouModCode.Powers;
 
-namespace MokouMod.MokouModCode.Cards.Uncommon;
+namespace MokouMod.MokouModCode.Cards.Common;
 
 public class Pyromaniac : MokouModCard
 {
-    public Pyromaniac() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Pyromaniac() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(8);
         WithVars(new PowerVar<BurnPower>(2));

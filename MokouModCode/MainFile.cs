@@ -367,11 +367,12 @@ public partial class MainFile : Node
         {
             if (rawBurn <= 0)
                 return 0;
-            if (creature.HasPower<FireProofPower>())
-                return 1;
-            if (creature.HasPower<PhoenixFormPower>())
-                return Math.Min(3, rawBurn);
-            return rawBurn;
+            var hpLoss = rawBurn;
+            if (creature.HasPower<FireProofPower>()) hpLoss = 1;
+            else if (creature.HasPower<PhoenixFormPower>() && hpLoss > 3) hpLoss = 3;
+            if (creature.Player?.GetRelic<FiremanHelmet>() != null)
+                hpLoss = creature.CurrentHp - hpLoss < 1 ? creature.CurrentHp - 1 : hpLoss;
+            return hpLoss;
         }
     }
 
@@ -408,11 +409,12 @@ public partial class MainFile : Node
         {
             if (rawBurn <= 0)
                 return 0;
-            if (creature.HasPower<FireProofPower>())
-                return 1;
-            if (creature.HasPower<PhoenixFormPower>())
-                return Math.Min(3, rawBurn);
-            return rawBurn;
+            var hpLoss = rawBurn;
+            if (creature.HasPower<FireProofPower>()) hpLoss = 1;
+            else if (creature.HasPower<PhoenixFormPower>() && hpLoss > 3) hpLoss = 3;
+            if (creature.Player?.GetRelic<FiremanHelmet>() != null)
+                hpLoss = creature.CurrentHp - hpLoss < 1 ? creature.CurrentHp - 1 : hpLoss;
+            return hpLoss;
         }
     }
 

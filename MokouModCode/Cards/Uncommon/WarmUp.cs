@@ -10,15 +10,16 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MokouMod.MokouModCode.Enchantments;
 using MokouMod.MokouModCode.Powers;
+using MokouMod.MokouModCode.Scripts;
 
-namespace MokouMod.MokouModCode.Cards.Common;
+namespace MokouMod.MokouModCode.Cards.Uncommon;
 
 public class WarmUp : MokouModCard
 {
-    public WarmUp() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public WarmUp() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new PowerVar<BurnPower>(2), new PowerVar<VigorPower>(3), new CardsVar(1));
-        WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
+        WithVars(new PowerVar<BurnPower>(1), new PowerVar<VigorPower>(2), new CardsVar(1), new IgniteVar(5), new EnergyVar(1));
+        WithKeywords(MokouModKeywords.Ignite, MokouModKeywords.Fury);
         WithTip(typeof(VigorousEnchantment));
     }
 
@@ -40,10 +41,13 @@ public class WarmUp : MokouModCard
             var newEnchant = ModelDb.GetById<EnchantmentModel>(enchantment.Id).ToMutable();
             Enchant(newEnchant, card);
         }
+        if (FuryActive)
+            await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 
     protected override void OnUpgrade()
     {
+        DynamicVars["VigorPower"].UpgradeValueBy(1M);
         DynamicVars.Cards.UpgradeValueBy(1M);
     }
 }

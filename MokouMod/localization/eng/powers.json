@@ -86,5 +86,8 @@
   "MOKOUMOD-MARK_OF_SIN_POWER.title": "Mark of Sin",
   "MOKOUMOD-SHARPENED_POWER.description": "",
   "MOKOUMOD-SHARPENED_POWER.smartDescription": "[gold]Desperate Claw[/gold] cards hit [blue]{Amount}[/blue] more {Amount:plural:time|times} this combat.",
-  "MOKOUMOD-SHARPENED_POWER.title": "Sharpened"
+  "MOKOUMOD-SHARPENED_POWER.title": "Sharpened",
+  "MOKOUMOD-BUILD_UP_POWER.description": "",
+  "MOKOUMOD-BUILD_UP_POWER.smartDescription": "Your next {Amount:plural:Attack|[blue]{}[/blue] Attacks} this turn {Amount:plural:deals|deal} double damage.",
+  "MOKOUMOD-BUILD_UP_POWER.title": "Build Up"
 }

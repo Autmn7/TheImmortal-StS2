@@ -20,8 +20,7 @@ public class HouraiElixir : MokouModPotion
 
     public override TargetType TargetType => TargetType.Self;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new("Essence", 1), new PowerVar<RekindlePower>(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new("Essence", 1), new PowerVar<RekindlePower>(1)];
 
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
     [

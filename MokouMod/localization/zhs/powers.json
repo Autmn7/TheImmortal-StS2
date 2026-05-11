@@ -86,5 +86,8 @@
   "MOKOUMOD-MARK_OF_SIN_POWER.title": "罪印",
   "MOKOUMOD-SHARPENED_POWER.description": "",
   "MOKOUMOD-SHARPENED_POWER.smartDescription": "本场战斗中[gold]「绝望之爪」[/gold]额外造成[blue]{Amount}[/blue]次伤害。",
-  "MOKOUMOD-SHARPENED_POWER.title": "磨爪"
+  "MOKOUMOD-SHARPENED_POWER.title": "磨爪",
+  "MOKOUMOD-BUILD_UP_POWER.description": "",
+  "MOKOUMOD-BUILD_UP_POWER.smartDescription": "本回合下[blue]{Amount}[/blue]张攻击牌伤害翻倍。",
+  "MOKOUMOD-BUILD_UP_POWER.title": "蓄势待发"
 }

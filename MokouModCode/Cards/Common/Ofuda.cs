@@ -28,9 +28,8 @@ public class Ofuda : MokouModFuelCard
     {
         foreach (var target in CombatState.HittableEnemies)
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely((Node)NFireBurstVfx.Create(target, 0.5f));
-        await PowerCmd.Apply<BurnPower>(new ThrowingPlayerChoiceContext(),
-            CombatState.HittableEnemies, DynamicVars["BurnPower"].IntValue, Owner.Creature,
-            this);
+        await PowerCmd.Apply<BurnPower>(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, DynamicVars["BurnPower"].IntValue,
+            Owner.Creature, this);
     }
 
     public override async Task AfterCardExhausted(PlayerChoiceContext context, CardModel card, bool causedByEthereal)
