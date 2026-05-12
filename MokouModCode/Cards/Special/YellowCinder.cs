@@ -15,8 +15,8 @@ public class YellowCinder : MokouModFuelCard
 {
     public YellowCinder() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        Durability = MaxDurability = 1M;
-        WithVars(new DurabilityVar(1), new PowerVar<VigorPower>(4));
+        Durability = MaxDurability = 2M;
+        WithVars(new DurabilityVar(2), new PowerVar<VigorPower>(4));
         WithKeywords(CardKeyword.Unplayable, CardKeyword.Retain, MokouModKeywords.Fuel);
         WithTip(CardKeyword.Exhaust);
     }

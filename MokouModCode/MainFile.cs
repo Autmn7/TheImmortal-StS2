@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
@@ -52,7 +51,7 @@ public partial class MainFile : Node
             if (player.Creature.CombatState == null)
                 continue;
 
-            if (player.Character is MokouMod.MokouModCode.Character.MokouMod mokou) yield return mokou;
+            if (player.Character is Character.MokouMod mokou) yield return mokou;
         }
     }
 

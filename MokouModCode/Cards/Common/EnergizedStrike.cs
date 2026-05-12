@@ -13,7 +13,7 @@ public class EnergizedStrike : MokouModCard
 {
     public EnergizedStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(10);
+        WithDamage(11);
         WithVars(new HpLossVar(2));
         WithTip(typeof(VigorousEnchantment));
         WithTags(CardTag.Strike);

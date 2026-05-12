@@ -34,7 +34,9 @@ public class BlazingBambooTube : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely((Node)NFireSmokePuffVfx.Create(cardPlay.Target));
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target);
+        if (GodotObject.IsInstanceValid(creatureNode))
+            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireSmokePuffVfx.Create(cardPlay.Target));
         await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3").Execute(choiceContext);
     }

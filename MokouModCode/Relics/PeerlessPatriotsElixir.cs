@@ -39,7 +39,7 @@ public class PeerlessPatriotsElixir : MokouModRelic
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         var card = cardPlay.Card;
-        if (!TriggeredThisTurn && card.Type == CardType.Attack && card.Enchantment == null )
+        if (!TriggeredThisTurn && card.Owner == Owner && card.Type == CardType.Attack && card.Enchantment == null)
         {
             Flash();
             var enchantment = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
@@ -48,6 +48,7 @@ public class PeerlessPatriotsElixir : MokouModRelic
             TriggeredThisTurn = true;
             Status = RelicStatus.Normal;
         }
+
         return Task.CompletedTask;
     }
 

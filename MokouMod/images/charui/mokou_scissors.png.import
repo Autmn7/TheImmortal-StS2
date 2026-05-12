@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjgcoadyxan1n"
-path="res://.godot/imported/hand_paper.png-2c6a686830cc12ca169fc7eb3c330716.ctex"
+uid="uid://di7yhdrrbdrsk"
+path="res://.godot/imported/mokou_scissors.png-d03ba620e6d7c9bf76494208d964a861.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MokouMod/images/charui/hand_paper.png"
-dest_files=["res://.godot/imported/hand_paper.png-2c6a686830cc12ca169fc7eb3c330716.ctex"]
+source_file="res://MokouMod/images/charui/mokou_scissors.png"
+dest_files=["res://.godot/imported/mokou_scissors.png-d03ba620e6d7c9bf76494208d964a861.ctex"]
 
 [params]
 

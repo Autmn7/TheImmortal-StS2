@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using BaseLib.Patches.UI;
 using BaseLib.Utils.NodeFactories;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -110,10 +111,10 @@ public class MokouMod : PlaceholderCharacterModel
     public override string CustomCharacterSelectLockedIconPath => "char_select_mokou_locked.png".CharacterUiPath();
     public override string CustomMapMarkerPath => "map_marker_mokou.png".CharacterUiPath();
 
-    public override string CustomArmPointingTexturePath => "hand_point.png".CharacterUiPath();
-    public override string CustomArmRockTexturePath => "hand_rock.png".CharacterUiPath();
-    public override string CustomArmPaperTexturePath => "hand_paper.png".CharacterUiPath();
-    public override string CustomArmScissorsTexturePath => "hand_scissors.png".CharacterUiPath();
+    public override string CustomArmPointingTexturePath => "mokou_point.png".CharacterUiPath();
+    public override string CustomArmRockTexturePath => "mokou_rock.png".CharacterUiPath();
+    public override string CustomArmPaperTexturePath => "mokou_paper.png".CharacterUiPath();
+    public override string CustomArmScissorsTexturePath => "mokou_scissors.png".CharacterUiPath();
 
     public override string CustomCharacterSelectTransitionPath => "res://materials/transitions/ironclad_transition_mat.tres";
 
@@ -123,6 +124,8 @@ public class MokouMod : PlaceholderCharacterModel
     //public override string CharacterSelectSfx => null;
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";
 
+    public override RelicIconData CustomYummyCookie =>
+        new("yummy_cookie_mokou.png".BigRelicImagePath(), "yummy_cookie_mokou.png".RelicImagePath(), "relic_outline.png".RelicImagePath());
 
     public static void RunAnimation(Player player, Animation animation)
     {

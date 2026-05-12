@@ -15,47 +15,51 @@ public class BuildUpPower : MokouModPower
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
-    
-    protected override object InitInternalData() => (object) new Data();
+
+    protected override object InitInternalData()
+    {
+        return (object)new Data();
+    }
 
     public override Task BeforeAttack(AttackCommand command)
     {
-        if (!(command.ModelSource is CardModel modelSource) || modelSource.Owner.Creature != this.Owner || modelSource.Type != CardType.Attack || !command.DamageProps.IsPoweredAttack())
+        if (!(command.ModelSource is CardModel modelSource) || modelSource.Owner.Creature != Owner || modelSource.Type != CardType.Attack ||
+            !command.DamageProps.IsPoweredAttack())
             return Task.CompletedTask;
-        Data internalData = this.GetInternalData<Data>();
+        var internalData = GetInternalData<Data>();
         if (internalData.commandToModify != null)
             return Task.CompletedTask;
         internalData.commandToModify = command;
         return Task.CompletedTask;
     }
 
-    public override Decimal ModifyDamageMultiplicative(
+    public override decimal ModifyDamageMultiplicative(
         Creature? target,
-        Decimal amount,
+        decimal amount,
         ValueProp props,
         Creature? dealer,
         CardModel? cardSource)
     {
-        if (cardSource == null || cardSource.Owner.Creature != this.Owner || !props.IsPoweredAttack())
+        if (cardSource == null || cardSource.Owner.Creature != Owner || !props.IsPoweredAttack())
             return 1M;
-        Data internalData = this.GetInternalData<Data>();
+        var internalData = GetInternalData<Data>();
         return internalData.commandToModify != null && cardSource != internalData.commandToModify.ModelSource ? 1M : 2M;
     }
 
     public override async Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
     {
-        Data internalData = GetInternalData<Data>();
+        var internalData = GetInternalData<Data>();
         if (command != internalData.commandToModify)
             return;
-        internalData.commandToModify = (AttackCommand) null;
-        await PowerCmd.Decrement((PowerModel) this);
+        internalData.commandToModify = (AttackCommand)null;
+        await PowerCmd.Decrement((PowerModel)this);
     }
 
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
         if (side != Owner.Side)
             return;
-        await PowerCmd.Remove((PowerModel) this);
+        await PowerCmd.Remove((PowerModel)this);
     }
 
     public class Data

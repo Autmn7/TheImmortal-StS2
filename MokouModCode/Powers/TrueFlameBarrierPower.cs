@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using Godot;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -27,7 +28,9 @@ public class TrueFlameBarrierPower : MokouModPower
     {
         if (target != Owner || dealer == null || !props.IsPoweredAttack())
             return;
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireSmokePuffVfx.Create(dealer));
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(dealer);
+        if (GodotObject.IsInstanceValid(creatureNode))
+            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireSmokePuffVfx.Create(dealer));
         await PowerCmd.Apply<BurnPower>(choiceContext, dealer, Amount, Owner, null);
     }
 

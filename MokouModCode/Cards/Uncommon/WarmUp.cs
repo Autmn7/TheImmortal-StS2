@@ -41,6 +41,7 @@ public class WarmUp : MokouModCard
             var newEnchant = ModelDb.GetById<EnchantmentModel>(enchantment.Id).ToMutable();
             Enchant(newEnchant, card);
         }
+
         if (FuryActive)
             await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }

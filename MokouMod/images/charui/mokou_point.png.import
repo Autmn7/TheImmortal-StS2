@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq8l7aivnty4x"
-path="res://.godot/imported/hand_rock.png-6d2512b06a6e0008e41143944d00cda2.ctex"
+uid="uid://owgq55trxwjn"
+path="res://.godot/imported/mokou_point.png-95f2fcb5ff5343f8309e02fd5dbf17dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MokouMod/images/charui/hand_rock.png"
-dest_files=["res://.godot/imported/hand_rock.png-6d2512b06a6e0008e41143944d00cda2.ctex"]
+source_file="res://MokouMod/images/charui/mokou_point.png"
+dest_files=["res://.godot/imported/mokou_point.png-95f2fcb5ff5343f8309e02fd5dbf17dc.ctex"]
 
 [params]
 

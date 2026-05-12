@@ -26,7 +26,7 @@ public class Grill : MokouModRelic
         CardModel card,
         bool causedByEthereal)
     {
-        if (card.Keywords.Contains(MokouModKeywords.Fuel))
+        if (card.Owner == Owner && card.Keywords.Contains(MokouModKeywords.Fuel))
         {
             Flash();
             await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, DynamicVars["VigorPower"].IntValue, Owner.Creature, null);

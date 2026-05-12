@@ -13,7 +13,7 @@ public class Stoke : MokouModCard
 {
     public Stoke() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(7);
+        WithDamage(9);
         WithVars(new CardsVar("Cinders", 2));
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithTip(typeof(RedCinder));

@@ -24,8 +24,12 @@ public class HeedlessDetonation : MokouModCard
             Owner.Creature, this);
         if (Owner.Creature.HasPower<BurnPower>())
         {
-            foreach (var target1 in CombatState.HittableEnemies)
-                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely((Node)NFireSmokePuffVfx.Create(target1));
+            foreach (var enemy in CombatState.HittableEnemies)
+            {
+                var creatureNode = NCombatRoom.Instance?.GetCreatureNode(enemy);
+                if (GodotObject.IsInstanceValid(creatureNode))
+                    NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireSmokePuffVfx.Create(enemy));
+            }
 
             await Cmd.CustomScaledWait(0.2f, 0.3f);
             await CreatureCmd.Damage(choiceContext, CombatState.HittableEnemies,
