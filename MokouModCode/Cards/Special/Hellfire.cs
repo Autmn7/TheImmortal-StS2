@@ -26,6 +26,6 @@ public class Hellfire : MokouModFuelCard
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
     {
         if (card == this) 
-            await PowerCmd.Apply<HellfirePower>(choiceContext, CombatState.HittableEnemies, DynamicVars["HellfirePower"].IntValue, Owner.Creature, this);
+            await PowerCmd.Apply<HellfirePower>(choiceContext, Owner.Creature, DynamicVars["HellfirePower"].IntValue, Owner.Creature, this);
     }
 }
