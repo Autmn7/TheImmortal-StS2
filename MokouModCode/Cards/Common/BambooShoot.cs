@@ -30,8 +30,7 @@ public class BambooShoot : MokouModFuelCard
         if (card == this)
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
-            await PowerCmd.Apply<RegenPower>(choiceContext, Owner.Creature, DynamicVars["RegenPower"].BaseValue,
-                Owner.Creature, this);
+            await PowerCmd.Apply<RegenPower>(choiceContext, Owner.Creature, DynamicVars["RegenPower"].BaseValue, Owner.Creature, this);
         }
     }
 

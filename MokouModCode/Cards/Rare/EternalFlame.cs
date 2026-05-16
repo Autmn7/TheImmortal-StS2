@@ -1,6 +1,7 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MokouMod.MokouModCode.Cards.Special;
 using MokouMod.MokouModCode.Powers;
 using MokouMod.MokouModCode.Scripts;
@@ -11,6 +12,7 @@ public class EternalFlame : MokouModCard
 {
     public EternalFlame() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
+        WithVars(new DynamicVar("EternalFlamePower", 1));
         WithTip(typeof(RedCinder));
         WithTip(typeof(YellowCinder));
         WithTip(typeof(BlackCinder));
@@ -19,7 +21,7 @@ public class EternalFlame : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<EternalFlamePower>(this, 1M);
+        await PowerCmd.Apply<EternalFlamePower>(choiceContext, Owner.Creature, DynamicVars["EternalFlamePower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

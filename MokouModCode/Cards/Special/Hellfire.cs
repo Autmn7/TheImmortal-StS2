@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -22,8 +23,9 @@ public class Hellfire : MokouModFuelCard
 
     public override int MaxUpgradeLevel => 0;
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext context, CardModel card, bool causedByEthereal)
+    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
     {
-        if (card == this) await CommonActions.ApplySelf<HellfirePower>(this, DynamicVars["HellfirePower"].IntValue);
+        if (card == this) 
+            await PowerCmd.Apply<HellfirePower>(choiceContext, CombatState.HittableEnemies, DynamicVars["HellfirePower"].IntValue, Owner.Creature, this);
     }
 }

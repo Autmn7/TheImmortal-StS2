@@ -25,8 +25,7 @@ public class RedCinder : MokouModFuelCard
         bool causedByEthereal)
     {
         if (card == this)
-            await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies,
-                DynamicVars["BurnPower"].IntValue, Owner.Creature, this);
+            await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies, DynamicVars["BurnPower"].IntValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

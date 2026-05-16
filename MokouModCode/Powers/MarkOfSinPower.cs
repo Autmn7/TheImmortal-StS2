@@ -22,7 +22,7 @@ public class MarkOfSinPower : MokouModPower
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPotion<HouraiElixir>()];
 
-    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
+    public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
     public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
     {

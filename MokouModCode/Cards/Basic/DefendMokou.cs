@@ -6,8 +6,7 @@ namespace MokouMod.MokouModCode.Cards.Basic;
 
 public class DefendMokou : MokouModCard
 {
-    public DefendMokou()
-        : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    public DefendMokou() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithBlock(5);
         WithTags(CardTag.Defend);

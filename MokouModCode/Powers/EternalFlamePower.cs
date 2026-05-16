@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MokouMod.MokouModCode.Cards;
 using MokouMod.MokouModCode.Cards.Special;
 
 namespace MokouMod.MokouModCode.Powers;
@@ -32,7 +33,10 @@ public class EternalFlamePower : MokouModPower
         ];
         var cinders = CardFactory.GetDistinctForCombat(Owner.Player, cinderCards, Amount,
             Owner.Player.RunState.Rng.CombatCardGeneration);
-        foreach (var cinder in cinders.ToList())
+        foreach (var cinder in cinders.ToList().Cast<MokouModFuelCard?>())
+        {
+            cinder!.Durability--;
             await CardPileCmd.AddGeneratedCardToCombat(cinder, PileType.Hand, Owner.Player);
+        }
     }
 }

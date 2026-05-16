@@ -23,7 +23,7 @@
   "MOKOUMOD-EXTRA_STAGE.description": "At the start of turn [blue]{ActiveTurn}[/blue], gain [blue]{RekindlePower}[/blue] [gold]Rekindle[/gold].",
   "MOKOUMOD-EXTRA_STAGE.flavor": "It's not over yet!",
   "MOKOUMOD-EXTRA_STAGE.title": "Extra Stage",
-  "MOKOUMOD-PEERLESS_PATRIOTS_ELIXIR.description": "The first time each turn you play an Attack with no [gold]Enchantment[/gold], [gold]Enchant[/gold] it with [gold]Vigorous[/gold] before it takes effect.",
+  "MOKOUMOD-PEERLESS_PATRIOTS_ELIXIR.description": "The first time you play an Attack with no [gold]Enchantment[/gold] each turn, [gold]Enchant[/gold] it with [gold]Vigorous[/gold] before it takes effect.",
   "MOKOUMOD-PEERLESS_PATRIOTS_ELIXIR.flavor": "RIP Reisen you will be missed.",
   "MOKOUMOD-PEERLESS_PATRIOTS_ELIXIR.title": "Peerless Patriot's Elixir",
   "MOKOUMOD-FIREMAN_HELMET.description": "The first [blue]{FireProofPower}[/blue] times you lose HP from [gold]Burn[/gold] each combat, lose only [blue]1[/blue] HP. Your [gold]Burn[/gold] HP loss is [gold]Non-Lethal[/gold].",

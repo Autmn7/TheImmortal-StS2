@@ -244,28 +244,6 @@ public partial class MainFile : Node
         }
     }
 
-    [HarmonyPatch(typeof(PowerCmd), "Apply", typeof(PlayerChoiceContext), typeof(PowerModel), typeof(Creature),
-        typeof(decimal), typeof(Creature), typeof(CardModel), typeof(bool))]
-    public static class MarkOfSinPreventionPatch
-    {
-        private static bool Prefix(PowerModel power, Creature target, Creature? applier, ref Task __result)
-        {
-            if (power is MarkOfSinPower)
-            {
-                var alreadyMarkedByMe = target.Powers.Any(p =>
-                    p is MarkOfSinPower existing &&
-                    existing.Applier == applier);
-                if (alreadyMarkedByMe)
-                {
-                    __result = Task.CompletedTask;
-                    return false;
-                }
-            }
-
-            return true;
-        }
-    }
-
     [HarmonyPatch(typeof(NHealthBar))]
     public class BurnHealthBarPatch
     {

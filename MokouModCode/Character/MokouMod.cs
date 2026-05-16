@@ -124,8 +124,7 @@ public class MokouMod : PlaceholderCharacterModel
     //public override string CharacterSelectSfx => null;
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";
 
-    public override RelicIconData CustomYummyCookie =>
-        new("yummy_cookie_mokou.png".BigRelicImagePath(), "yummy_cookie_mokou.png".RelicImagePath(), "relic_outline.png".RelicImagePath());
+    public override RelicIconData CustomYummyCookie => new("yummy_cookie_mokou.png".BigRelicImagePath(), "yummy_cookie_mokou.png".RelicImagePath(), "relic_outline.png".RelicImagePath());
 
     public static void RunAnimation(Player player, Animation animation)
     {

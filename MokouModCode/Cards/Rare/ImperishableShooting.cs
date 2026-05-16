@@ -1,6 +1,4 @@
-﻿using Godot;
-using Godot.Collections;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -30,15 +28,7 @@ public class ImperishableShooting : MokouModCard
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState)
             .BeforeDamage(async () =>
             {
-                var targetCenterPositions = new Array<Vector2>();
-                foreach (var enemy in CombatState.HittableEnemies)
-                {
-                    var creatureNode2 = NCombatRoom.Instance?.GetCreatureNode(enemy);
-                    if (creatureNode2 != null)
-                        targetCenterPositions.Add(creatureNode2.VfxSpawnPosition);
-                }
-
-                var vfx = NSweepingBeamVfx.Create(new Vector2(550, 550), targetCenterPositions);
+                var vfx = NSweepingBeamVfx.Create(Owner.Creature, CombatState.HittableEnemies.ToList());
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
                 await Cmd.CustomScaledWait(0.5f, 0.75f);
             }).Execute(choiceContext);

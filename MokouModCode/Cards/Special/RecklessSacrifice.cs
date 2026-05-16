@@ -19,10 +19,7 @@ public class RecklessSacrifice : MokouModCard
             new CalculationBaseVar(0M),
             new ExtraDamageVar(1M),
             new CalculatedDamageVar(ValueProp.Move)
-                .WithMultiplier((Func<CardModel, Creature?, decimal>)((card, _) =>
-                {
-                    return card.Owner.Creature.MaxHp - card.Owner.Creature.CurrentHp;
-                }))
+                .WithMultiplier((Func<CardModel, Creature?, decimal>)((card, _) => { return card.Owner.Creature.MaxHp - card.Owner.Creature.CurrentHp; }))
         );
     }
 

@@ -23,10 +23,8 @@ public class HighTempFeathers : MokouModCard
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         if (IgniteActive)
         {
-            var prefs =
-                new CardSelectorPrefs(SelectionScreenPrompt, 0, DynamicVars["ExhaustUpTo"].IntValue);
-            var cards = await CardSelectCmd.FromHand(choiceContext, Owner, prefs,
-                null, this);
+            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, DynamicVars["ExhaustUpTo"].IntValue);
+            var cards = await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, this);
             if (cards.Any())
             {
                 foreach (var card in cards)

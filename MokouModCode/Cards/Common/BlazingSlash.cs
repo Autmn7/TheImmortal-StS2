@@ -1,6 +1,4 @@
-﻿using BaseLib.Utils;
-using Godot;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -18,7 +16,7 @@ public class BlazingSlash : MokouModCard
     public BlazingSlash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         WithDamage(6);
-        WithVars(new PowerVar<BurnPower>(2), new IgniteVar(4M), new PowerVar<WeakPower>(1));
+        WithVars(new PowerVar<BurnPower>(2), new IgniteVar(5M), new PowerVar<WeakPower>(1));
         WithKeywords(MokouModKeywords.Ignite);
     }
 
@@ -39,7 +37,8 @@ public class BlazingSlash : MokouModCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2M);
+        DynamicVars.Damage.UpgradeValueBy(1M);
         DynamicVars["BurnPower"].UpgradeValueBy(1M);
+        DynamicVars["WeakPower"].UpgradeValueBy(1M);
     }
 }
