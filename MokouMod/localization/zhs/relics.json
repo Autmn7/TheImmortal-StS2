@@ -14,7 +14,7 @@
   "MOKOUMOD-MAPO_TOFU.description": "拾起时，获得[blue]{MaxHp}[/blue]点最大生命和[blue]{Essence}[/blue]层[gold]火种[/gold]。",
   "MOKOUMOD-MAPO_TOFU.flavor": "把那个草莓拿走啊啊啊啊啊啊！",
   "MOKOUMOD-MAPO_TOFU.title": "麻婆豆腐",
-  "MOKOUMOD-GRILL.description": "每当一张[gold]燃料[/gold]被[gold]消耗[/gold]时，获得[blue]{VigorPower}[/blue]点[gold]活力[/gold]。",
+  "MOKOUMOD-GRILL.description": "每当一张[gold]燃料[/gold]被[gold]消耗[/gold]，获得[blue]{VigorPower}[/blue]点[gold]活力[/gold]。",
   "MOKOUMOD-GRILL.flavor": "「果味」 「灼热」 「辣」 「燃起来了」 「烧烤」",
   "MOKOUMOD-GRILL.title": "烧烤架",
   "MOKOUMOD-VENGEFUL_GHOST.description": "当你在你的回合失去生命时，所有敌人失去等量生命。",

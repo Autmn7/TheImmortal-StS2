@@ -63,7 +63,7 @@
   "MOKOUMOD-FEAR_NO_DEATH_POWER.smartDescription": "当你在你的回合失去生命时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
   "MOKOUMOD-FEAR_NO_DEATH_POWER.title": "不惧亡殒",
   "MOKOUMOD-FAN_THE_FLAMES_POWER.description": "",
-  "MOKOUMOD-FAN_THE_FLAMES_POWER.smartDescription": "每当一张[gold]燃料[/gold]被[gold]消耗[/gold]时，给予一名随机敌人[blue]{Amount}[/blue]层[gold]烧伤[/gold]。",
+  "MOKOUMOD-FAN_THE_FLAMES_POWER.smartDescription": "每当一张[gold]燃料[/gold]被[gold]消耗[/gold]，给予一名随机敌人[blue]{Amount}[/blue]层[gold]烧伤[/gold]。",
   "MOKOUMOD-FAN_THE_FLAMES_POWER.title": "助燃",
   "MOKOUMOD-ETERNAL_FLAME_POWER.description": "",
   "MOKOUMOD-ETERNAL_FLAME_POWER.smartDescription": "在你的回合开始时，将[blue]{Amount}[/blue]张耐久减[blue]1[/blue]的随机[gold]余烬[/gold]加入你的[gold]手牌[/gold]。",
