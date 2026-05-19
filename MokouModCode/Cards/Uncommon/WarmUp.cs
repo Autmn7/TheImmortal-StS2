@@ -18,7 +18,7 @@ public class WarmUp : MokouModCard
 {
     public WarmUp() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new PowerVar<BurnPower>(1), new PowerVar<VigorPower>(2), new CardsVar(1), new IgniteVar(5), new EnergyVar(1));
+        WithVars(new PowerVar<BurnPower>(1), new PowerVar<VigorPower>(3), new CardsVar(1), new IgniteVar(5), new EnergyVar(1));
         WithKeywords(MokouModKeywords.Ignite, MokouModKeywords.Fury);
         WithTip(typeof(VigorousEnchantment));
     }
