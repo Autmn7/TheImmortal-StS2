@@ -30,9 +30,9 @@ public class SpontaneousCombustionPower : MokouModPower
         await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies, amount, Owner, null);
     }
 
-    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (side != Owner.Side)
+        if (!participants.Contains(Owner))
             return;
         Flash();
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner));

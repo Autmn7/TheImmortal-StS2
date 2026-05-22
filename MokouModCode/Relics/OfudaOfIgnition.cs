@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -22,9 +23,10 @@ public class OfudaOfIgnition : MokouModRelic
     public override async Task BeforeSideTurnStart(
         PlayerChoiceContext choiceContext,
         CombatSide side,
+        IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
-        if (side != Owner.Creature.Side || combatState.RoundNumber > 1)
+        if (!participants.Contains(Owner.Creature) || Owner.PlayerCombatState.TurnNumber > 1)
             return;
         Flash();
         foreach (var enemy in Owner.Creature.CombatState.HittableEnemies)

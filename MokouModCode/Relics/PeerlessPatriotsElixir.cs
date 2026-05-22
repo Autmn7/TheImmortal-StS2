@@ -1,5 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -28,9 +30,9 @@ public class PeerlessPatriotsElixir : MokouModRelic
         }
     }
 
-    public override Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Creature.Side)
+        if (!participants.Contains(Owner.Creature))
             return Task.CompletedTask;
         Status = RelicStatus.Active;
         return Task.CompletedTask;
@@ -52,7 +54,7 @@ public class PeerlessPatriotsElixir : MokouModRelic
         return Task.CompletedTask;
     }
 
-    public override Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != CombatSide.Player)
             return Task.CompletedTask;

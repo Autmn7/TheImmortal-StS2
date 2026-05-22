@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -31,12 +32,12 @@ public class LumpOfCoal : MokouModRelic
         }
     }
 
-    public override async Task BeforeSideTurnStart(
+    public override async Task BeforeHandDraw(
+        Player player,
         PlayerChoiceContext choiceContext,
-        CombatSide side,
         ICombatState combatState)
     {
-        if (side != Owner.Creature.Side || combatState.RoundNumber > 1)
+        if (player != Owner || Owner.PlayerCombatState.TurnNumber != 1)
             return;
         Flash();
         IEnumerable<CardModel> cinderCards =

@@ -37,9 +37,9 @@ public class BurnPower : MokouModPower
             await PowerCmd.Decrement(Owner.GetPower<FireProofPower>()!);
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Side)
+        if (!participants.Contains(Owner))
             return;
         await TriggerBurnEffect(side, combatState);
     }

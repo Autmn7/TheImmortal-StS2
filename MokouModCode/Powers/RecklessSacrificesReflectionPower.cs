@@ -29,9 +29,9 @@ public class RecklessSacrificesReflectionPower : MokouModPower
             await CreatureCmd.Damage(choiceContext, dealer, reflectAmount * Amount, ValueProp.Unpowered, null, null);
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (Owner.Side == side)
+        if (participants.Contains(Owner))
             return;
         await PowerCmd.Remove(this);
     }
