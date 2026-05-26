@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ytf8tqy2s40l"
-path="res://.godot/imported/bg_power_mokou.png-1c2a33f42847187cc2f3a7d57ea02252.ctex"
+uid="uid://cd77dcx8a1bb2"
+path="res://.godot/imported/frame_attack_mokou.png-e772b76097be9178cd27fc0870c98ed3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MokouMod/images/card_frames/bg_power_mokou.png"
-dest_files=["res://.godot/imported/bg_power_mokou.png-1c2a33f42847187cc2f3a7d57ea02252.ctex"]
+source_file="res://MokouMod/images/card_frames/frame_attack_mokou.png"
+dest_files=["res://.godot/imported/frame_attack_mokou.png-e772b76097be9178cd27fc0870c98ed3.ctex"]
 
 [params]
 

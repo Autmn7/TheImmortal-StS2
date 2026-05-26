@@ -24,6 +24,6 @@ public class FanTheFlames : MokouModCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars["FanTheFlamesPower"].UpgradeValueBy(2M);
+        DynamicVars["FanTheFlamesPower"].UpgradeValueBy(1M);
     }
 }

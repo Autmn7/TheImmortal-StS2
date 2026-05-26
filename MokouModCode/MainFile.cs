@@ -66,45 +66,32 @@ public partial class MainFile : Node
     }
 
     [HarmonyPatch(typeof(VigorPower), nameof(VigorPower.AfterAttack))]
-    public static class VigorPower_VigorousRefundPatch
+    public static class VigorousRefundPatch
     {
-        private static readonly Type dataType = AccessTools.Inner(typeof(VigorPower), "Data");
+        private static readonly Type DataType = AccessTools.Inner(typeof(VigorPower), "Data");
 
-        private static readonly MethodInfo getInternalDataMethod =
-            AccessTools.Method(typeof(VigorPower), "GetInternalData").MakeGenericMethod(dataType);
+        private static readonly MethodInfo GetInternalDataMethod =
+            AccessTools.Method(typeof(VigorPower), "GetInternalData").MakeGenericMethod(DataType);
 
-        private static readonly FieldInfo commandField =
-            AccessTools.Field(dataType, "commandToModify");
+        private static readonly FieldInfo CommandField =
+            AccessTools.Field(DataType, "commandToModify");
 
-        private static readonly FieldInfo amountField =
-            AccessTools.Field(dataType, "amountWhenAttackStarted");
+        private static readonly FieldInfo AmountField =
+            AccessTools.Field(DataType, "amountWhenAttackStarted");
 
-        private static async void Postfix(VigorPower __instance, AttackCommand command)
+        [HarmonyPostfix]
+        private static async void RefundVigor(VigorPower __instance, AttackCommand command)
         {
-            // Get internal data via reflection
-            var internalData = getInternalDataMethod.Invoke(__instance, null);
+            var internalData = GetInternalDataMethod.Invoke(__instance, null);
 
-            if (internalData == null)
-                return;
-            var storedCommand = commandField.GetValue(internalData) as AttackCommand;
-
-            if (storedCommand != command)
+            if (internalData == null
+                || CommandField.GetValue(internalData) is not AttackCommand storedCommand
+                || storedCommand != command
+                || command.ModelSource is not CardModel { Enchantment.Id.Entry: "MOKOUMOD-VIGOROUS_ENCHANTMENT" } card)
                 return;
 
-            // Get the card source
-            var card = command.ModelSource as CardModel;
-            if (card == null)
-                return;
+            var amountSpent = (int)(AmountField.GetValue(internalData) ?? 0);
 
-            // Check for VigorousEnchantment
-            var hasVigorous = HasVigorousEnchantment(card);
-
-            if (!hasVigorous)
-                return;
-
-            var amountSpent = (int)amountField.GetValue(internalData);
-
-            // Refund
             var refund = amountSpent / 2;
             if (__instance.Owner.HasPower<ValiantHeartPower>())
                 refund = amountSpent;
@@ -112,24 +99,18 @@ public partial class MainFile : Node
             if (refund <= 0)
                 return;
 
-            await PowerCmd.Apply<VigorPower>(new ThrowingPlayerChoiceContext(), card.Owner.Creature, refund,
-                card.Owner.Creature, card);
-        }
-
-        private static bool HasVigorousEnchantment(CardModel card)
-        {
-            return card.Enchantment != null &&
-                   card.Enchantment.Id.Entry.Equals("MOKOUMOD-VIGOROUS_ENCHANTMENT");
+            await PowerCmd.Apply<VigorPower>(new ThrowingPlayerChoiceContext(), card.Owner.Creature, refund, card.Owner.Creature, card);
         }
     }
 
 
     [HarmonyPatch(typeof(EnchantmentModel), "get_DynamicExtraCardText")]
-    public static class VigorousEnchantment_TextPatch
+    public static class VigorousTextPatch
     {
-        private static void Postfix(EnchantmentModel __instance, ref LocString __result)
+        [HarmonyPostfix]
+        private static void RenderVigorousText(EnchantmentModel __instance, ref LocString __result)
         {
-            if (__instance.Id?.Entry != "MOKOUMOD-VIGOROUS_ENCHANTMENT")
+            if (__instance.Id.Entry != "MOKOUMOD-VIGOROUS_ENCHANTMENT")
                 return;
 
             // Choose correct text
@@ -151,10 +132,11 @@ public partial class MainFile : Node
     [HarmonyPatch(typeof(NHandCardHolder), nameof(NHandCardHolder.UpdateCard))]
     public static class CardGlowPatch
     {
-        private static void Postfix(NHandCardHolder __instance)
+        [HarmonyPostfix]
+        private static void RenderGlow(NHandCardHolder __instance)
         {
             var card = __instance.CardNode?.Model;
-            if (card == null || card is not MokouModCard mokouCard || card.Owner.PlayerCombatState == null) return;
+            if (card is not MokouModCard mokouCard || card.Owner.PlayerCombatState == null) return;
 
             var igniteActive = MokouModCard.TriggeredIgnite(mokouCard,
                 mokouCard.DynamicVars.TryGetValue("Ignite", out var v) ? v.IntValue : 0);
@@ -202,7 +184,7 @@ public partial class MainFile : Node
     }
 
     [HarmonyPatch(typeof(CardModel), "GetDescriptionForPile")]
-    [HarmonyPatch(new[] { typeof(PileType), typeof(CardModel.DescriptionPreviewType), typeof(Creature) })]
+    [HarmonyPatch([typeof(PileType), typeof(CardModel.DescriptionPreviewType), typeof(Creature)])]
     public static class HideFuelKeywordsPatch
     {
         private static string GetCustomCardText(CardKeyword keyword)
@@ -218,7 +200,8 @@ public partial class MainFile : Node
             return $"[gold]{title}[/gold]{period}";
         }
 
-        private static void Postfix(CardModel __instance, ref string __result)
+        [HarmonyPostfix]
+        private static void HideFuelKeywords(CardModel __instance, ref string __result)
         {
             if (__instance is not MokouModFuelCard) return;
             try
@@ -289,11 +272,11 @@ public partial class MainFile : Node
                 return;
 
             var burnPower = creature.GetPower<BurnPower>();
-            var rawBurn = burnPower != null ? burnPower.Amount : 0;
+            var rawBurn = burnPower?.Amount ?? 0;
             var burnDamage = GetEffectiveBurnDamage(creature, rawBurn);
 
             var poisonPower = creature.GetPower<PoisonPower>();
-            var poisonDamage = poisonPower != null ? poisonPower.CalculateTotalDamageNextTurn() : 0;
+            var poisonDamage = poisonPower?.CalculateTotalDamageNextTurn() ?? 0;
 
             // Poison has priority (match vanilla behavior)
             if (poisonDamage >= creature.CurrentHp)
@@ -366,11 +349,11 @@ public partial class MainFile : Node
             if (creature.CurrentHp <= 0 || creature.HpDisplay.IsInfinite()) return;
 
             var burnPower = creature.GetPower<BurnPower>();
-            var rawBurn = burnPower != null ? burnPower.Amount : 0;
+            var rawBurn = burnPower?.Amount ?? 0;
             var burnDamage = GetEffectiveBurnDamage(creature, rawBurn);
 
             var poisonPower = creature.GetPower<PoisonPower>();
-            var poisonDamage = poisonPower != null ? poisonPower.CalculateTotalDamageNextTurn() : 0;
+            var poisonDamage = poisonPower?.CalculateTotalDamageNextTurn() ?? 0;
 
             // Respect poison priority
             if (poisonDamage >= creature.CurrentHp) return;

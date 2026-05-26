@@ -5,21 +5,21 @@ namespace MokouMod.MokouModCode.Scripts;
 
 public static class MokouKeywordStateRegistry
 {
-    private static readonly Dictionary<CombatStateTracker, Dictionary<Player, MokouModKeywordState>> states = new();
+    private static readonly Dictionary<CombatStateTracker, Dictionary<Player, MokouConstantsState>> states = new();
 
-    public static MokouModKeywordState Get(Player owner)
+    public static MokouConstantsState Get(Player owner)
     {
         var tracker = CombatManager.Instance.StateTracker;
 
         if (!states.TryGetValue(tracker, out var perPlayer))
         {
-            perPlayer = new Dictionary<Player, MokouModKeywordState>();
+            perPlayer = new Dictionary<Player, MokouConstantsState>();
             states[tracker] = perPlayer;
         }
 
         if (!perPlayer.TryGetValue(owner, out var state))
         {
-            state = new MokouModKeywordState();
+            state = new MokouConstantsState();
             perPlayer[owner] = state;
         }
 
