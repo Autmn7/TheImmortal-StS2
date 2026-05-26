@@ -21,9 +21,10 @@ public class LifeScattersLikeMist : MokouModCard
         SfxCmd.Play("event:/sfx/characters/defect/defect_lightning_evoke");
         VfxCmd.PlayOnCreature(Owner.Creature, "vfx/vfx_attack_lightning");
         await CreatureCmd.Kill(Owner.Creature);
-        await CardPileCmd.Draw(choiceContext, 10 - Owner.PlayerCombatState.Hand.Cards.Count, Owner);
-        await CardPileCmd.Draw(choiceContext, 10 - cardPlay.Target.Player.PlayerCombatState.Hand.Cards.Count,
-            cardPlay.Target.Player);
+        if (Owner.PlayerCombatState != null)
+            await CardPileCmd.Draw(choiceContext, CardPile.MaxCardsInHand - Owner.PlayerCombatState.Hand.Cards.Count, Owner);
+        if (cardPlay.Target.Player?.PlayerCombatState != null)
+            await CardPileCmd.Draw(choiceContext, CardPile.MaxCardsInHand - cardPlay.Target.Player.PlayerCombatState.Hand.Cards.Count, cardPlay.Target.Player);
     }
 
     protected override void OnUpgrade()

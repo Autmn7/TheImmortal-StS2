@@ -33,13 +33,13 @@ public class MokouModCardPool : CustomCardPoolModel
         //This will attempt to load MokouMod/images/cards/frame.png
         return PreloadManager.Cache.GetTexture2D("cards/frame.png".ImagePath());
     }*/
-    public override Texture2D? CustomFrame(CustomCardModel card)
+    public override Texture2D CustomFrame(CustomCardModel card)
     {
         return card.Type switch
         {
-            CardType.Attack => PreloadManager.Cache.GetAsset<Texture2D>("bg_attack_mokou.png".CardFramePath()),
-            CardType.Power => PreloadManager.Cache.GetAsset<Texture2D>("bg_power_mokou.png".CardFramePath()),
-            _ => PreloadManager.Cache.GetAsset<Texture2D>("bg_skill_mokou.png".CardFramePath())
+            CardType.Attack => PreloadManager.Cache.GetAsset<Texture2D>("frame_attack_mokou.png".CardFramePath()),
+            CardType.Power => PreloadManager.Cache.GetAsset<Texture2D>("frame_power_mokou.png".CardFramePath()),
+            _ => PreloadManager.Cache.GetAsset<Texture2D>("frame_skill_mokou.png".CardFramePath())
         };
     }
 }

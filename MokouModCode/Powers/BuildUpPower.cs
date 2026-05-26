@@ -18,7 +18,7 @@ public class BuildUpPower : MokouModPower
 
     protected override object InitInternalData()
     {
-        return (object)new Data();
+        return new Data();
     }
 
     public override Task BeforeAttack(AttackCommand command)

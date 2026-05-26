@@ -24,17 +24,16 @@ public class BurnPower : MokouModPower
     {
         var hasFireProof = Owner.HasPower<FireProofPower>();
         var hpLoss = Amount;
-        if (Owner.HasPower<FireProofPower>()) hpLoss = 1;
+        if (hasFireProof) hpLoss = 1;
         else if (Owner.HasPower<PhoenixFormPower>() && hpLoss > 3) hpLoss = 3;
         if (Owner.Player?.GetRelic<FiremanHelmet>() != null)
             hpLoss = Owner.CurrentHp - hpLoss < 1 ? Owner.CurrentHp - 1 : hpLoss;
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurningVfx.Create(Owner,
-            Math.Min(2.0f, 0.5f + (float)(Math.Ceiling(Amount / 10.0) * 0.05f)), Owner.IsPlayer)!);
+        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurningVfx.Create(Owner, Math.Min(2.0f, 0.5f + (float)(Math.Ceiling(Amount / 10.0) * 0.05f)), Owner.IsPlayer));
         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner, hpLoss, ValueProp.Unblockable | ValueProp.Unpowered, null, cardSource);
         if (Owner.IsAlive && (side == CombatSide.Player || CombatState.Players.All(player => !player.HasPower<FujiyamaVolcanoPower>())))
             await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -(int)Math.Ceiling(Amount / 5.0), null, null);
         if (hasFireProof)
-            await PowerCmd.Decrement(Owner.GetPower<FireProofPower>()!);
+            await PowerCmd.Decrement(Owner.GetPower<FireProofPower>());
     }
 
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)

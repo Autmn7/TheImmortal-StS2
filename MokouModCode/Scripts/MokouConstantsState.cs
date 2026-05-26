@@ -1,6 +1,6 @@
 ﻿namespace MokouMod.MokouModCode.Scripts;
 
-public class MokouModKeywordState
+public class MokouConstantsState
 {
     public bool emberTriggeredThisCombat;
 }

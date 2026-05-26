@@ -63,7 +63,7 @@ public class BurningPlume : MokouModRelic
             DynamicVars["RegenPower"].BaseValue, Owner.Creature, null);
     }
 
-    public override RelicModel? GetUpgradeReplacement()
+    public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<ImmortalPlume>();
     }
