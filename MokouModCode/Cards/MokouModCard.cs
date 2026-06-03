@@ -1,7 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
-using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,9 +21,7 @@ public abstract class MokouModCard : ConstructedCardModel
     protected MokouModCard(int cost, CardType type, CardRarity rarity, TargetType target)
         : base(cost, type, rarity, target)
     {
-        WithTip(new TooltipSource((Func<CardModel, IHoverTip>)((CardModel card) =>
-            (IHoverTip)(object)new HoverTip(new LocString("static_hover_tips", "MOKOUMOD-ARTIST-TITLE"),
-                new LocString("cards", ((AbstractModel)this).Id.Entry + ".artist"), (Texture2D)null))));
+        WithTip(new TooltipSource(card => new HoverTip(new LocString("static_hover_tips", "MOKOUMOD-ARTIST-TITLE"), new LocString("cards", Id.Entry + ".artist"))));
     }
 
     //Image size:

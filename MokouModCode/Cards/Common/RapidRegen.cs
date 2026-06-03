@@ -19,8 +19,7 @@ public class RapidRegen : MokouModCard
     {
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         if (EmberActive)
-            await PowerCmd.Apply<RegenPower>(choiceContext, Owner.Creature, DynamicVars["RegenPower"].BaseValue,
-                Owner.Creature, this);
+            await PowerCmd.Apply<RegenPower>(choiceContext, Owner.Creature, DynamicVars["RegenPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
