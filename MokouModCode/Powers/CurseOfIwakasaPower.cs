@@ -10,13 +10,13 @@ public class CurseOfIwakasaPower : MokouModPower
 
     public override PowerStackType StackType => PowerStackType.Single;
 
-    public override decimal ModifyPowerAmountGiven(
+    public override decimal ModifyPowerAmountGivenMultiplicative(
         PowerModel power,
         Creature giver,
         decimal amount,
         Creature? target,
         CardModel? cardSource)
     {
-        return target == Owner && power.Type == PowerType.Debuff ? amount * 2 : amount;
+        return target == Owner && power.Type == PowerType.Debuff ? 2M : 1M;
     }
 }

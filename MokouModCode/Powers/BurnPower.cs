@@ -42,33 +42,4 @@ public class BurnPower : MokouModPower
             return;
         await TriggerBurnEffect(side, combatState);
     }
-
-    public override decimal ModifyDamageAdditive(
-        Creature? target,
-        decimal amount,
-        ValueProp props,
-        Creature? dealer,
-        CardModel? cardSource)
-    {
-        if (cardSource != null)
-            if (cardSource.Id.Entry.Equals("MOKOUMOD-PYROMANIAC") ||
-                cardSource.Id.Entry.Equals("MOKOUMOD-FLAME_WHIRLWIND"))
-                return Owner != dealer || !props.IsPoweredAttack() ? 0M : Amount;
-
-        return 0M;
-    }
-
-    public override decimal ModifyBlockAdditive(
-        Creature target,
-        decimal block,
-        ValueProp props,
-        CardModel? cardSource,
-        CardPlay? cardPlay)
-    {
-        if (cardSource != null)
-            if (cardSource.Owner.Creature == Owner && cardSource.Id.Entry.Equals("MOKOUMOD-FIRE_PROTECTION"))
-                return !props.IsPoweredCardOrMonsterMoveBlock() ? 0M : Amount;
-
-        return 0M;
-    }
 }
