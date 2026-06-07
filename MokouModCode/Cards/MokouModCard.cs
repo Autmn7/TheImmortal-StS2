@@ -61,11 +61,20 @@ public abstract class MokouModCard : ConstructedCardModel
         if (Keywords.Contains(MokouModKeywords.Ember))
             EmberActive = TriggeredEmber(this);
 
+        // 1. Snapshot valid fuel cards currently in hand BEFORE drawing or discarding happens
+        var fuelCardsToTrigger = new List<MokouModFuelCard>();
+        if (IgniteActive || FuryActive || EmberActive)
+            foreach (var card in PileType.Hand.GetPile(player).Cards)
+                if (card is MokouModFuelCard fuelCard)
+                    fuelCardsToTrigger.Add(fuelCard);
+
+        // 2. Execute the card actions (e.g., Drawing cards)
         await OnPlayMokou(choiceContext, cardPlay);
 
+        // 3. Trigger ONLY the fuel cards that were present initially and are still validly in hand
         if (IgniteActive || FuryActive || EmberActive)
-            foreach (var card in PileType.Hand.GetPile(player).Cards.ToList())
-                if (card is MokouModFuelCard fuelCard)
+            foreach (var fuelCard in fuelCardsToTrigger)
+                if (PileType.Hand.GetPile(player).Cards.Contains(fuelCard))
                     await fuelCard.TriggerFuel(player);
 
         IgniteActive = false;
@@ -78,50 +87,25 @@ public abstract class MokouModCard : ConstructedCardModel
         return Task.CompletedTask;
     }
 
-
     public static bool TriggeredIgnite(MokouModCard card, int requiredBurn)
     {
-        var player = card.Owner;
-        var combat = player.Creature.CombatState;
-        if (combat == null || !card.Keywords.Contains(MokouModKeywords.Ignite)) return false;
-        var result = combat.Players.Any(p => p.Creature.GetPowerAmount<BurnPower>() >= requiredBurn) ||
-                     combat.HittableEnemies.Any(e => e.GetPowerAmount<BurnPower>() >= requiredBurn);
-        if (result)
-            foreach (var cardInHand in PileType.Hand.GetPile(player).Cards)
-                if (cardInHand is MokouModFuelCard fuelCard)
-                    fuelCard.Triggered = true;
+        if (card.Owner.Creature.CombatState == null || !card.Keywords.Contains(MokouModKeywords.Ignite)) return false;
 
-        return result;
+        return card.Owner.Creature.CombatState.Players.Any(p => p.Creature.GetPowerAmount<BurnPower>() >= requiredBurn) || card.Owner.Creature.CombatState.HittableEnemies.Any(e => e.GetPowerAmount<BurnPower>() >= requiredBurn);
     }
 
     public static bool TriggeredFury(MokouModCard card)
     {
-        var player = card.Owner;
-        if (player.Creature.CombatState == null || !card.Keywords.Contains(MokouModKeywords.Fury)) return false;
-        var result = CombatManager.Instance.History.Entries.OfType<DamageReceivedEntry>().Any(
-            (Func<DamageReceivedEntry, bool>)(e =>
-                e.HappenedThisTurn(player.Creature.CombatState) && e.Receiver == player.Creature &&
-                e.Result.UnblockedDamage > 0));
-        if (result)
-            foreach (var cardInHand in PileType.Hand.GetPile(player).Cards)
-                if (cardInHand is MokouModFuelCard fuelCard)
-                    fuelCard.Triggered = true;
+        if (card.Owner.Creature.CombatState == null || !card.Keywords.Contains(MokouModKeywords.Fury)) return false;
 
-        return result;
+        return CombatManager.Instance.History.Entries.OfType<DamageReceivedEntry>().Any(e => e.HappenedThisTurn(card.Owner.Creature.CombatState) && e.Receiver == card.Owner.Creature && e.Result.UnblockedDamage > 0);
     }
 
     public static bool TriggeredEmber(MokouModCard card)
     {
-        var player = card.Owner;
-        if (player.Creature.CombatState == null || !card.Keywords.Contains(MokouModKeywords.Ember)) return false;
-        var state = MokouKeywordStateRegistry.Get(card.Owner);
-        var result = player.Creature.CurrentHp <= player.Creature.MaxHp * 0.5f || state.emberTriggeredThisCombat;
-        if (result)
-            foreach (var cardInHand in PileType.Hand.GetPile(player).Cards)
-                if (cardInHand is MokouModFuelCard fuelCard)
-                    fuelCard.Triggered = true;
+        if (card.Owner.Creature.CombatState == null || !card.Keywords.Contains(MokouModKeywords.Ember)) return false;
 
-        return result;
+        return card.Owner.Creature.CurrentHp <= card.Owner.Creature.MaxHp * 0.5f || MokouKeywordStateRegistry.Get(card.Owner).emberTriggeredThisCombat;
     }
 
     public static EnchantmentModel? Enchant(

@@ -10,7 +10,6 @@ public abstract class MokouModFuelCard(int cost, CardType type, CardRarity rarit
 {
     public decimal Durability;
     public decimal MaxDurability;
-    public bool Triggered;
 
     protected virtual Task OnFuelTrigger()
     {
@@ -25,18 +24,15 @@ public abstract class MokouModFuelCard(int cost, CardType type, CardRarity rarit
     public async Task TriggerFuel(Player player)
     {
         if (player != Owner) return;
-        if (Triggered)
-        {
-            await OnFuelTrigger();
-            Durability--;
-            if (Durability <= 0)
-            {
-                await CardCmd.Exhaust(new ThrowingPlayerChoiceContext(), this);
-                await OnFuelDurabilityDeplete();
-                Durability = MaxDurability;
-            }
-        }
 
-        Triggered = false;
+        // This method is now safely invoked only by validated context snapshots
+        await OnFuelTrigger();
+        Durability--;
+        if (Durability <= 0)
+        {
+            await CardCmd.Exhaust(new ThrowingPlayerChoiceContext(), this);
+            await OnFuelDurabilityDeplete();
+            Durability = MaxDurability;
+        }
     }
 }
