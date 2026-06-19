@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -32,13 +33,23 @@ public class Feather : MokouModCard
     {
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(cardPlay.Target, 0.5f));
         var burnAmount = DynamicVars["BurnPower"].BaseValue;
-        if (IgniteActive || FuryActive || EmberActive)
-            burnAmount += DynamicVars["AdditionalBurn"].BaseValue;
+        // if (IgniteActive || FuryActive || EmberActive)
+        //     burnAmount += DynamicVars["AdditionalBurn"].BaseValue;
         if (HasHeatwave)
             await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies,
                 burnAmount, Owner.Creature, this);
         else
             await CommonActions.Apply<BurnPower>(cardPlay.Target, this, burnAmount);
+    }
+
+    public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
+    {
+        if (cardSource == this && power is BurnPower && giver == Owner.Creature && (IgniteActive || FuryActive || EmberActive))
+        {
+            return 1M;
+        }
+
+        return 0M;
     }
 
     protected override void OnUpgrade()

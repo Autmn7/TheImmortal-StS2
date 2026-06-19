@@ -40,9 +40,9 @@ public abstract class MokouModCard : ConstructedCardModel
 
     public virtual Character.MokouMod.Animation Anim => Character.MokouMod.Animation.None;
 
-    public bool IgniteActive { get; private set; }
-    public bool FuryActive { get; private set; }
-    public bool EmberActive { get; private set; }
+    public bool IgniteActive => Keywords.Contains(MokouModKeywords.Ignite) && TriggeredIgnite(this, DynamicVars.TryGetValue("Ignite", out var v) ? v.IntValue : 0);
+    public bool FuryActive => Keywords.Contains(MokouModKeywords.Fury) && TriggeredFury(this);
+    public bool EmberActive => Keywords.Contains(MokouModKeywords.Ember) && TriggeredEmber(this);
 
     protected decimal CalculateNonLethal(decimal hpLoss)
     {
@@ -53,13 +53,6 @@ public abstract class MokouModCard : ConstructedCardModel
     protected sealed override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var player = cardPlay.Card.Owner;
-
-        if (Keywords.Contains(MokouModKeywords.Ignite))
-            IgniteActive = TriggeredIgnite(this, DynamicVars.TryGetValue("Ignite", out var v) ? v.IntValue : 0);
-        if (Keywords.Contains(MokouModKeywords.Fury))
-            FuryActive = TriggeredFury(this);
-        if (Keywords.Contains(MokouModKeywords.Ember))
-            EmberActive = TriggeredEmber(this);
 
         // 1. Snapshot valid fuel cards currently in hand BEFORE drawing or discarding happens
         var fuelCardsToTrigger = new List<MokouModFuelCard>();
@@ -76,10 +69,6 @@ public abstract class MokouModCard : ConstructedCardModel
             foreach (var fuelCard in fuelCardsToTrigger)
                 if (PileType.Hand.GetPile(player).Cards.Contains(fuelCard))
                     await fuelCard.TriggerFuel(player);
-
-        IgniteActive = false;
-        FuryActive = false;
-        EmberActive = false;
     }
 
     protected virtual Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
