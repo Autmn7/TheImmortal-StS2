@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Patches.Hooks;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,7 +10,7 @@ namespace MokouMod.MokouModCode.Cards.Uncommon;
 
 public class LifeScattersLikeMist : MokouModCard
 {
-    public LifeScattersLikeMist() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
+    public LifeScattersLikeMist() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithTip(new TooltipSource(card => new HoverTip(new LocString("cards", Id.Entry + ".extraTipTitle"), new LocString("cards", Id.Entry + ".extraTipDescription"))));
@@ -30,9 +31,9 @@ public class LifeScattersLikeMist : MokouModCard
         }
 
         if (Owner.PlayerCombatState != null)
-            await CardPileCmd.Draw(choiceContext, CardPile.MaxCardsInHand - Owner.PlayerCombatState.Hand.Cards.Count, Owner);
+            await CardPileCmd.Draw(choiceContext, MaxHandSizePatch.GetMaxHandSize(Owner, CardPile.MaxCardsInHand) - Owner.PlayerCombatState.Hand.Cards.Count, Owner);
         if (cardPlay.Target.Player?.PlayerCombatState != null)
-            await CardPileCmd.Draw(choiceContext, CardPile.MaxCardsInHand - cardPlay.Target.Player.PlayerCombatState.Hand.Cards.Count, cardPlay.Target.Player);
+            await CardPileCmd.Draw(choiceContext, MaxHandSizePatch.GetMaxHandSize(cardPlay.Target.Player, CardPile.MaxCardsInHand) - cardPlay.Target.Player.PlayerCombatState.Hand.Cards.Count, cardPlay.Target.Player);
     }
 
     protected override void OnUpgrade()

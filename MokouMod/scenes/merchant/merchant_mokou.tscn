@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bj3dv2txevf0k"]
 
-[ext_resource type="Texture2D" uid="uid://kw4x72efgpkt" path="res://MokouMod/images/charui/mokou1.png" id="1_mqxky"]
+[ext_resource type="Texture2D" uid="uid://kw4x72efgpkt" path="res://MokouMod/scenes/merchant/mokou1.png" id="1_mqxky"]
 
 [node name="ShopMokou" type="Node2D"]
 
@@ -15,10 +15,9 @@ flip_h = true
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -114.0
-offset_top = -284.0
-offset_right = 99.0
-offset_bottom = 18.0
+offset_left = -100.0
+offset_top = -387.0
+offset_right = 100.0
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true

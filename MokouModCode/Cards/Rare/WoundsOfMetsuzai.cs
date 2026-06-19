@@ -23,18 +23,14 @@ public class WoundsOfMetsuzai : MokouModCard
     {
         var attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
-        var unblockedDamage = attackCommand.Results.Sum(results => results.Sum(r => r.UnblockedDamage));
+        var unblockedDamage = attackCommand.Results.Sum(results => results.Sum(r => r.TotalDamage + r.OverkillDamage));
         var cardNum = (int)Math.Floor(unblockedDamage / DynamicVars["Ratio"].BaseValue);
-        var cards =
-            await CardSelectCmd.FromSimpleGrid(
-                choiceContext,
-                PileType.Exhaust.GetPile(Owner).Cards
-                    .ToList(),
-                Owner,
-                new CardSelectorPrefs(SelectionScreenPrompt, cardNum)
-            );
-        foreach (var card in cards)
-            await CardPileCmd.Add(card, PileType.Hand);
+        if (cardNum > 0)
+        {
+            var cards = await CardSelectCmd.FromSimpleGrid(choiceContext, PileType.Exhaust.GetPile(Owner).Cards.ToList(), Owner, new CardSelectorPrefs(SelectionScreenPrompt, 0, cardNum));
+            foreach (var card in cards)
+                await CardPileCmd.Add(card, PileType.Hand);
+        }
     }
 
     protected override void OnUpgrade()

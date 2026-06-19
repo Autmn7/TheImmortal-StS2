@@ -27,7 +27,7 @@ public class RecklessSacrificesReflection : MokouModCard
     {
         await PowerCmd.Apply<RekindlePower>(choiceContext, Owner.Creature, DynamicVars["RekindlePower"].BaseValue, Owner.Creature, this);
         var coveredForKeine = false;
-        foreach (var creature in CombatState.GetTeammatesOf(Owner.Creature).Where(c => c != null && c.IsAlive && c.IsPlayer && c != Owner.Creature))
+        foreach (var creature in CombatState.GetTeammatesOf(Owner.Creature).Where(c => c is { IsAlive: true, IsPlayer: true } && c != Owner.Creature))
         {
             await PowerCmd.Apply<CoveredPower>(choiceContext, creature, 1M, Owner.Creature, this);
             if (creature.Player?.Character.Id.ToString() == "CHARACTER.KEINEMOD-KEINE_MOD")
