@@ -136,11 +136,11 @@ public partial class MainFile : Node
         private static void RenderGlow(NHandCardHolder __instance)
         {
             var card = __instance.CardNode?.Model;
-            if (__instance.CardNode == null || card is not MokouModCard mokouCard || card.Owner.PlayerCombatState == null) return;
+            if (card is not MokouModCard mokouCard || card.Owner.PlayerCombatState == null) return;
 
-            var igniteActive = mokouCard.IgniteActive;
-            var furyActive = mokouCard.FuryActive;
-            var emberActive = mokouCard.EmberActive;
+            var igniteActive = MokouModCard.TriggeredIgnite(mokouCard, mokouCard.DynamicVars.TryGetValue("Ignite", out var v) ? v.IntValue : 0);
+            var furyActive = MokouModCard.TriggeredFury(mokouCard);
+            var emberActive = MokouModCard.TriggeredEmber(mokouCard);
 
             if (!igniteActive && !furyActive && !emberActive) return;
 
