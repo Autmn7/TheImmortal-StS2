@@ -29,5 +29,8 @@
   "MOKOUMOD-PEERLESS_PATRIOTS_ELIXIR.title": "国士无双药",
   "MOKOUMOD-FIREMAN_HELMET.description": "每场战斗前[blue]{FireProofPower}[/blue]次因[gold]烧伤[/gold]失去生命时，只失去[blue]1[/blue]点。你因[gold]烧伤[/gold]失去的生命为[gold]非致命[/gold]。",
   "MOKOUMOD-FIREMAN_HELMET.flavor": "纸张的自燃温度约为451华氏度。",
-  "MOKOUMOD-FIREMAN_HELMET.title": "防火面罩"
+  "MOKOUMOD-FIREMAN_HELMET.title": "防火面罩",
+  "MOKOUMOD-RAW_LIVER.description": "你的[gold]再生[/gold]不再衰减。",
+  "MOKOUMOD-RAW_LIVER.flavor": "生吃蓬莱人的肝脏会获得不老不死。小心别误食了（虽然也不太可能吧",
+  "MOKOUMOD-RAW_LIVER.title": "蓬莱生肝"
 }

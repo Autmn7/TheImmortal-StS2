@@ -42,7 +42,7 @@ public class WarmUp : MokouModCard
             Enchant(newEnchant, card);
         }
 
-        if (FuryActive)
+        if (IgniteActive || FuryActive)
             await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 

@@ -29,5 +29,8 @@
   "MOKOUMOD-PEERLESS_PATRIOTS_ELIXIR.title": "Peerless Patriot's Elixir",
   "MOKOUMOD-FIREMAN_HELMET.description": "The first [blue]{FireProofPower}[/blue] times you lose HP from [gold]Burn[/gold] each combat, lose only [blue]1[/blue] HP. Your [gold]Burn[/gold] HP loss is [gold]Non-Lethal[/gold].",
   "MOKOUMOD-FIREMAN_HELMET.flavor": "The autoignition temperature of paper is approximately 451 degrees Fahrenheit.",
-  "MOKOUMOD-FIREMAN_HELMET.title": "Fireman Helmet"
+  "MOKOUMOD-FIREMAN_HELMET.title": "Fireman Helmet",
+  "MOKOUMOD-RAW_LIVER.description": "Your [gold]Regen[/gold] no longer decays.",
+  "MOKOUMOD-RAW_LIVER.flavor": "Eating the liver of an immortal being raw grants you immorality. Better be careful with what you eat.",
+  "MOKOUMOD-RAW_LIVER.title": "Raw Liver"
 }

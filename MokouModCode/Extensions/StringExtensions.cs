@@ -53,6 +53,11 @@ public static class StringExtensions
         return Path.Join(MainFile.ResPath, "images", "potions", path);
     }
 
+    public static string EventImagePath(this string path)
+    {
+        return Path.Join(MainFile.ResPath, "images", "events", path);
+    }
+
     public static string CharacterUiPath(this string path)
     {
         return Path.Join(MainFile.ResPath, "images", "charui", path);

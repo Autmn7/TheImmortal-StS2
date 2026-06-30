@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using MokouMod.MokouModCode.Relics;
+using static MokouMod.MokouModCode.Cards.MokouModCard;
 
 namespace MokouMod.MokouModCode.Powers;
 
@@ -22,11 +23,11 @@ public class BurnPower : MokouModPower
     public async Task TriggerBurnEffect(CombatSide side, ICombatState combatState, CardModel? cardSource = null)
     {
         var hasFireProof = Owner.HasPower<FireProofPower>();
-        var hpLoss = Amount;
-        if (hasFireProof) hpLoss = 1;
-        else if (Owner.HasPower<PhoenixFormPower>() && hpLoss > 3) hpLoss = 3;
+        var hpLoss = (decimal)Amount;
+        if (hasFireProof) hpLoss = 1m;
+        else if (Owner.HasPower<PhoenixFormPower>() && hpLoss > 3m) hpLoss = 3m;
         if (Owner.Player?.GetRelic<FiremanHelmet>() != null)
-            hpLoss = Owner.CurrentHp - hpLoss < 1 ? Owner.CurrentHp - 1 : hpLoss;
+            hpLoss = CalculateNonLethal(Owner, hpLoss);
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurningVfx.Create(Owner, Math.Min(2.0f, 0.5f + (float)(Math.Ceiling(Amount / 10.0) * 0.05f)), Owner.IsPlayer));
         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner, hpLoss, ValueProp.Unblockable | ValueProp.Unpowered, null, cardSource);
         if (Owner.IsAlive && (side == CombatSide.Player || CombatState.Players.All(player => !player.HasPower<FujiyamaVolcanoPower>())))

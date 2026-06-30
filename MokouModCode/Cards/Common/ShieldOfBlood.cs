@@ -18,7 +18,7 @@ public class ShieldOfBlood : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var nonLethal = CalculateNonLethal(DynamicVars.HpLoss.BaseValue);
+        var nonLethal = CalculateNonLethal(Owner.Creature, DynamicVars.HpLoss.BaseValue);
         await CreatureCmd.Damage(choiceContext, Owner.Creature, nonLethal,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);

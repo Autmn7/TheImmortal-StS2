@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
@@ -43,12 +44,6 @@ public abstract class MokouModCard : ConstructedCardModel
     public bool IgniteActive { get; private set; }
     public bool FuryActive { get; private set; }
     public bool EmberActive { get; private set; }
-
-    protected decimal CalculateNonLethal(decimal hpLoss)
-    {
-        if (CombatState == null) return 0M;
-        return Owner.Creature.CurrentHp - hpLoss < 1 ? Owner.Creature.CurrentHp - 1 : hpLoss;
-    }
 
     protected sealed override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -106,6 +101,11 @@ public abstract class MokouModCard : ConstructedCardModel
         if (card.Owner.Creature.CombatState == null || !card.Keywords.Contains(MokouModKeywords.Ember)) return false;
 
         return card.Owner.Creature.CurrentHp <= card.Owner.Creature.MaxHp * 0.5f || MokouKeywordStateRegistry.Get(card.Owner).emberTriggeredThisCombat;
+    }
+
+    public static decimal CalculateNonLethal(Creature creature, decimal hpLoss)
+    {
+        return creature.CurrentHp - hpLoss < 1 ? creature.CurrentHp - 1 : hpLoss;
     }
 
     public static EnchantmentModel? Enchant(

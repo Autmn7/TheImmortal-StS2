@@ -89,5 +89,8 @@
   "MOKOUMOD-SHARPENED_POWER.title": "Sharpened",
   "MOKOUMOD-BUILD_UP_POWER.description": "",
   "MOKOUMOD-BUILD_UP_POWER.smartDescription": "Your next {Amount:plural:Attack|[blue]{}[/blue] Attacks} this turn {Amount:plural:deals|deal} double damage.",
-  "MOKOUMOD-BUILD_UP_POWER.title": "Build Up"
+  "MOKOUMOD-BUILD_UP_POWER.title": "Build Up",
+  "MOKOUMOD-DUP_HISTORICAL_GAP_POWER.description": "Whenever a card is [gold]Consumed[/gold] or [gold]Exhausted[/gold], lose X HP and lower this by [blue]1[/blue].",
+  "MOKOUMOD-DUP_HISTORICAL_GAP_POWER.smartDescription": "Whenever a card is [gold]Consumed[/gold] or [gold]Exhausted[/gold], lose [blue]{Amount}[/blue] HP and lower this by [blue]1[/blue].",
+  "MOKOUMOD-DUP_HISTORICAL_GAP_POWER.title": "Historical Gap"
 }

@@ -304,5 +304,14 @@
   "MOKOUMOD-NIHIL.artist": "unknown",
   "MOKOUMOD-EXIST.description": "Add 1 stack to ALL your buffs.",
   "MOKOUMOD-EXIST.title": "Exist",
-  "MOKOUMOD-EXIST.artist": "unknown"
+  "MOKOUMOD-EXIST.artist": "unknown",
+  "MOKOUMOD-DUAL_SUPPRESSION.description": "{IfUpgraded:show:|Choose one: }Apply {BurnPower:diff()} [gold]Burn[/gold] {IfUpgraded:show:and|or} {DupHistoricalGapPower:diff()} [gold]Historical Gap[/gold] to ALL enemies.",
+  "MOKOUMOD-DUAL_SUPPRESSION.title": "Dual Suppression",
+  "MOKOUMOD-DUAL_SUPPRESSION.artist": "羽々斬",
+  "MOKOUMOD-MOKOUS_SUPPRESSION.description": "Apply {BurnPower:diff()} [gold]Burn[/gold] to ALL enemies.",
+  "MOKOUMOD-MOKOUS_SUPPRESSION.title": "Mokou's Suppression",
+  "MOKOUMOD-MOKOUS_SUPPRESSION.artist": "係長代理",
+  "MOKOUMOD-KEINES_SUPPRESSION.description": "Apply {DupHistoricalGapPower:diff()} [gold]Historical Gap[/gold] to ALL enemies.",
+  "MOKOUMOD-KEINES_SUPPRESSION.title": "Keine's Suppression",
+  "MOKOUMOD-KEINES_SUPPRESSION.artist": "係長代理"
 }

@@ -65,6 +65,31 @@ public partial class MainFile : Node
         }
     }
 
+    [HarmonyPatch(typeof(RegenPower), nameof(RegenPower.AfterSideTurnEnd))]
+    public static class RegenPowerCustomDecayPatch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(RegenPower __instance, PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants, ref Task __result)
+        {
+            if (__instance.Owner.Player?.GetRelic<RawLiver>() != null)
+            {
+                __result = ExecuteRegenWithoutDecay(__instance, participants);
+                return false;
+            }
+
+            return true;
+        }
+
+
+        private static async Task ExecuteRegenWithoutDecay(RegenPower power, IEnumerable<Creature> participants)
+        {
+            if (!participants.Contains(power.Owner) || power.Owner.IsDead)
+                return;
+            power.Flash();
+            await CreatureCmd.Heal(power.Owner, power.Amount);
+        }
+    }
+
     [HarmonyPatch(typeof(VigorPower), nameof(VigorPower.AfterAttack))]
     public static class VigorousRefundPatch
     {

@@ -293,7 +293,7 @@
   "MOKOUMOD-CURSE_OF_IWAKASA.description": "目标敌人受到的所有负面效果层数翻倍。\n将一张[gold]业火[/gold]加入你的[gold]手牌[/gold]。",
   "MOKOUMOD-CURSE_OF_IWAKASA.title": "「月岩笠的诅咒」",
   "MOKOUMOD-CURSE_OF_IWAKASA.artist": "浅草Sen",
-  "MOKOUMOD-HELLFIRE.description": "[gold]燃料[/gold]({Durability:diff()})。\n被[gold]消耗[/gold]：获得{HellfirePower:diff()}点[gold]业火[/gold]。",
+  "MOKOUMOD-HELLFIRE.description": "[gold]燃料[/gold]({Durability:diff()})。\n被[gold]消耗[/gold]：获得{HellfirePower:diff()}层[gold]业火[/gold]。",
   "MOKOUMOD-HELLFIRE.title": "业火",
   "MOKOUMOD-HELLFIRE.artist": "Jake Donaldson",
   "MOKOUMOD-HONEST_MANS_DEATH.description": "对目标[gold]首领[/gold]给予[gold]罪印[/gold]。\n造成{Damage:diff()}点伤害。\n对意图不是攻击的敌人造成双倍伤害。",
@@ -304,5 +304,14 @@
   "MOKOUMOD-NIHIL.artist": "unknown",
   "MOKOUMOD-EXIST.description": "使自身所有正面效果层数加1。",
   "MOKOUMOD-EXIST.title": "是色",
-  "MOKOUMOD-EXIST.artist": "unknown"
+  "MOKOUMOD-EXIST.artist": "unknown",
+  "MOKOUMOD-DUAL_SUPPRESSION.description": "{IfUpgraded:show:|抉择：}给予所有敌人{BurnPower:diff()}层[gold]烧伤[/gold]{IfUpgraded:show:和|或}{DupHistoricalGapPower:diff()}层[gold]历史之隙[/gold]。",
+  "MOKOUMOD-DUAL_SUPPRESSION.title": "竹林组的压制",
+  "MOKOUMOD-DUAL_SUPPRESSION.artist": "羽々斬",
+  "MOKOUMOD-MOKOUS_SUPPRESSION.description": "给予所有敌人{BurnPower:diff()}层[gold]烧伤[/gold]。",
+  "MOKOUMOD-MOKOUS_SUPPRESSION.title": "妹红的压制",
+  "MOKOUMOD-MOKOUS_SUPPRESSION.artist": "係長代理",
+  "MOKOUMOD-KEINES_SUPPRESSION.description": "给予所有敌人{DupHistoricalGapPower:diff()}层[gold]历史之隙[/gold]。",
+  "MOKOUMOD-KEINES_SUPPRESSION.title": "慧音的压制",
+  "MOKOUMOD-KEINES_SUPPRESSION.artist": "係長代理"
 }

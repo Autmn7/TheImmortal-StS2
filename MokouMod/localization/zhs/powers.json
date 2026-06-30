@@ -89,5 +89,8 @@
   "MOKOUMOD-SHARPENED_POWER.title": "磨爪",
   "MOKOUMOD-BUILD_UP_POWER.description": "",
   "MOKOUMOD-BUILD_UP_POWER.smartDescription": "本回合下[blue]{Amount}[/blue]张攻击牌伤害翻倍。",
-  "MOKOUMOD-BUILD_UP_POWER.title": "蓄势待发"
+  "MOKOUMOD-BUILD_UP_POWER.title": "蓄势待发",
+  "MOKOUMOD-DUP_HISTORICAL_GAP_POWER.description": "每当一张牌被[gold]吞噬[/gold]或[gold]消耗[/gold]，失去X点生命并衰减[blue]1[/blue]层。",
+  "MOKOUMOD-DUP_HISTORICAL_GAP_POWER.smartDescription": "每当一张牌被[gold]吞噬[/gold]或[gold]消耗[/gold]，失去[blue]{Amount}[/blue]点生命并衰减[blue]1[/blue]层。",
+  "MOKOUMOD-DUP_HISTORICAL_GAP_POWER.title": "历史之隙"
 }
