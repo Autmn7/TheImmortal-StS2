@@ -17,7 +17,7 @@ public class UntilLifeBurnsAway : MokouModCard
     public UntilLifeBurnsAway() : base(0, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithVars(
-            new DynamicVar("Ratio", 6M),
+            new DynamicVar("Ratio", 5M),
             new CalculationBaseVar(0M),
             new CalculationExtraVar(1M),
             new CalculatedVar("CalculatedHpLoss")
@@ -46,8 +46,7 @@ public class UntilLifeBurnsAway : MokouModCard
     {
         var hpLoss = ((CalculatedVar)DynamicVars["CalculatedHpLoss"]).Calculate(cardPlay.Target);
         var energy = ((CalculatedVar)DynamicVars["CalculatedEnergy"]).Calculate(cardPlay.Target);
-        await CreatureCmd.Damage(choiceContext, Owner.Creature, hpLoss,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+        await CreatureCmd.Damage(choiceContext, Owner.Creature, hpLoss, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
         if (energy > 0)
             await PlayerCmd.GainEnergy(energy, Owner);
         if (hpLoss > 0)

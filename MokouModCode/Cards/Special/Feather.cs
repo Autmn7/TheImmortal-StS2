@@ -34,18 +34,14 @@ public class Feather : MokouModCard
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(cardPlay.Target, 0.5f));
         var burnAmount = DynamicVars["BurnPower"].BaseValue;
         if (HasHeatwave)
-            await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies,
-                burnAmount, Owner.Creature, this);
+            await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies, burnAmount, Owner.Creature, this);
         else
             await CommonActions.Apply<BurnPower>(cardPlay.Target, this, burnAmount);
     }
 
     public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
     {
-        if (cardSource == this && power is BurnPower && giver == Owner.Creature && (TriggeredIgnite(this, DynamicVars.TryGetValue("Ignite", out var v) ? v.IntValue : 0) || TriggeredFury(this) || TriggeredEmber(this)))
-        {
-            return 1M;
-        }
+        if (cardSource == this && power is BurnPower && giver == Owner.Creature && (TriggeredIgnite(this, DynamicVars.TryGetValue("Ignite", out var v) ? v.IntValue : 0) || TriggeredFury(this) || TriggeredEmber(this))) return 1M;
 
         return 0M;
     }

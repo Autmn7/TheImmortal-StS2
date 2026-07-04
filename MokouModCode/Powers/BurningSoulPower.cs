@@ -11,12 +11,7 @@ public class BurningSoulPower : MokouModPower
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override decimal ModifyPowerAmountGivenAdditive(
-        PowerModel power,
-        Creature giver,
-        decimal amount,
-        Creature? target,
-        CardModel? cardSource)
+    public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
     {
         return cardSource == null || cardSource.Owner != Owner.Player || cardSource is not Feather || power is not BurnPower ? 0M : Amount;
     }

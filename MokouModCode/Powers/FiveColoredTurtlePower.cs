@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MokouMod.MokouModCode.Enchantments;
@@ -23,7 +24,7 @@ public class FiveColoredTurtlePower : MokouModPower
         await PowerCmd.Apply<VigorPower>(choiceContext, Owner, Amount, Owner, null);
         var enchantment = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
         var card = (await CardSelectCmd.FromHand(choiceContext, Owner.Player,
-                new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1),
+                new CardSelectorPrefs(new LocString("card_selection", "TO_ENCHANT_VIGOROUS"), 1),
                 (Func<CardModel, bool>)(model => enchantment.CanEnchant(model)), this))
             .FirstOrDefault();
         if (card == null)

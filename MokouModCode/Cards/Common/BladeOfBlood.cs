@@ -22,8 +22,7 @@ public class BladeOfBlood : MokouModCard
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var nonLethal = CalculateNonLethal(Owner.Creature, DynamicVars.HpLoss.BaseValue);
-        await CreatureCmd.Damage(choiceContext, Owner.Creature, nonLethal,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+        await CreatureCmd.Damage(choiceContext, Owner.Creature, nonLethal, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay.Target).WithHitCount(EmberActive ? 2 : 1)
             .WithHitFx("vfx/vfx_bloody_impact", tmpSfx: "slash_attack.mp3").Execute(choiceContext);
     }

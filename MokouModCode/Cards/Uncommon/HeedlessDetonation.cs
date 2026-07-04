@@ -32,9 +32,7 @@ public class HeedlessDetonation : MokouModCard
             }
 
             await Cmd.CustomScaledWait(0.2f, 0.3f);
-            await CreatureCmd.Damage(choiceContext, CombatState.HittableEnemies,
-                Owner.Creature.GetPowerAmount<BurnPower>() * DynamicVars["Ratio"].IntValue,
-                ValueProp.Unblockable | ValueProp.Unpowered, Owner.Creature, this);
+            await CreatureCmd.Damage(choiceContext, CombatState.HittableEnemies, Owner.Creature.GetPowerAmount<BurnPower>() * DynamicVars["Ratio"].IntValue, ValueProp.Unblockable | ValueProp.Unpowered, Owner.Creature, this, cardPlay);
         }
     }
 

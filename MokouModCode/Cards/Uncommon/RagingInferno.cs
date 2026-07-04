@@ -25,7 +25,7 @@ public class RagingInferno : MokouModCard
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(cardPlay.Target, 0.6f));
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .Execute(choiceContext);
         if (IgniteActive)
             await CommonActions.Apply<WeakPower>(cardPlay.Target, this, DynamicVars["WeakPower"].IntValue);

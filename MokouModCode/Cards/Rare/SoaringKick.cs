@@ -19,7 +19,7 @@ public class SoaringKick : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3").Execute(choiceContext);
         var enchantment = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
         var cards = PileType.Hand.GetPile(Owner).Cards.Concat(PileType.Draw.GetPile(Owner).Cards)

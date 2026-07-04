@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using MokouMod.MokouModCode.Scripts;
+using static MokouMod.MokouModCode.Cards.MokouModCard;
 
 namespace MokouMod.MokouModCode.Potions;
 
@@ -26,7 +27,7 @@ public class TrueRegenPotion : MokouModPotion
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
-        var nonLethal = target.CurrentHp - DynamicVars.HpLoss.BaseValue < 1 ? target.CurrentHp - 1 : DynamicVars.HpLoss.BaseValue;
+        var nonLethal = CalculateNonLethal(Owner.Creature, DynamicVars.HpLoss.BaseValue);
         await CreatureCmd.Damage(choiceContext, target, nonLethal, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, Owner.Creature);
         await PowerCmd.Apply<RegenPower>(choiceContext, target, DynamicVars["RegenPower"].BaseValue, Owner.Creature, null);
     }

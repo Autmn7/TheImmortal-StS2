@@ -26,13 +26,11 @@ public class HonestMansDeath : MokouModCard
     {
         if (Owner.RunState.CurrentRoom is { RoomType: RoomType.Boss } && !cardPlay.Target.HasPower<MinionPower>())
             await PowerCmd.Apply<MarkOfSinPower>(choiceContext, cardPlay.Target, 1M, Owner.Creature, this);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3").Execute(choiceContext);
     }
 
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer,
-        CardModel? cardSource)
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (target?.Monster == null || cardSource != this || dealer != Owner.Creature || target.Monster.IntendsToAttack)
             return 1M;

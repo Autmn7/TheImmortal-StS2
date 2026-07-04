@@ -27,10 +27,7 @@ public class DualSuppression : MokouModCard
         ];
         if (IsUpgraded)
         {
-            foreach (var card in options)
-            {
-                await ((IChoosable)card).OnChosen();
-            }
+            foreach (var card in options) await ((IChoosable)card).OnChosen();
         }
         else
         {

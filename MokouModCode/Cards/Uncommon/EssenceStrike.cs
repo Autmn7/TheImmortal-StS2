@@ -46,7 +46,7 @@ public class EssenceStrike : MokouModCard
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount((int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target))
-            .FromCard(this).BeforeDamage(async () => { NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(cardPlay.Target, 0.5f)); })
+            .FromCard(this, cardPlay).BeforeDamage(async () => { NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(cardPlay.Target, 0.5f)); })
             .WithHitFx("vfx/vfx_attack_slash").Targeting(cardPlay.Target).Execute(choiceContext);
     }
 

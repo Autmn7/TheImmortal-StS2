@@ -79,8 +79,8 @@ public class TheMedicineSeller : CustomEventModel
         }
         else
         {
-            IEnumerable<PotionModel> items = Owner.Character.PotionPool.GetUnlockedPotions(Owner.UnlockState).Concat(ModelDb.PotionPool<SharedPotionPool>().GetUnlockedPotions(Owner.UnlockState)).Where((Func<PotionModel, bool>) (p => p.Rarity == PotionRarity.Rare));
-            PotionModel potionModel = Owner.PlayerRng.Rewards.NextItem(items);
+            var items = Owner.Character.PotionPool.GetUnlockedPotions(Owner.UnlockState).Concat(ModelDb.PotionPool<SharedPotionPool>().GetUnlockedPotions(Owner.UnlockState)).Where((Func<PotionModel, bool>)(p => p.Rarity == PotionRarity.Rare));
+            var potionModel = Owner.PlayerRng.Rewards.NextItem(items);
             if (potionModel != null)
                 await RewardsCmd.OfferCustom(Owner, new List<Reward>(1)
                 {

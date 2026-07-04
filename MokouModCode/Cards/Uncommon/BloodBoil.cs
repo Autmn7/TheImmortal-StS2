@@ -21,7 +21,7 @@ public class BloodBoil : MokouModCard
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var num = CombatState.HittableEnemies.Count();
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).TargetingAllOpponents(CombatState)
             .Execute(choiceContext);
         if (IgniteActive || FuryActive)
             for (var i = 0; i < num; ++i)

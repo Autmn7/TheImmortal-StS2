@@ -37,7 +37,7 @@ public class BlazingBambooTube : MokouModCard
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target);
         if (GodotObject.IsInstanceValid(creatureNode))
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireSmokePuffVfx.Create(cardPlay.Target));
-        await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this).Targeting(cardPlay.Target)
+        await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3").Execute(choiceContext);
     }
 

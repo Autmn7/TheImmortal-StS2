@@ -3,52 +3,57 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MokouMod.MokouModCode.Enchantments;
-using MokouMod.MokouModCode.Powers;
 using MokouMod.MokouModCode.Scripts;
 
 namespace MokouMod.MokouModCode.Cards.Uncommon;
 
 public class WarmUp : MokouModCard
 {
-    public WarmUp() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public WarmUp() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new PowerVar<BurnPower>(1), new PowerVar<VigorPower>(3), new CardsVar(1), new IgniteVar(5), new EnergyVar(1));
+        WithPower<VigorPower>(3, 1);
+        WithVar(new IgniteVar(5));
+        WithEnergy(1, 1);
         WithKeywords(MokouModKeywords.Ignite, MokouModKeywords.Fury);
         WithTip(typeof(VigorousEnchantment));
     }
 
+    protected override bool HasEnergyCostX => true;
+
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
-        await PowerCmd.Apply<BurnPower>(choiceContext, Owner.Creature, DynamicVars["BurnPower"].BaseValue,
-            Owner.Creature, this);
-        await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, DynamicVars["VigorPower"].BaseValue,
-            Owner.Creature, this);
-        var enchantment = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
-        var cards = await CardSelectCmd.FromHand(choiceContext, Owner,
-            new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, DynamicVars.Cards.IntValue),
-            (Func<CardModel, bool>)(model => enchantment.CanEnchant(model)), this);
-        if (!cards.Any())
-            return;
-        foreach (var card in cards)
+        var xValue = ResolveEnergyXValue();
+        var vigorAmt = xValue * DynamicVars["VigorPower"].BaseValue;
+
+        if (vigorAmt > 0)
         {
-            var newEnchant = ModelDb.GetById<EnchantmentModel>(enchantment.Id).ToMutable();
-            Enchant(newEnchant, card);
+            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
+            await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, vigorAmt, Owner.Creature, this);
+        }
+
+        if (xValue > 0)
+        {
+            var enchantment = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
+            var cards = (await CardSelectCmd.FromHand(choiceContext, Owner, new CardSelectorPrefs(new LocString("card_selection", "TO_ENCHANT_VIGOROUS"), xValue), (Func<CardModel, bool>)(model => enchantment.CanEnchant(model)), this)).ToList();
+            if (cards.Count != 0)
+                foreach (var card in cards)
+                {
+                    var newEnchant = ModelDb.GetById<EnchantmentModel>(enchantment.Id).ToMutable();
+                    Enchant(newEnchant, card);
+                }
         }
 
         if (IgniteActive || FuryActive)
-            await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars["VigorPower"].UpgradeValueBy(1M);
-        DynamicVars.Cards.UpgradeValueBy(1M);
+        {
+            var energy = DynamicVars.Energy.BaseValue > cardPlay.Resources.EnergySpent ? cardPlay.Resources.EnergySpent : DynamicVars.Energy.BaseValue;
+            if (energy > 0)
+                await PlayerCmd.GainEnergy(energy, Owner);
+        }
     }
 }

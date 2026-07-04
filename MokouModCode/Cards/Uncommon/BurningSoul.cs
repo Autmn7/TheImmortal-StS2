@@ -11,7 +11,7 @@ public class BurningSoul : MokouModCard
 {
     public BurningSoul() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new DynamicVar("BurningSoulPower", 1M));
+        WithVars(new DynamicVar("BurningSoulPower", 2M));
         WithTip(typeof(Feather));
         WithTip(typeof(BurnPower));
     }

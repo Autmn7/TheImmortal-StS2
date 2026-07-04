@@ -30,7 +30,7 @@ public class Stoke : MokouModCard
             ModelDb.Card<YellowCinder>(),
             ModelDb.Card<BlackCinder>()
         ];
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .Execute(choiceContext);
         var cinders = CardFactory.GetForCombat(Owner, cinderCards, DynamicVars["Cinders"].IntValue,
             Owner.RunState.Rng.CombatCardGeneration);

@@ -12,7 +12,7 @@ namespace MokouMod.MokouModCode.Cards.Rare;
 
 public class IndiscriminateIgnition : MokouModCard
 {
-    public IndiscriminateIgnition() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
+    public IndiscriminateIgnition() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithVars(new DynamicVar("Ratio", 1M));
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);

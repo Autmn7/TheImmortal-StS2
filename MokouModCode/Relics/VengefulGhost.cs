@@ -22,7 +22,6 @@ public class VengefulGhost : MokouModRelic
         if (target != Owner.Creature || result.UnblockedDamage <= 0 || Owner.Creature.CombatState.CurrentSide != Owner.Creature.Side)
             return;
         Flash();
-        await CreatureCmd.Damage(choiceContext, Owner.Creature.CombatState.HittableEnemies, result.UnblockedDamage,
-            ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        await CreatureCmd.Damage(choiceContext, Owner.Creature.CombatState.HittableEnemies, result.UnblockedDamage, ValueProp.Unblockable | ValueProp.Unpowered, null);
     }
 }

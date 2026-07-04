@@ -12,7 +12,7 @@ public class HighTempFeathers : MokouModCard
 {
     public HighTempFeathers() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new CardsVar(2), new DynamicVar("ExhaustUpTo", 2M), new IgniteVar(10));
+        WithVars(new CardsVar(2), new DynamicVar("ExhaustUpTo", 2M), new IgniteVar(12));
         WithKeyword(MokouModKeywords.Ignite);
         WithTip(CardKeyword.Exhaust);
         WithTip(typeof(Feather));

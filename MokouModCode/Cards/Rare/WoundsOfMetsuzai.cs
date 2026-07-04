@@ -21,7 +21,7 @@ public class WoundsOfMetsuzai : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        var attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
         var unblockedDamage = attackCommand.Results.Sum(results => results.Sum(r => r.TotalDamage + r.OverkillDamage));
         var cardNum = (int)Math.Floor(unblockedDamage / DynamicVars["Ratio"].BaseValue);

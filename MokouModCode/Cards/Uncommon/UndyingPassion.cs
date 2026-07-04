@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MokouMod.MokouModCode.Enchantments;
@@ -22,22 +23,27 @@ public class UndyingPassion : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash", tmpSfx: "slash_attack.mp3").Execute(choiceContext);
         var enchantment = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
         if (enchantment.CanEnchant(this))
             Enchant(enchantment, this);
         var enchantment2 = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
-        var cards = await CardSelectCmd.FromHand(choiceContext, Owner,
-            new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, DynamicVars.Cards.IntValue),
-            (Func<CardModel, bool>)(model => enchantment.CanEnchant(model) && model.Type == CardType.Attack), this);
-        if (!cards.Any())
-            return;
-        foreach (var card in cards)
-        {
-            var newEnchant = ModelDb.GetById<EnchantmentModel>(enchantment2.Id).ToMutable();
-            Enchant(newEnchant, card);
-        }
+        var cards =
+            (await CardSelectCmd.FromSimpleGrid(
+                choiceContext,
+                PileType.Hand.GetPile(Owner).Cards.Concat(PileType.Draw.GetPile(Owner).Cards.OrderBy(c => c.Rarity).ThenBy(c => c.Id))
+                    .Where(model => enchantment.CanEnchant(model) && model.Type == CardType.Attack)
+                    .ToList(),
+                Owner,
+                new CardSelectorPrefs(new LocString("card_selection", "TO_ENCHANT_VIGOROUS"), DynamicVars.Cards.IntValue)
+            )).ToList();
+        if (cards.Count != 0)
+            foreach (var card in cards)
+            {
+                var newEnchant = ModelDb.GetById<EnchantmentModel>(enchantment2.Id).ToMutable();
+                Enchant(newEnchant, card);
+            }
     }
 
     protected override void OnUpgrade()

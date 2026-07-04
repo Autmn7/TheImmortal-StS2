@@ -25,7 +25,7 @@ public class ImperishableShooting : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).TargetingAllOpponents(CombatState)
             .BeforeDamage(async () =>
             {
                 var vfx = NSweepingBeamVfx.Create(Owner.Creature, CombatState.HittableEnemies.ToList());

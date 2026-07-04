@@ -29,7 +29,7 @@ public class BurnPower : MokouModPower
         if (Owner.Player?.GetRelic<FiremanHelmet>() != null)
             hpLoss = CalculateNonLethal(Owner, hpLoss);
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurningVfx.Create(Owner, Math.Min(2.0f, 0.5f + (float)(Math.Ceiling(Amount / 10.0) * 0.05f)), Owner.IsPlayer));
-        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner, hpLoss, ValueProp.Unblockable | ValueProp.Unpowered, null, cardSource);
+        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner, hpLoss, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
         if (Owner.IsAlive && (side == CombatSide.Player || CombatState.Players.All(player => !player.HasPower<FujiyamaVolcanoPower>())))
             await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -(int)Math.Ceiling(Amount / 5.0), null, null);
         if (hasFireProof)

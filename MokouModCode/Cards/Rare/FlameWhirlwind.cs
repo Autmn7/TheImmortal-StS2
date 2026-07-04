@@ -47,7 +47,7 @@ public class FlameWhirlwind : MokouModCard
             if (instance2 != null) instance2.GlobalUi.AddChildSafely((Node)NSmokyVignetteVfx.Create(color, color));
         }
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(xValue).FromCard(this)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(xValue).FromCard(this, cardPlay)
             .TargetingAllOpponents(CombatState).WithHitFx("vfx/vfx_giant_horizontal_slash").Execute(choiceContext);
         if (xValue > 0)
         {
@@ -56,7 +56,7 @@ public class FlameWhirlwind : MokouModCard
         }
     }
 
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (cardSource == this && Owner.Creature.HasPower<BurnPower>())
             return !props.IsPoweredAttack() ? 0M : Owner.Creature.GetPowerAmount<BurnPower>();

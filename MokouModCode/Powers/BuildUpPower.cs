@@ -33,12 +33,7 @@ public class BuildUpPower : MokouModPower
         return Task.CompletedTask;
     }
 
-    public override decimal ModifyDamageMultiplicative(
-        Creature? target,
-        decimal amount,
-        ValueProp props,
-        Creature? dealer,
-        CardModel? cardSource)
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (cardSource == null || cardSource.Owner.Creature != Owner || !props.IsPoweredAttack())
             return 1M;

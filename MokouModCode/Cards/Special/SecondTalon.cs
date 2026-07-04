@@ -25,7 +25,7 @@ public class SecondTalon : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitVfxNode((Func<Creature, Node2D>)(t => NScratchVfx.Create(t, true))).Execute(choiceContext);
         var card = CombatState.CreateCard<FinalTalon>(Owner);
         if (IsUpgraded)

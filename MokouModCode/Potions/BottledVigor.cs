@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -31,7 +32,7 @@ public class BottledVigor : MokouModPotion
         await PowerCmd.Apply<VigorPower>(choiceContext, target, DynamicVars["VigorPower"].BaseValue, Owner.Creature, null);
         var enchantment = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
         var cards = await CardSelectCmd.FromHand(choiceContext, target.Player,
-            new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, DynamicVars.Cards.IntValue),
+            new CardSelectorPrefs(new LocString("card_selection", "TO_ENCHANT_VIGOROUS"), DynamicVars.Cards.IntValue),
             (Func<CardModel, bool>)(model => enchantment.CanEnchant(model)), this);
         if (!cards.Any())
             return;

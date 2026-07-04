@@ -27,7 +27,6 @@ public class KeinesSuppression : MokouModCard, DualSuppression.IChoosable
     {
         // 1. Check if KeineMod is actively loaded
         if (ModManager.GetLoadedMods().Any(mod => string.Equals(mod.manifest?.id, "KeineMod")))
-        {
             try
             {
                 // 2. Locate Keine's assembly
@@ -76,8 +75,7 @@ public class KeinesSuppression : MokouModCard, DualSuppression.IChoosable
             {
                 Log.Info($"[MokouMod] Reflection Exception: {ex.Message}\n{ex.StackTrace}");
             }
-        }
-        
+
         // Fallback to local duplicate power if KeineMod isn't present
         await PowerCmd.Apply<DupHistoricalGapPower>(new ThrowingPlayerChoiceContext(), Owner.Creature.CombatState.HittableEnemies, DynamicVars["DupHistoricalGapPower"].BaseValue, Owner.Creature, this);
     }
