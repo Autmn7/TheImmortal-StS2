@@ -16,11 +16,11 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MokouMod.MokouModCode.Cards;
+using MokouMod.MokouModCode.Enchantments;
 using MokouMod.MokouModCode.Powers;
 using MokouMod.MokouModCode.Relics;
 using MokouMod.MokouModCode.Scripts;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
-using MethodInfo = System.Reflection.MethodInfo;
 
 namespace MokouMod.MokouModCode;
 
@@ -65,7 +65,7 @@ public partial class MainFile : Node
         }
     }
 
-    [HarmonyPatch(typeof(RegenPower), nameof(RegenPower.AfterSideTurnEnd))]
+    [HarmonyPatch(typeof(RegenPower), nameof(RegenPower.BeforeSideTurnEndEarly))]
     public static class RegenPowerCustomDecayPatch
     {
         [HarmonyPrefix]
@@ -93,38 +93,23 @@ public partial class MainFile : Node
     [HarmonyPatch(typeof(VigorPower), nameof(VigorPower.AfterAttack))]
     public static class VigorousRefundPatch
     {
-        private static readonly Type DataType = AccessTools.Inner(typeof(VigorPower), "Data");
-
-        private static readonly MethodInfo GetInternalDataMethod =
-            AccessTools.Method(typeof(VigorPower), "GetInternalData").MakeGenericMethod(DataType);
-
-        private static readonly FieldInfo CommandField =
-            AccessTools.Field(DataType, "commandToModify");
-
-        private static readonly FieldInfo AmountField =
-            AccessTools.Field(DataType, "amountWhenAttackStarted");
-
         [HarmonyPostfix]
-        private static async void RefundVigor(VigorPower __instance, AttackCommand command)
+        public static async void RefundVigor(VigorPower __instance, PlayerChoiceContext choiceContext, AttackCommand command)
         {
-            var internalData = GetInternalDataMethod.Invoke(__instance, null);
+            var internalData = __instance.GetInternalData<VigorPower.Data>();
 
-            if (internalData == null
-                || CommandField.GetValue(internalData) is not AttackCommand storedCommand
-                || storedCommand != command
-                || command.ModelSource is not CardModel { Enchantment.Id.Entry: "MOKOUMOD-VIGOROUS_ENCHANTMENT" } card)
+            if (internalData == null || internalData.commandToModify != command || command.ModelSource is not CardModel { Enchantment: VigorousEnchantment } card)
                 return;
-
-            var amountSpent = (int)(AmountField.GetValue(internalData) ?? 0);
+            var amountSpent = internalData.amountWhenAttackStarted;
 
             var refund = amountSpent / 2;
-            if (__instance.Owner.HasPower<ValiantHeartPower>())
+            if (command.Attacker != null && command.Attacker.HasPower<ValiantHeartPower>())
                 refund = amountSpent;
 
             if (refund <= 0)
                 return;
 
-            await PowerCmd.Apply<VigorPower>(new ThrowingPlayerChoiceContext(), card.Owner.Creature, refund, card.Owner.Creature, card);
+            await PowerCmd.Apply<VigorPower>(choiceContext, card.Owner.Creature, refund, card.Owner.Creature, card);
         }
     }
 
@@ -135,7 +120,7 @@ public partial class MainFile : Node
         [HarmonyPostfix]
         private static void RenderVigorousText(EnchantmentModel __instance, ref LocString __result)
         {
-            if (__instance.Id.Entry != "MOKOUMOD-VIGOROUS_ENCHANTMENT")
+            if (__instance is not VigorousEnchantment)
                 return;
 
             // Choose correct text
