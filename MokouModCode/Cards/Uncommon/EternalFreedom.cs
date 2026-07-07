@@ -2,7 +2,6 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MokouMod.MokouModCode.Scripts;
 
@@ -22,7 +21,7 @@ public class EternalFreedom : MokouModCard
         foreach (var card in PileType.Hand.GetPile(Owner).Cards.Where(c => c.Type != CardType.Attack).ToList())
         {
             await CardCmd.Exhaust(choiceContext, card);
-            var num = await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             if (EmberActive)
                 await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, 1M, Owner.Creature, this);
         }
