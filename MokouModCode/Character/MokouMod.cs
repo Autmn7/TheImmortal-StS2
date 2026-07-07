@@ -121,7 +121,7 @@ public class MokouMod : PlaceholderCharacterModel
     //public override string CustomAttackSfx => null;
     //public override string CustomCastSfx => null;
     //public override string CustomDeathSfx => null;
-    //public override string CharacterSelectSfx => null;
+    public override string CharacterSelectSfx => "char_select.wav".SoundEffectPath();
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";
 
     public override RelicIconData CustomYummyCookie => new("yummy_cookie_mokou.png".BigRelicImagePath(), "yummy_cookie_mokou.png".RelicImagePath(), "relic_outline.png".RelicImagePath());
