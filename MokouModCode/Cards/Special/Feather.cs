@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,6 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MokouMod.MokouModCode.Extensions;
 using MokouMod.MokouModCode.Powers;
 using MokouMod.MokouModCode.Scripts;
 
@@ -19,6 +21,8 @@ namespace MokouMod.MokouModCode.Cards.Special;
 [Pool(typeof(TokenCardPool))]
 public class Feather : MokouModCard
 {
+    private bool HasHeatwave => IsMutable && Owner != null && Owner.Creature.HasPower<HeatwavePower>();
+
     public Feather() : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithVars(new PowerVar<BurnPower>(2M), new DynamicVar("AdditionalBurn", 1M), new IgniteVar(5M));
@@ -27,16 +31,23 @@ public class Feather : MokouModCard
 
     public override TargetType TargetType => !HasHeatwave ? TargetType.AnyEnemy : TargetType.AllEnemies;
 
-    private bool HasHeatwave => IsMutable && Owner != null && Owner.Creature.HasPower<HeatwavePower>();
-
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(cardPlay.Target, 0.5f));
-        var burnAmount = DynamicVars["BurnPower"].BaseValue;
+        SfxCmd.Play("feather.wav".SoundEffectPath());
         if (HasHeatwave)
-            await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies, burnAmount, Owner.Creature, this);
+        {
+            var lastEnemy = CombatState.HittableEnemies.LastOrDefault();
+            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NShivThrowVfx.Create(Owner.Creature, lastEnemy, Colors.Red));
+            foreach (var enemy in CombatState.HittableEnemies)
+                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(enemy, 0.5f));
+            await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies, DynamicVars["BurnPower"].BaseValue, Owner.Creature, this);
+        }
         else
-            await CommonActions.Apply<BurnPower>(cardPlay.Target, this, burnAmount);
+        {
+            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NShivThrowVfx.Create(Owner.Creature, cardPlay.Target, Colors.Red));
+            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(cardPlay.Target, 0.5f));
+            await PowerCmd.Apply<BurnPower>(choiceContext, cardPlay.Target, DynamicVars["BurnPower"].BaseValue, Owner.Creature, this);
+        }
     }
 
     public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)

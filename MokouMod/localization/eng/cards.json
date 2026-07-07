@@ -313,5 +313,20 @@
   "MOKOUMOD-MOKOUS_SUPPRESSION.artist": "係長代理",
   "MOKOUMOD-KEINES_SUPPRESSION.description": "Apply {DupHistoricalGapPower:diff()} [gold]Historical Gap[/gold] to ALL enemies.",
   "MOKOUMOD-KEINES_SUPPRESSION.title": "Keine's Suppression",
-  "MOKOUMOD-KEINES_SUPPRESSION.artist": "係長代理"
+  "MOKOUMOD-KEINES_SUPPRESSION.artist": "係長代理",
+  "MOKOUMOD-MUSTER_FOR_BATTLE.description": "Give another player {VigorPower:diff()} [gold]Vigor[/gold].\n[gold]Enchant[/gold] ALL cards in their [gold]Hand[/gold] with [gold]Vigorous[/gold].",
+  "MOKOUMOD-MUSTER_FOR_BATTLE.title": "Muster for Battle",
+  "MOKOUMOD-MUSTER_FOR_BATTLE.artist": "いくらうに",
+  "MOKOUMOD-MUSTER_FOR_BATTLE.extraTipTitle": "Bond",
+  "MOKOUMOD-MUSTER_FOR_BATTLE.extraTipDescription": "If targeted [blue]The History Eater[/blue], give [blue]2[/blue] additional [gold]Vigor[/gold].",
+  "MOKOUMOD-LINK_THE_FIRE.description": "ALL players gain {BurnPower:diff()} [gold]Burn[/gold] and {RegenPower:diff()} [gold]Regen[/gold].",
+  "MOKOUMOD-LINK_THE_FIRE.title": "Link the Fire",
+  "MOKOUMOD-LINK_THE_FIRE.artist": "藤麦",
+  "MOKOUMOD-LINK_THE_FIRE.extraTipTitle": "Bond",
+  "MOKOUMOD-LINK_THE_FIRE.extraTipDescription": "Ally [blue]The History Eater[/blue] does not gain [gold]Burn[/gold].",
+  "MOKOUMOD-THOUSAND_FEATHERS_AT_ONCE.description": "This card counts as a [gold]Feather[/gold].\nApply {BurnPower:diff()} [gold]Burn[/gold]{TargetType:choose(AllEnemies): to ALL enemies|} {Repeat:diff()} {Repeat:plural:time|times}.\nWhenever ANYONE plays a card this turn, apply 1 additional time.",
+  "MOKOUMOD-THOUSAND_FEATHERS_AT_ONCE.title": "Thousand Feathers at Once",
+  "MOKOUMOD-THOUSAND_FEATHERS_AT_ONCE.artist": "_Naitmer_",
+  "MOKOUMOD-THOUSAND_FEATHERS_AT_ONCE.extraTipTitle": "Bond",
+  "MOKOUMOD-THOUSAND_FEATHERS_AT_ONCE.extraTipDescription": "Any card ally [blue]The History Eater[/blue] plays counts twice towards incrementing the amount of times."
 }

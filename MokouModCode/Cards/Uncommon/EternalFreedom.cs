@@ -19,7 +19,7 @@ public class EternalFreedom : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        foreach (var card in GetCards().ToList())
+        foreach (var card in PileType.Hand.GetPile(Owner).Cards.Where(c => c.Type != CardType.Attack).ToList())
         {
             await CardCmd.Exhaust(choiceContext, card);
             var num = await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
@@ -31,11 +31,5 @@ public class EternalFreedom : MokouModCard
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(2M);
-    }
-
-    private IEnumerable<CardModel> GetCards()
-    {
-        return PileType.Hand.GetPile(Owner).Cards
-            .Where((Func<CardModel, bool>)(c => c.Type != CardType.Attack));
     }
 }

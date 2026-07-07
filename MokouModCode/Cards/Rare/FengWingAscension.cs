@@ -17,7 +17,7 @@ public class FengWingAscension : MokouModCard
 {
     public FengWingAscension() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithCalculatedDamage(12, 3, (card, _) => (int)Math.Floor(PileType.Exhaust.GetPile(card.Owner).Cards.Count(c => c is Feather) * 0.5), ValueProp.Move, 3, 1);
+        WithCalculatedDamage(12, 3, (card, _) => (int)Math.Floor(PileType.Exhaust.GetPile(card.Owner).Cards.Count(c => c is Feather or ThousandFeathersAtOnce) * 0.5), ValueProp.Move, 3, 1);
         WithPower<BurnPower>(12, 3);
     }
 
@@ -45,7 +45,7 @@ public class FengWingAscension : MokouModCard
     public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
     {
         if (cardSource == this && power is BurnPower)
-            return (int)Math.Floor(PileType.Exhaust.GetPile(Owner).Cards.Count(c => c is Feather) * 0.5) * DynamicVars["ExtraDamage"].BaseValue;
+            return (int)Math.Floor(PileType.Exhaust.GetPile(Owner).Cards.Count(c => c is Feather or ThousandFeathersAtOnce) * 0.5) * DynamicVars["ExtraDamage"].BaseValue;
 
         return 0M;
     }

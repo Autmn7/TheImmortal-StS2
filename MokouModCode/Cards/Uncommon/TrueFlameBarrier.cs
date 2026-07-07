@@ -20,8 +20,7 @@ public class TrueFlameBarrier : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
-            NFireBurningVfx.Create(Owner.Creature, 0.75f, false));
+        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurningVfx.Create(Owner.Creature, 0.75f, false));
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await PowerCmd.Apply<TrueFlameBarrierPower>(choiceContext, Owner.Creature, DynamicVars["BurnBack"].BaseValue,
             Owner.Creature, this);

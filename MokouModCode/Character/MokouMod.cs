@@ -168,7 +168,7 @@ public class MokouMod : PlaceholderCharacterModel
                 animation = Animation.AttackPunch;
                 break;
             case CardType.Skill:
-                if (card.TargetType == TargetType.AnyEnemy || card.TargetType == TargetType.RandomEnemy || card.TargetType == TargetType.AnyPlayer)
+                if (card.TargetType is TargetType.AnyEnemy or TargetType.AllEnemies or TargetType.RandomEnemy or TargetType.AnyAlly or TargetType.AnyPlayer)
                     animation = Animation.SpellCast;
                 else if (!card.DynamicVars.ContainsKey("Block") || !(((DynamicVar)card.DynamicVars.Block).BaseValue > 1m))
                     animation = Animation.SpellBackflip;

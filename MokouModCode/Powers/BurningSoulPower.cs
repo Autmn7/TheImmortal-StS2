@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
+using MokouMod.MokouModCode.Cards.Rare;
 using MokouMod.MokouModCode.Cards.Special;
 
 namespace MokouMod.MokouModCode.Powers;
@@ -13,6 +14,6 @@ public class BurningSoulPower : MokouModPower
 
     public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
     {
-        return cardSource == null || cardSource.Owner != Owner.Player || cardSource is not Feather || power is not BurnPower ? 0M : Amount;
+        return cardSource?.Owner == Owner.Player && cardSource is Feather or ThousandFeathersAtOnce && power is BurnPower ? Amount : 0M;
     }
 }

@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
+using MokouMod.MokouModCode.Extensions;
 using MokouMod.MokouModCode.Relics;
 using static MokouMod.MokouModCode.Cards.MokouModCard;
 
@@ -28,6 +29,7 @@ public class BurnPower : MokouModPower
         else if (Owner.HasPower<PhoenixFormPower>() && hpLoss > 3m) hpLoss = 3m;
         if (Owner.Player?.GetRelic<FiremanHelmet>() != null)
             hpLoss = CalculateNonLethal(Owner, hpLoss);
+        SfxCmd.Play("burn.wav".SoundEffectPath());
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurningVfx.Create(Owner, Math.Min(2.0f, 0.5f + (float)(Math.Ceiling(Amount / 10.0) * 0.05f)), Owner.IsPlayer));
         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner, hpLoss, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
         if (Owner.IsAlive && (side == CombatSide.Player || CombatState.Players.All(player => !player.HasPower<FujiyamaVolcanoPower>())))
