@@ -29,5 +29,8 @@
   "MOKOUMOD-PEERLESS_PATRIOTS_ELIXIR.title": "国士無双の薬",
   "MOKOUMOD-FIREMAN_HELMET.description": "あなたが戦闘中、[gold]燃焼[/gold]によって最初に[blue]{FireProofPower}[/blue]回HPを失うまで、 [blue]1[/blue]HPだけ失われる。 [gold]燃焼[/gold]によってHPを失う事で [gold]死亡しな[/gold]くなる。",
   "MOKOUMOD-FIREMAN_HELMET.flavor": "安紙の自然発火温度は約278℃だ。",
-  "MOKOUMOD-FIREMAN_HELMET.title": "消防士のヘルメット"
+  "MOKOUMOD-FIREMAN_HELMET.title": "消防士のヘルメット",
+  "MOKOUMOD-RAW_LIVER.description": "[gold]再生[/gold]が減少しなくなる。",
+  "MOKOUMOD-RAW_LIVER.flavor": "不滅の者の肝臓を生で食べると、永遠の命を得ることになる。口にする物は注意したほうがいい。",
+  "MOKOUMOD-RAW_LIVER.title": "生き肝"
 }

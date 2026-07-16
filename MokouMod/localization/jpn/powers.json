@@ -61,7 +61,7 @@
   "MOKOUMOD-AGONYS_EMBRACE_POWER.title": "苦悶の抱擁",
   "MOKOUMOD-FEAR_NO_DEATH_POWER.description": "",
   "MOKOUMOD-FEAR_NO_DEATH_POWER.smartDescription": "自分のターン中にHPを失うたび、 [blue]{Amount}[/blue][gold]ブロック[/gold]を 得る。",
-    "MOKOUMOD-FEAR_NO_DEATH_POWER.title": "穢死を恐れず",
+  "MOKOUMOD-FEAR_NO_DEATH_POWER.title": "穢死を恐れず",
   "MOKOUMOD-FAN_THE_FLAMES_POWER.description": "",
   "MOKOUMOD-FAN_THE_FLAMES_POWER.smartDescription": "[gold]燃料[/gold]が [gold]焼滅[/gold]するたびに、 \nランダムな敵に [gold]燃焼[/gold][blue]{Amount}[/blue]を 与える。",
   "MOKOUMOD-FAN_THE_FLAMES_POWER.title": "火扇",
