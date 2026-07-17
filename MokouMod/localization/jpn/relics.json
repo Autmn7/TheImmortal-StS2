@@ -9,7 +9,7 @@
   "MOKOUMOD-OFUDA_OF_IGNITION.description": "各戦闘の開始時に、すべての敵に[gold]燃焼[/gold][blue]{BurnPower}[/blue]を2回付与する。",
   "MOKOUMOD-OFUDA_OF_IGNITION.flavor": "虫や厄介な天狗を追い払うために一般的に使われる。",
   "MOKOUMOD-OFUDA_OF_IGNITION.title": "発火符",
-  "MOKOUMOD-LUMP_OF_COAL.description": "各戦闘の開始時に、 ランダムな [gold]余燼[/gold] [blue]{Cinders}[/blue]枚を あなたの[gold]手札[/gold]に 加える。",
+  "MOKOUMOD-LUMP_OF_COAL.description": "各戦闘の開始時に、 ランダムな [gold]灰燼[/gold] [blue]{Cinders}[/blue]枚を あなたの[gold]手札[/gold]に 加える。",
   "MOKOUMOD-LUMP_OF_COAL.flavor": "弾幕の射程の長さに従い、その軌跡もまた長く遺る。",
   "MOKOUMOD-LUMP_OF_COAL.title": "石炭塊",
   "MOKOUMOD-MAPO_TOFU.description": "入手すると、最大HPが[blue]{MaxHp}[/blue]増加し、 [gold]燠[/gold][blue]{Essence}[/blue]を 得る。",
