@@ -98,7 +98,7 @@
   "MOKOUMOD-DISINTEGRATE.artist": "Blanc. ブラン",
   "MOKOUMOD-FLAME_DANCE.description": "将{Feathers:diff()}张[gold]火羽[/gold]加入你的[gold]手牌[/gold]。",
   "MOKOUMOD-FLAME_DANCE.title": "焰舞",
-  "MOKOUMOD-FLAME_DANCE.artist": "ティカ",
+  "MOKOUMOD-FLAME_DANCE.artist": "Aur0raSt4r",
   "MOKOUMOD-SMOKE_AND_FEATHER.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n将{Feathers:diff()}张[gold]火羽[/gold]加入你的[gold]手牌[/gold]。\n[gold]点燃[/gold]({Ignite:diff()})：再加入1张。",
   "MOKOUMOD-SMOKE_AND_FEATHER.title": "烟与焰",
   "MOKOUMOD-SMOKE_AND_FEATHER.artist": "うさあすら",
