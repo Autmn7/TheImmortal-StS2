@@ -15,7 +15,7 @@
   "MOKOUMOD-MAPO_TOFU.description": "入手すると、最大HPが[blue]{MaxHp}[/blue]増加し、[gold]燠[/gold][blue]{Essence}[/blue]を得る。",
   "MOKOUMOD-MAPO_TOFU.flavor": "そのイチゴをここからどかせ！うわああああ！",
   "MOKOUMOD-MAPO_TOFU.title": "麻婆豆腐",
-  "MOKOUMOD-GRILL.description": "[gold]燃料[/gold]が[gold]消滅[/gold]するたび、[gold]覇気[/gold][blue]{VigorPower}[/blue]を得る。",
+  "MOKOUMOD-GRILL.description": "[gold]燃料[/gold]が[gold]消滅[/gold]するたび、[gold]活力[/gold][blue]{VigorPower}[/blue]を得る。",
   "MOKOUMOD-GRILL.flavor": "「アツアツ」「激辛」「スパイシー」「フルーティ」「丸焼き」",
   "MOKOUMOD-GRILL.title": "グリル",
   "MOKOUMOD-VENGEFUL_GHOST.description": "自身のターン中にあなたがHPを失うたび、敵全体が同量のHPを失う。",

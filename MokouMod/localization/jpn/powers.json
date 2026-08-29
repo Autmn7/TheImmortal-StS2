@@ -33,7 +33,7 @@
   "MOKOUMOD-CRIMSON_WATCHGUARD_POWER.smartDescription": "スキルをプレイするたび、[gold]活力[/gold][blue]{Amount}[/blue]を得る。それが[gold]エンチャントされている[/gold]なら、更に[blue]1[/blue]得る。",
   "MOKOUMOD-CRIMSON_WATCHGUARD_POWER.title": "緋色の見張り",
   "MOKOUMOD-PHOENIX_FORM_POWER.description": "",
-  "MOKOUMOD-PHOENIX_FORM_POWER.smartDescription": "[blue]燃焼[/blue]によるHPの減少が1回最大[blue]3[/blue]HP以下となり、[gold]再燃[/gold]により蘇生した時[gold]燃焼[/gold]は解除される。自分のターン終了時、自身と敵全体に[gold]燃焼[/gold][blue]{Amount}[/blue]を与える。",
+  "MOKOUMOD-PHOENIX_FORM_POWER.smartDescription": "[gold]燃焼[/gold]によるHPの減少は一度に最大3となり、[gold]再燃[/gold]で復活した時、[gold]燃焼[/gold]を失わなくなる。自分のターン終了時、自身と敵全体に[gold]燃焼[/gold][blue]{Amount}[/blue]を与える。",
   "MOKOUMOD-PHOENIX_FORM_POWER.title": "鳳凰化",
   "MOKOUMOD-FIVE_COLORED_TURTLE_POWER.description": "",
   "MOKOUMOD-FIVE_COLORED_TURTLE_POWER.smartDescription": "あなたのターン開始時に、[gold]活力[/gold][blue]{Amount}[/blueを得て、カード1枚に[gold]気炎[/gold]を[gold]エンチャント[/gold]する。",
@@ -63,7 +63,7 @@
   "MOKOUMOD-FEAR_NO_DEATH_POWER.smartDescription": "自分のターン中にHPを失うたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
   "MOKOUMOD-FEAR_NO_DEATH_POWER.title": "穢死を恐れず",
   "MOKOUMOD-FAN_THE_FLAMES_POWER.description": "",
-  "MOKOUMOD-FAN_THE_FLAMES_POWER.smartDescription": "[gold]燃料[/gold]が[gold]廃棄[/gold]するたび、\nランダムな敵に[gold]燃焼[/gold][blue]{Amount}[/blue]を与える。",
+  "MOKOUMOD-FAN_THE_FLAMES_POWER.smartDescription": "[gold]燃料[/gold]が[gold]廃棄[/gold]されるたびに、\nランダムな敵に[gold]燃焼[/gold][blue]{Amount}[/blue]を与える。",
   "MOKOUMOD-FAN_THE_FLAMES_POWER.title": "炎を煽る",
   "MOKOUMOD-ETERNAL_FLAME_POWER.description": "",
   "MOKOUMOD-ETERNAL_FLAME_POWER.smartDescription": "あなたのターン開始時に、本来より残量が[blue]1[/blue]少ないランダムな{Amount:plural:[gold]灰燼[/gold]|[gold]灰燼[/gold]}を[blue]{Amount}[/blue]枚[gold]手札[/gold]に加える。",
@@ -73,7 +73,7 @@
   "MOKOUMOD-BURNING_SOUL_POWER.title": "燃え盛る魂",
   "MOKOUMOD-INVERTED_INFERNO_POWER.description": "最大{Amount}枚のカードを[gold]廃棄[/gold]する。",
   "MOKOUMOD-INVERTED_INFERNO_POWER.selectionScreenPrompt": "{Amount}枚のカードを手札に加える。",
-  "MOKOUMOD-INVERTED_INFERNO_POWER.smartDescription": "自分のターンの開始時、最大[blue]{Amount}[/blue]枚の[gold]カード[/gold]を[gold]廃棄[/gold]し、[gold]捨て札[/gold]からその分のカードを[gold]手札[/gold]に加える。",
+  "MOKOUMOD-INVERTED_INFERNO_POWER.smartDescription": "自分のターンの開始時、最大[blue]{Amount}[/blue]枚のカードを[gold]廃棄[/gold]し、[gold]捨て札[/gold]からその分のカードを[gold]手札[/gold]に加える。",
   "MOKOUMOD-INVERTED_INFERNO_POWER.title": "逆巻く煉獄",
   "MOKOUMOD-CURSE_OF_IWAKASA_POWER.description": "",
   "MOKOUMOD-CURSE_OF_IWAKASA_POWER.smartDescription": "受けたデバフ効果がすべての2倍になる。",
@@ -92,5 +92,5 @@
   "MOKOUMOD-BUILD_UP_POWER.title": "ビルド・アップ",
   "MOKOUMOD-DUP_HISTORICAL_GAP_POWER.description": "カードを[gold]喰われる[/gold]か[gold]廃棄[/gold]させるたび、XHPを失い、このスタックを[blue]1[/blue]減少させる。",
   "MOKOUMOD-DUP_HISTORICAL_GAP_POWER.smartDescription": "カードを[gold]喰われる[/gold]か[gold]廃棄[/gold]させるたび、[blue]{Amount}[/blue]HPを失い、このスタックを[blue]1[/blue]減少させる。",
-  "MOKOUMOD-DUP_HISTORICAL_GAP_POWER.title": "虚史"
+  "MOKOUMOD-DUP_HISTORICAL_GAP_POWER.title": "歴史の隔たり"
 }

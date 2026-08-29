@@ -17,7 +17,7 @@ public class FiveColoredTurtlePower : MokouModPower
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    public override async Task AfterPlayerTurnStartLate(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player)
             return;
