@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -14,7 +13,7 @@ public class TauntMokou : MokouModCard
     public TauntMokou() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithBlock(12);
-        WithVars(new DynamicVar("TempStrength", 2M), new PowerVar<StrengthPower>(1));
+        WithVars(new DynamicVar("TempStrength", 3M), new PowerVar<StrengthPower>(1));
         WithKeywords(MokouModKeywords.Fury);
     }
 
@@ -23,9 +22,11 @@ public class TauntMokou : MokouModCard
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        await CommonActions.Apply<TauntPower>(cardPlay.Target, this, DynamicVars["TempStrength"].IntValue);
+        await PowerCmd.Apply<TauntPower>(choiceContext, cardPlay.Target, DynamicVars["TempStrength"].IntValue, Owner.Creature, this);
         if (FuryActive)
-            await CommonActions.Apply<StrengthPower>(cardPlay.Target, this, -DynamicVars.Strength.BaseValue);
+            await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, 2 * cardPlay.Target.GetPowerAmount<StrengthPower>(), Owner.Creature, this);
+        else
+            await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, cardPlay.Target.GetPowerAmount<StrengthPower>(), Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

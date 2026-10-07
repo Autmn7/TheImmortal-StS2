@@ -11,7 +11,7 @@ public class FanTheFlames : MokouModCard
 {
     public FanTheFlames() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new DynamicVar("FanTheFlamesPower", 3M));
+        WithVars(new DynamicVar("FanTheFlamesPower", 2M));
         WithTip(MokouModKeywords.Fuel);
         WithTip(CardKeyword.Exhaust);
         WithTip(typeof(BurnPower));

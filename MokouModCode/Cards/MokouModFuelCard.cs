@@ -1,7 +1,10 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MokouMod.MokouModCode.Powers;
 
 namespace MokouMod.MokouModCode.Cards;
 
@@ -34,5 +37,28 @@ public abstract class MokouModFuelCard(int cost, CardType type, CardRarity rarit
             await OnFuelDurabilityDeplete();
             Durability = MaxDurability;
         }
+    }
+    
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    {
+        if (power.Owner == Owner.Creature && power is FanTheFlamesPower)
+        {
+            CardCmd.RemoveKeyword(this, CardKeyword.Unplayable);
+            CardCmd.ApplyKeyword(this, CardKeyword.Exhaust);
+            EnergyCost.SetThisCombat(0);
+        }
+
+        base.AfterPowerAmountChanged(choiceContext, power, amount, applier, cardSource);
+        return Task.CompletedTask;
+    }
+    
+    public override Task AfterCardEnteredCombat(CardModel card)
+    {
+        if (card != this || IsClone || !Owner.Creature.HasPower<FanTheFlamesPower>())
+            return Task.CompletedTask;
+        CardCmd.RemoveKeyword(this, CardKeyword.Unplayable);
+        CardCmd.ApplyKeyword(this, CardKeyword.Exhaust);
+        EnergyCost.SetThisCombat(0);
+        return Task.CompletedTask;
     }
 }

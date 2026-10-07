@@ -11,7 +11,8 @@ public class ConsecutiveKicks : MokouModCard
     public ConsecutiveKicks() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(2);
-        WithVars(new RepeatVar(3));
+        WithVar(new RepeatVar(3));
+        WithVar("ExtraTime", 1, 1);
         WithKeywords(MokouModKeywords.Fury);
     }
 
@@ -20,7 +21,7 @@ public class ConsecutiveKicks : MokouModCard
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target)
-            .WithHitCount(FuryActive ? DynamicVars.Repeat.IntValue + 1 : DynamicVars.Repeat.IntValue)
+            .WithHitCount(FuryActive ? DynamicVars.Repeat.IntValue + DynamicVars["ExtraTime"].IntValue : DynamicVars.Repeat.IntValue)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3").Execute(choiceContext);
     }
 

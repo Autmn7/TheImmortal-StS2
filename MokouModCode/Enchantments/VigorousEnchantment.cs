@@ -17,9 +17,9 @@ public class VigorousEnchantment : CustomEnchantmentModel
 
     public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
-        if (cardPlay.Card != Card || cardPlay.Resources.EnergySpent <= 0)
+        if (cardPlay?.Card != Card)
             return;
         if (Card.Type != CardType.Attack)
-            await PowerCmd.Apply<VigorPower>(choiceContext, cardPlay.Card.Owner.Creature, 2 * cardPlay.Resources.EnergySpent, cardPlay.Card.Owner.Creature, Card);
+            await PowerCmd.Apply<VigorPower>(choiceContext, cardPlay.Card.Owner.Creature, 1 + Math.Max(0, 2 * cardPlay.Resources.EnergySpent), cardPlay.Card.Owner.Creature, Card);
     }
 }

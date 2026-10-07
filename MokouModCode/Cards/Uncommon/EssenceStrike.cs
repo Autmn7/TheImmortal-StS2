@@ -15,9 +15,9 @@ namespace MokouMod.MokouModCode.Cards.Uncommon;
 
 public class EssenceStrike : MokouModCard
 {
-    public EssenceStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public EssenceStrike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(6);
+        WithDamage(4);
         WithVars(
             new CalculationBaseVar(1M),
             new CalculationExtraVar(1M),
@@ -40,6 +40,7 @@ public class EssenceStrike : MokouModCard
         );
         WithTags(CardTag.Strike);
         WithTip(MokouModKeywords.Essence);
+        WithTip(typeof(TempEssencePower));
     }
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)

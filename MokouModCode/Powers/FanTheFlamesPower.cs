@@ -25,13 +25,12 @@ public class FanTheFlamesPower : MokouModPower
         if (card.Keywords.Contains(MokouModKeywords.Fuel))
         {
             Flash();
-            var enemy = Owner.Player?.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
-            if (enemy != null)
+            foreach (var enemy in CombatState.HittableEnemies)
             {
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(enemy));
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(enemy, 0.75f));
-                await PowerCmd.Apply<BurnPower>(choiceContext, enemy, Amount, Owner, null);
             }
+            await PowerCmd.Apply<BurnPower>(choiceContext, CombatState.HittableEnemies, Amount, Owner, null);
         }
     }
 }
