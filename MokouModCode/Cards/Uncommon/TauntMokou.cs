@@ -24,9 +24,9 @@ public class TauntMokou : MokouModCard
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await PowerCmd.Apply<TauntPower>(choiceContext, cardPlay.Target, DynamicVars["TempStrength"].IntValue, Owner.Creature, this);
         if (FuryActive)
-            await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, 2 * cardPlay.Target.GetPowerAmount<StrengthPower>(), Owner.Creature, this);
+            await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, Math.Max(2 * cardPlay.Target.GetPowerAmount<StrengthPower>(), 0), Owner.Creature, this);
         else
-            await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, cardPlay.Target.GetPowerAmount<StrengthPower>(), Owner.Creature, this);
+            await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, Math.Max(cardPlay.Target.GetPowerAmount<StrengthPower>(), 0), Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

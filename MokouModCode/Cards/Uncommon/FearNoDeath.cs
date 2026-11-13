@@ -1,4 +1,4 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -17,7 +17,7 @@ public class FearNoDeath : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<FearNoDeathPower>(this, DynamicVars["FearNoDeathPower"].BaseValue);
+        await PowerCmd.Apply<FearNoDeathPower>(choiceContext, Owner.Creature, DynamicVars["FearNoDeathPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

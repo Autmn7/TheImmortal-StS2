@@ -57,6 +57,7 @@ public class MokouMod : PlaceholderCharacterModel
     public static readonly Color Color = new("#c81e1e");
 
     public override Color NameColor => Color;
+    public override Color DreadNameColor => Color;
     public override Color EnergyLabelOutlineColor => new("#8b0000");
     public override Color MapDrawingColor => Color;
     public override CharacterGender Gender => CharacterGender.Feminine;
@@ -223,7 +224,7 @@ public class MokouMod : PlaceholderCharacterModel
         return base.AfterDamageReceivedLate(choiceContext, target, result, props, dealer, cardSource);
     }
 
-    public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+    public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, CardModel? source, bool wasRemovalPrevented, float deathAnimLength)
     {
         if (!wasRemovalPrevented && creature.IsPlayer)
         {
@@ -231,7 +232,7 @@ public class MokouMod : PlaceholderCharacterModel
             if (player?.Character is MokouMod) RunAnimation(player, Animation.Dead);
         }
 
-        return base.AfterDeath(choiceContext, creature, wasRemovalPrevented, deathAnimLength);
+        return base.AfterDeath(choiceContext, creature, source, wasRemovalPrevented, deathAnimLength);
     }
 
     public override Task AfterCombatVictory(CombatRoom room)

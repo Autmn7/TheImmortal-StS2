@@ -1,4 +1,4 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -17,7 +17,6 @@ public class SpontaneousCombustion : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SpontaneousCombustionPower>(this,
-            DynamicVars["SpontaneousCombustionPower"].IntValue);
+        await PowerCmd.Apply<SpontaneousCombustionPower>(choiceContext, Owner.Creature, DynamicVars["SpontaneousCombustionPower"].BaseValue, Owner.Creature, this);
     }
 }

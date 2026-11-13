@@ -1,4 +1,4 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -18,7 +18,7 @@ public class Heatwave : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<HeatwavePower>(this, 1);
+        await PowerCmd.Apply<HeatwavePower>(choiceContext, Owner.Creature, DynamicVars["HeatwavePower"].BaseValue, Owner.Creature, this);
         await Feather.CreateInHand(Owner, DynamicVars["Feathers"].IntValue, CombatState);
     }
 

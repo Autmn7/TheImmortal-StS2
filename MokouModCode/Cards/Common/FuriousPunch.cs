@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -18,12 +19,8 @@ public class FuriousPunch : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3").Execute(choiceContext);
-        await CommonActions.Apply<VulnerablePower>(cardPlay.Target, this,
-            FuryActive
-                ? DynamicVars.Vulnerable.BaseValue + DynamicVars["AdditionalVul"].BaseValue
-                : DynamicVars.Vulnerable.BaseValue);
+        await CommonActions.CardAttack(this, cardPlay.Target).WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3").Execute(choiceContext);
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, FuryActive ? DynamicVars.Vulnerable.BaseValue + DynamicVars["AdditionalVul"].BaseValue : DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -1,4 +1,4 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -17,7 +17,7 @@ public class CrimsonWatchguard : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<CrimsonWatchguardPower>(this, DynamicVars["CrimsonWatchguardPower"].IntValue);
+        await PowerCmd.Apply<CrimsonWatchguardPower>(choiceContext, Owner.Creature, DynamicVars["CrimsonWatchguardPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -1,4 +1,4 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -19,7 +19,7 @@ public class FiveColoredTurtle : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<FiveColoredTurtlePower>(this, DynamicVars["FiveColoredTurtlePower"].IntValue);
+        await PowerCmd.Apply<FiveColoredTurtlePower>(choiceContext, Owner.Creature, DynamicVars["FiveColoredTurtlePower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

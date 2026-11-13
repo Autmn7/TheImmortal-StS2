@@ -1,4 +1,4 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -18,7 +18,7 @@ public class BurningSoul : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<BurningSoulPower>(this, DynamicVars["BurningSoulPower"].IntValue);
+        await PowerCmd.Apply<BurningSoulPower>(choiceContext, Owner.Creature, DynamicVars["BurningSoulPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

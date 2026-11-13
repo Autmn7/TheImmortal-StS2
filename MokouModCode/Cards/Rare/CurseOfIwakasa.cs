@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MokouMod.MokouModCode.Cards.Special;
@@ -20,7 +19,7 @@ public class CurseOfIwakasa : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.Apply<CurseOfIwakasaPower>(cardPlay.Target, this, 1M);
+        await PowerCmd.Apply<CurseOfIwakasaPower>(choiceContext, cardPlay.Target, 1M, Owner.Creature, this);
         var card = CombatState.CreateCard<Hellfire>(Owner);
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }

@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.CardSelection;
+﻿using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,7 +22,7 @@ public class Vitality : MokouModCard
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        await CommonActions.Apply<VigorPower>(Owner.Creature, this, DynamicVars["VigorPower"].IntValue);
+        await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, DynamicVars["VigorPower"].BaseValue, Owner.Creature, this);
         var enchantment = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
         var card = (await CardSelectCmd.FromHand(choiceContext, Owner,
                 new CardSelectorPrefs(new LocString("card_selection", "TO_ENCHANT_VIGOROUS"), 1),

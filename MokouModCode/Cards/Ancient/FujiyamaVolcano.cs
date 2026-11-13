@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -31,7 +30,7 @@ public class FujiyamaVolcano : MokouModCard
             {
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(enemy));
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireBurstVfx.Create(enemy, 0.75f));
-                await CommonActions.Apply<BurnPower>(enemy, this, DynamicVars["BurnPower"].IntValue);
+                await PowerCmd.Apply<BurnPower>(choiceContext, enemy, DynamicVars["BurnPower"].IntValue, Owner.Creature, this);
                 await Cmd.CustomScaledWait(0.1f, 0.15f);
             }
 

@@ -40,7 +40,7 @@ public class MarkOfSinPower : MokouModPower
         ((StringVar)DynamicVars["Applier"]).StringValue = PlatformUtil.GetPlayerName(RunManager.Instance.NetService.Platform, Applier.Player.NetId);
     }
 
-    public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+    public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, CardModel? source, bool wasRemovalPrevented, float deathAnimLength)
     {
         if (creature == Owner && Applier.Player is { RunState.CurrentRoom.RoomType: RoomType.Boss } && !Owner.HasPower<MinionPower>())
             await PotionCmd.TryToProcure(ModelDb.Potion<HouraiElixir>().ToMutable(), Applier.Player);

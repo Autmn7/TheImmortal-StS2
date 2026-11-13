@@ -3,13 +3,13 @@
   "name": "The Immortal 藤原妹红",
   "author": "Autmn",
   "description": "A mod featuring Fujiwara no Mokou from Touhou Project.",
-  "version": "v1.2.0",
+  "version": "v1.3.0",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [
     {
       "id": "BaseLib",
-      "min_version": "v3.3.5"
+      "min_version": "v3.4.8"
     }
   ],
   "affects_gameplay": true

@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.CardSelection;
+﻿using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,7 +22,7 @@ public class ValiantHeart : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<ValiantHeartPower>(this, 1M);
+        await PowerCmd.Apply<ValiantHeartPower>(choiceContext, Owner.Creature, 1M, Owner.Creature, this);
         var enchantment = ModelDb.Enchantment<VigorousEnchantment>().ToMutable();
         var cards = (await CardSelectCmd.FromHand(choiceContext, Owner, new CardSelectorPrefs(new LocString("card_selection", "TO_ENCHANT_VIGOROUS"), DynamicVars.Cards.IntValue), (Func<CardModel, bool>)(model => enchantment.CanEnchant(model)), this)).ToList();
         if (cards.Count != 0)

@@ -1,4 +1,4 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -19,7 +19,7 @@ public class FanTheFlames : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<FanTheFlamesPower>(this, DynamicVars["FanTheFlamesPower"].IntValue);
+        await PowerCmd.Apply<FanTheFlamesPower>(choiceContext, Owner.Creature, DynamicVars["FanTheFlamesPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

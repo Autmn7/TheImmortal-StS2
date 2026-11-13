@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -19,8 +20,8 @@ public class TragicFate : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<DoubleDamagePower>(this, 1);
-        await CommonActions.ApplySelf<TragicFatePower>(this, 1);
+        await PowerCmd.Apply<DoubleDamagePower>(choiceContext, Owner.Creature, 1M, Owner.Creature, this);
+        await PowerCmd.Apply<TragicFatePower>(choiceContext, Owner.Creature, 1M, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
