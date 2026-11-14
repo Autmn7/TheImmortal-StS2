@@ -1,9 +1,11 @@
 ﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -16,8 +18,9 @@ public class DevastatingKick : MokouModCard
 {
     public DevastatingKick() : base(0, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
-        WithDamage(7);
-        WithVars(new HpLossVar(2), new RepeatVar(2), new PowerVar<BurnPower>(6));
+        WithDamage(7, 3);
+        WithPower<BurnPower>(6, 4);
+        WithVars(new HpLossVar(2), new RepeatVar(2));
         WithKeyword(MokouModKeywords.Nonlethal);
     }
 
@@ -34,9 +37,11 @@ public class DevastatingKick : MokouModCard
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade()
+    public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, CardModel? source, bool wasRemovalPrevented, float deathAnimLength)
     {
-        DynamicVars.Damage.UpgradeValueBy(3M);
-        DynamicVars["BurnPower"].UpgradeValueBy(4M);
+        if (wasRemovalPrevented || CombatState == null || creature.Side == Owner.Creature.Side)
+            return;
+        if (Pile != null && Pile.Type != PileType.Hand)
+            await CardPileCmd.Add(this, PileType.Hand);
     }
 }

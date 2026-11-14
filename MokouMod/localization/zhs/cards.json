@@ -11,7 +11,7 @@
   "MOKOUMOD-BREAK_TIME.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[purple]燃烬[/purple]：获得{RegenPower:diff()}层[gold]再生[/gold]。",
   "MOKOUMOD-BREAK_TIME.title": "暂息",
   "MOKOUMOD-BREAK_TIME.artist": "ichiTATa",
-  "MOKOUMOD-DEVASTATING_KICK.description": "失去{HpLoss:diff()}点[gold]非致命[/gold]生命。\n造成{Damage:diff()}点伤害{Repeat:diff()}次。\n给予{BurnPower:diff()}层[gold]烧伤[/gold]。",
+  "MOKOUMOD-DEVASTATING_KICK.description": "失去{HpLoss:diff()}点[gold]非致命[/gold]生命。\n造成{Damage:diff()}点伤害{Repeat:diff()}次。\n给予{BurnPower:diff()}层[gold]烧伤[/gold]。\n每当有敌人死亡时，将此牌返回你的[gold]手牌[/gold]。",
   "MOKOUMOD-DEVASTATING_KICK.title": "绝命踢",
   "MOKOUMOD-DEVASTATING_KICK.artist": "青蛙吃蛇",
   "MOKOUMOD-FUJIYAMA_VOLCANO.description": "敌人的[gold]烧伤[/gold]不再衰减。\n随机给予敌人{BurnPower:diff()}层[gold]烧伤[/gold]6次。",

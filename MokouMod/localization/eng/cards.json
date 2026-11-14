@@ -11,7 +11,7 @@
   "MOKOUMOD-BREAK_TIME.description": "Gain {Block:diff()} [gold]Block[/gold].\n[purple]Ember[/purple]: Gain {RegenPower:diff()} [gold]Regen[/gold].",
   "MOKOUMOD-BREAK_TIME.title": "Break Time",
   "MOKOUMOD-BREAK_TIME.artist": "ichiTATa",
-  "MOKOUMOD-DEVASTATING_KICK.description": "Lose {HpLoss:diff()} [gold]Non-Lethal[/gold] HP.\nDeal {Damage:diff()} damage {Repeat:diff()} times.\nApply {BurnPower:diff()} [gold]Burn[/gold].",
+  "MOKOUMOD-DEVASTATING_KICK.description": "Lose {HpLoss:diff()} [gold]Non-Lethal[/gold] HP.\nDeal {Damage:diff()} damage {Repeat:diff()} times.\nApply {BurnPower:diff()} [gold]Burn[/gold].\nWhenever an enemy dies, return this to your [gold]Hand[/gold].",
   "MOKOUMOD-DEVASTATING_KICK.title": "Devastating Kick",
   "MOKOUMOD-DEVASTATING_KICK.artist": "青蛙吃蛇",
   "MOKOUMOD-FUJIYAMA_VOLCANO.description": "[gold]Burn[/gold] no longer decays on enemies.\nApply {BurnPower:diff()} [gold]Burn[/gold] to a random enemy 6 times.",

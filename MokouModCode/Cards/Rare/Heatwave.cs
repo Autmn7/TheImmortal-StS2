@@ -18,7 +18,7 @@ public class Heatwave : MokouModCard
 
     protected override async Task OnPlayMokou(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<HeatwavePower>(choiceContext, Owner.Creature, DynamicVars["HeatwavePower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<HeatwavePower>(choiceContext, Owner.Creature, 1M, Owner.Creature, this);
         await Feather.CreateInHand(Owner, DynamicVars["Feathers"].IntValue, CombatState);
     }
 

@@ -11,7 +11,7 @@
   "MOKOUMOD-BREAK_TIME.description": "{Block:diff()}[gold]ブロック[/gold]得る。\n[purple]余燼[/purple]: [gold]再生[/gold]{RegenPower:diff()}を得る。",
   "MOKOUMOD-BREAK_TIME.title": "休息",
   "MOKOUMOD-BREAK_TIME.artist": "ichiTATa",
-  "MOKOUMOD-DEVASTATING_KICK.description": "[gold]魂火[/gold]{HpLoss:diff()}HPを失う。\n{Damage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]燃焼[/gold]{BurnPower:diff()}を与える。",
+  "MOKOUMOD-DEVASTATING_KICK.description": "[gold]魂火[/gold]{HpLoss:diff()}HPを失う。\n{Damage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]燃焼[/gold]{BurnPower:diff()}を与える。\n敵が死亡するたび、このカードを[gold]手札[/gold]へ戻す。",
   "MOKOUMOD-DEVASTATING_KICK.title": "圧倒の一蹴",
   "MOKOUMOD-DEVASTATING_KICK.artist": "青蛙吃蛇",
   "MOKOUMOD-FUJIYAMA_VOLCANO.description": "敵の[gold]燃焼[/gold]は減少しない。\nランダムな敵に[gold]燃焼[/gold]{BurnPower:diff()}を6回与える。",
